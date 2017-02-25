@@ -1,0 +1,151 @@
+;; -*- mode: emacs-lisp; coding: emacs-mule; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Thu May  5 08:52:22 2016
+;; Desktop file format version 206
+;; Emacs version 24.5.1
+
+;; Global section:
+(setq desktop-saved-frameset [frameset 1 (22315 27702 455350 0) (desktop . "206") "Erik.Aker@Q65-2.local" nil nil ((((font-backend mac-ct ns) (fontsize . 0) (font . "-*-Monaco-normal-normal-normal-*-12-*-*-*-m-0-iso10646-1") (border-width . 0) (internal-border-width . 2) (vertical-scroll-bars . right) (foreground-color . "#657b83") (background-color . "#fdf6e3") (line-spacing) (left-fringe . 10) (right-fringe . 11) (menu-bar-lines . 1) (tool-bar-lines . 0) (title) (icon-type) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 15) (alpha) (fullscreen) (display . "Q65-2.local") (display-type . color) (background-mode . light) (cursor-color . "#657b83") (visibility . t) (horizontal-scroll-bars . t) (environment) (frameset--id . "E983-E9EF-9932-613F") (frameset--mini t . t) (modeline . t) (minibuffer . t) (unsplittable) (right-divider-width . 0) (bottom-divider-width . 0) (icon-name) (explicit-name) (tool-bar-position . top) (height . 51) (width . 178) (left . 11) (top . 23)) ((min-height . 8) (min-width . 20) (min-height-ignore . 8) (min-width-ignore . 16) (min-height-safe . 2) (min-width-safe . 4) (min-pixel-height . 128) (min-pixel-width . 140) (min-pixel-height-ignore . 128) (min-pixel-width-ignore . 112) (min-pixel-height-safe . 32) (min-pixel-width-safe . 28)) hc (pixel-width . 1282) (pixel-height . 800) (total-width . 183) (total-height . 50) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (vc (pixel-width . 637) (pixel-height . 800) (total-width . 91) (total-height . 50) (normal-height . 1.0) (normal-width . 0.49687987519500776) (combination-limit) (leaf (pixel-width . 637) (pixel-height . 400) (total-width . 91) (total-height . 25) (normal-height . 0.5) (normal-width . 1.0) (buffer "test_utils.py" (selected) (hscroll . 0) (fringes 10 11 nil) (margins 2) (scroll-bars 15 3 t nil) (vscroll . 0) (dedicated) (point . 663) (start . 376))) (leaf (last . t) (pixel-width . 637) (pixel-height . 400) (total-width . 91) (total-height . 25) (normal-height . 0.5) (normal-width . 1.0) (buffer "benchmark_builder.py" (selected . t) (hscroll . 0) (fringes 10 11 nil) (margins 3) (scroll-bars 15 3 t nil) (vscroll . 0) (dedicated) (point . 10172) (start . 9938)))) (leaf (last . t) (pixel-width . 645) (pixel-height . 800) (total-width . 92) (total-height . 50) (normal-height . 1.0) (normal-width . 0.5031201248049922) (buffer "utils.py" (selected) (hscroll . 0) (fringes 10 11 nil) (margins 2) (scroll-bars 15 3 t nil) (vscroll . 0) (dedicated) (point . 526) (start . 66)))))])
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring '("index" "relative_reven" "ipdb" "idx_construcct" "trim_sample" "idx_construct" "idx_select" "trim_sample" "trim_" "arith" "trim" "test_c" "conditional_tr" "RED" "conditional_trim" "conditional"))
+(setq regexp-search-ring nil)
+(setq register-alist nil)
+(setq file-name-history '("/Users/Erik.Aker/workspace/quant-econ/tests/test_utils.py" "/Users/Erik.Aker/workspace/quant-econ/benchmarks/utils.py" "/Users/Erik.Aker/workspace/quant-econ/tests/test_utils.py" "/Users/Erik.Aker/workspace/quant-econ/benchmarks/utils.py" "/Users/Erik.Aker/workspace/quant-econ/tests/test_filters.py" "/Users/Erik.Aker/workspace/quant-econ/benchmarks/filters.py" "/Users/Erik.Aker/workspace/quant-econ/benchmarks/constants.py" "/Users/Erik.Aker/workspace/quant-econ/benchmarks/peergraph.py" "/Users/Erik.Aker/workspace/quant-econ/scripts/index_complete.py" "/Users/Erik.Aker/workspace/quant-econ/benchmarks/benchmark_builder.py" "/Users/Erik.Aker/workspace/quant-econ/benchmarks/benchmark_types.py" "/Users/Erik.Aker/workspace/quant-econ/tests/test_filters.py" "/Users/Erik.Aker/workspace/quant-econ/tests/conftest.py" "/Users/Erik.Aker/workspace/quant-econ/tests/test_filters.py" "/Users/Erik.Aker/workspace/quant-econ/tests/fixtures/growth_sample.pickle" "/Users/Erik.Aker/workspace/quant-econ/shell_test.py" "/Users/Erik.Aker/workspace/quant-econ/scripts/index_complete.py" "/Users/Erik.Aker/workspace/quant-econ/benchmarks/benchmark_builder.py" "/Users/Erik.Aker/workspace/quant-econ/tests/test_utils.py" "/Users/Erik.Aker/workspace/quant-econ/benchmarks/utils.py" "/Users/Erik.Aker/workspace/quant-econ/tests/test_utils.py" "/Users/Erik.Aker/workspace/quant-econ/tests/conftest.py" "/Users/Erik.Aker/workspace/quant-econ/tests/test_trimmers.py" "/Users/Erik.Aker/workspace/quant-econ/benchmarks/utils.py" "/Users/Erik.Aker/workspace/quant-econ/benchmarks/trimmers.py" "/Users/Erik.Aker/workspace/quant-econ/tests/test_benchmark_builder.py" "/Users/Erik.Aker/workspace/quant-econ/tests/test_pricing.py" "/Users/Erik.Aker/workspace/quant-econ/benchmarks/filters.py" "/Users/Erik.Aker/workspace/quant-econ/shell_test.py" "/Users/Erik.Aker/workspace/quant-econ/benchmarks/peergraph.py" "/Users/Erik.Aker/workspace/quant-econ/benchmarks/io.py" "/Users/Erik.Aker/workspace/quant-econ/scripts/index_complete.py" "/Users/Erik.Aker/workspace/quant-econ/benchmarks/constants.py" "/Users/Erik.Aker/workspace/quant-econ/benchmarks/io.py" "/Users/Erik.Aker/workspace/quant-econ/benchmarks/constants.py" "/Users/Erik.Aker/workspace/quant-econ/scripts/index_complete.py" "/Users/Erik.Aker/workspace/quant-econ/tests/test_pricing.py" "/Users/Erik.Aker/workspace/quant-econ/Jacob's Code/idx_complete.py" "/Users/Erik.Aker/workspace/quant-econ/shell_test.py" "/Users/Erik.Aker/workspace/quant-econ/benchmarks/pricing.py" "/Users/Erik.Aker/workspace/baikal/fbi/util.py" "/Users/Erik.Aker/workspace/baikal/fbi/database/db.py" "/Users/Erik.Aker/workspace/baikal/tests/functional/test_synthetic_drivers/test_driver_utils.py" "/Users/Erik.Aker/workspace/baikal/fbi/synthetic_drivers/driver_utils.py" "/Users/Erik.Aker/workspace/baikal/tests/functional/conftest.py" "/Users/Erik.Aker/workspace/baikal/tests/functional/factories.py" "/Users/Erik.Aker/workspace/baikal/testing-requirements.txt" "/Users/Erik.Aker/workspace/baikal/fbi/etl/event.py" "/Users/Erik.Aker/workspace/baikal/tests/functional/conftest.py" "/Users/Erik.Aker/workspace/baikal/fbi/synthetic_drivers/us_oil_price.py" "/Users/Erik.Aker/workspace/baikal/data_integration/docker_run_sql.sh" "/Users/Erik.Aker/workspace/baikal/tests/functional/conftest.py" "/Users/Erik.Aker/workspace/baikal/tests/functional/test_synthetic_drivers/test_us_oil_price.py" "/Users/Erik.Aker/workspace/baikal/tests/functional/test_synthetic_drivers/test_eu19_unemployment_rate.py" "/Users/Erik.Aker/workspace/baikal/tests/functional/test_synthetic_drivers/__init__.py" "/Users/Erik.Aker/workspace/baikal/fbi/util.py" "/Users/Erik.Aker/workspace/baikal/fbi/synthetic_drivers/driver_utils.py" "/Users/Erik.Aker/workspace/baikal/fbi/database/db.py" "/Users/Erik.Aker/workspace/baikal/fbi/logging.yml" "/Users/Erik.Aker/workspace/baikal/tests/functional/conftest.py" "/Users/Erik.Aker/workspace/baikal/tests/functional/test_synthetic_drivers/test_us_oil_price.py" "/Users/Erik.Aker/workspace/baikal/fbi/synthetic_drivers/driver_utils.py" "/Users/Erik.Aker/workspace/baikal/fbi/synthetic_drivers/comparison.py" "/Users/Erik.Aker/workspace/baikal/fbi/synthetic_drivers/eu19_unemployment_rate.py" "/Users/Erik.Aker/workspace/baikal/fbi/database/models.py" "/Users/Erik.Aker/workspace/baikal/fbi/synthetic_drivers/us_oil_price.py" "/Users/Erik.Aker/workspace/baikal/tests/functional/test_database/test_models.py" "~/workspace/baikal/tests/functional/test_synthetic_drivers/" "/Users/Erik.Aker/workspace/baikal/tests/functional/test_synthetic_drivers/test_us_oil_price.py" "/Users/Erik.Aker/workspace/baikal/fbi/synthetic_drivers/us_oil_price.py" "/Users/Erik.Aker/workspace/baikal/fbi/database/db.py" "/Users/Erik.Aker/workspace/baikal/tests/functional/conftest.py" "/Users/Erik.Aker/workspace/baikal/tests/functional/test_database/test_importers.py" "/Users/Erik.Aker/workspace/baikal/tests/functional/factories.py" "/Users/Erik.Aker/workspace/baikal/fbi/database/models.py" "/Users/Erik.Aker/workspace/baikal/tests/functional/test_database/test_db.py" "/Users/Erik.Aker/workspace/baikal/tests/functional/test_database/test_importers.py" "/Users/Erik.Aker/workspace/quant-econ/tests/test_benchmark_builder.py" "/Users/Erik.Aker/workspace/quant-econ/scripts/index_complete.py" "/Users/Erik.Aker/workspace/quant-econ/shell_test.py" "/Users/Erik.Aker/workspace/quant-econ/scripts/index_complete.py" "/Users/Erik.Aker/workspace/baikal/fbi/logging.yml" "/Users/Erik.Aker/workspace/baikal/fbi/synthetic_drivers/us_oil_price.py" "/Users/Erik.Aker/workspace/baikal/fbi/synthetic_drivers/__init__.py" "/Users/Erik.Aker/workspace/baikal/fbi/etl/company.py" "/Users/Erik.Aker/workspace/baikal/fbi/database/db.py" "/Users/Erik.Aker/workspace/baikal/fbi/exceptions.py" "/Users/Erik.Aker/workspace/baikal/environment-dev.yml" "/Users/Erik.Aker/workspace/baikal/environment.yml" "/Users/Erik.Aker/workspace/baikal/fbi/etl/wacc_calc.py" "/Users/Erik.Aker/workspace/baikal/fbi/util.py" "/Users/Erik.Aker/workspace/baikal/fbi/database/models.py" "/Users/Erik.Aker/workspace/quant-econ/Jacob's Code/idx_complete.py" "/Users/Erik.Aker/workspace/baikal/fbi/etl/ddl.py" "/Users/Erik.Aker/workspace/quant-econ/scripts/index_complete.py" "/Users/Erik.Aker/workspace/quant-econ/shell_test.py" "/Users/Erik.Aker/workspace/quant-econ/scripts/index_complete.py" "/Users/Erik.Aker/workspace/quant-econ/benchmarks/benchmark_builder.py" "/Users/Erik.Aker/workspace/baikal/data_integration/docker_run_etl.sh" "/Users/Erik.Aker/workspace/baikal/tests/functional/conftest.py"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 206
+  "/Users/Erik.Aker/workspace/quant-econ/benchmarks/benchmark_builder.py"
+  "benchmark_builder.py"
+  'python-mode
+  '(auto-complete-mode eldoc-mode yas-minor-mode flycheck-mode flymake-mode auto-revert-mode elpy-mode company-mode highlight-indentation-mode rainbow-delimiters-mode undo-tree-mode hi-lock-mode linum-mode)
+  10172
+  '(10180 nil)
+  nil
+  nil
+  '((tab-width . 4) (indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Users/Erik.Aker/workspace/quant-econ/tests/test_utils.py"
+  "test_utils.py"
+  'python-mode
+  '(auto-complete-mode eldoc-mode yas-minor-mode flycheck-mode flymake-mode auto-revert-mode elpy-mode company-mode highlight-indentation-mode rainbow-delimiters-mode undo-tree-mode hi-lock-mode linum-mode)
+  663
+  '(1058 nil)
+  nil
+  nil
+  '((tab-width . 4) (indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/Users/Erik.Aker/workspace/quant-econ/tests/test_trimmers.py"
+  "test_trimmers.py"
+  'python-mode
+  '(auto-complete-mode eldoc-mode yas-minor-mode flycheck-mode flymake-mode elpy-mode company-mode highlight-indentation-mode rainbow-delimiters-mode undo-tree-mode hi-lock-mode linum-mode)
+  769
+  '(1 nil)
+  nil
+  nil
+  '((tab-width . 4) (indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Users/Erik.Aker/workspace/quant-econ/benchmarks/comparables.py"
+  "comparables.py"
+  'python-mode
+  '(auto-complete-mode eldoc-mode yas-minor-mode flycheck-mode flymake-mode auto-revert-mode elpy-mode company-mode highlight-indentation-mode rainbow-delimiters-mode undo-tree-mode hi-lock-mode linum-mode)
+  3787
+  '(215 nil)
+  nil
+  nil
+  '((tab-width . 4) (indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/Users/Erik.Aker/workspace/quant-econ/benchmarks/utils.py"
+  "utils.py"
+  'python-mode
+  '(auto-complete-mode eldoc-mode yas-minor-mode flycheck-mode flymake-mode auto-revert-mode elpy-mode company-mode highlight-indentation-mode rainbow-delimiters-mode undo-tree-mode hi-lock-mode linum-mode)
+  526
+  '(598 nil)
+  nil
+  nil
+  '((tab-width . 4) (indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/Users/Erik.Aker/workspace/quant-econ/benchmarks/filters.py"
+  "filters.py"
+  'python-mode
+  '(auto-complete-mode eldoc-mode yas-minor-mode flycheck-mode flymake-mode auto-revert-mode elpy-mode company-mode highlight-indentation-mode rainbow-delimiters-mode undo-tree-mode hi-lock-mode linum-mode)
+  71
+  '(434 nil)
+  nil
+  nil
+  '((tab-width . 4) (indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/Users/Erik.Aker/workspace/quant-econ/tests/test_filters.py"
+  "test_filters.py"
+  'python-mode
+  '(auto-complete-mode eldoc-mode yas-minor-mode flycheck-mode flymake-mode elpy-mode company-mode highlight-indentation-mode rainbow-delimiters-mode undo-tree-mode hi-lock-mode linum-mode)
+  1336
+  '(1336 nil)
+  nil
+  nil
+  '((tab-width . 4) (indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/Users/Erik.Aker/workspace/quant-econ/benchmarks/constants.py"
+  "constants.py"
+  'python-mode
+  '(auto-complete-mode eldoc-mode yas-minor-mode flycheck-mode flymake-mode auto-revert-mode elpy-mode company-mode highlight-indentation-mode rainbow-delimiters-mode undo-tree-mode linum-mode)
+  133
+  '(nil nil)
+  nil
+  nil
+  '((tab-width . 4) (indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Users/Erik.Aker/workspace/quant-econ/scripts/index_complete.py"
+  "index_complete.py"
+  'python-mode
+  '(auto-complete-mode eldoc-mode yas-minor-mode flycheck-mode flymake-mode auto-revert-mode elpy-mode company-mode highlight-indentation-mode rainbow-delimiters-mode undo-tree-mode hi-lock-mode linum-mode)
+  3092
+  '(3710 nil)
+  nil
+  nil
+  '((tab-width . 4) (indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/Users/Erik.Aker/workspace/quant-econ/shell_test.py"
+  "shell_test.py"
+  'python-mode
+  '(auto-complete-mode eldoc-mode yas-minor-mode flycheck-mode flymake-mode elpy-mode company-mode highlight-indentation-mode rainbow-delimiters-mode undo-tree-mode hi-lock-mode linum-mode)
+  433
+  '(291 nil)
+  nil
+  nil
+  '((tab-width . 4) (indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/Users/Erik.Aker/workspace/quant-econ/tests/test_benchmark_builder.py"
+  "test_benchmark_builder.py"
+  'python-mode
+  '(auto-complete-mode eldoc-mode yas-minor-mode flycheck-mode flymake-mode auto-revert-mode elpy-mode company-mode highlight-indentation-mode rainbow-delimiters-mode undo-tree-mode hi-lock-mode linum-mode)
+  4556
+  '(4843 nil)
+  nil
+  nil
+  '((tab-width . 4) (indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/Users/Erik.Aker/workspace/quant-econ/benchmarks/trimmers.py"
+  "trimmers.py"
+  'python-mode
+  '(auto-complete-mode eldoc-mode yas-minor-mode flycheck-mode flymake-mode elpy-mode company-mode highlight-indentation-mode rainbow-delimiters-mode undo-tree-mode hi-lock-mode linum-mode)
+  110
+  '(971 nil)
+  nil
+  nil
+  '((tab-width . 4) (indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
+
