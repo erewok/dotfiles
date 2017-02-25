@@ -1,0 +1,1 @@
+{"*":{"core":{"themes":["atom-material-ui","atom-material-syntax"]},"elm-format":{"binary":"/usr/.local/bin/elm-format","formatOnSave":false},"exception-reporting":{"userId":"1b6c07eb-7f67-ad40-6764-2048764ad14d"},"haskell-ghc-mod":{"additionalPathDirectories":["/usr/local/bin/"]},"welcome":{"showOnStartup":false}}}

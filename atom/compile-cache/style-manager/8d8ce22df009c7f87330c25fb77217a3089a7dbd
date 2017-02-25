@@ -1,0 +1,1 @@
+{"source":":root {\n  font-size: 16px;\n}\n#linter-inline a.eslint {\n  color: rgba(238, 255, 255, 0.6);\n}\n"}

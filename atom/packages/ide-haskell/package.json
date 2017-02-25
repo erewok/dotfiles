@@ -1,0 +1,84 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "/private/var/folders/wb/vvtxjd7n2qz02f571yjyr9j40000gs/T/d-117125-50354-o2cmvk/package.tgz",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/private/var/folders/wb/vvtxjd7n2qz02f571yjyr9j40000gs/T/d-117125-50354-o2cmvk/package.tgz",
+        "spec": "/private/var/folders/wb/vvtxjd7n2qz02f571yjyr9j40000gs/T/d-117125-50354-o2cmvk/package.tgz",
+        "type": "local"
+      },
+      "/private/var/folders/wb/vvtxjd7n2qz02f571yjyr9j40000gs/T/apm-install-dir-117125-50354-16asi4t"
+    ]
+  ],
+  "_from": "../d-117125-50354-o2cmvk/package.tgz",
+  "_id": "ide-haskell@1.9.4",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/ide-haskell",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/private/var/folders/wb/vvtxjd7n2qz02f571yjyr9j40000gs/T/d-117125-50354-o2cmvk/package.tgz",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/private/var/folders/wb/vvtxjd7n2qz02f571yjyr9j40000gs/T/d-117125-50354-o2cmvk/package.tgz",
+    "spec": "/private/var/folders/wb/vvtxjd7n2qz02f571yjyr9j40000gs/T/d-117125-50354-o2cmvk/package.tgz",
+    "type": "local"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../d-117125-50354-o2cmvk/package.tgz",
+  "_shasum": "640802fab600c32128b6aed6f65d7bb6995e9003",
+  "_shrinkwrap": null,
+  "_spec": "/private/var/folders/wb/vvtxjd7n2qz02f571yjyr9j40000gs/T/d-117125-50354-o2cmvk/package.tgz",
+  "_where": "/private/var/folders/wb/vvtxjd7n2qz02f571yjyr9j40000gs/T/apm-install-dir-117125-50354-16asi4t",
+  "activationHooks": [
+    "language-haskell:grammar-used"
+  ],
+  "bugs": {
+    "url": "https://github.com/atom-haskell/ide-haskell/issues"
+  },
+  "dependencies": {
+    "atom-haskell-utils": "^0.7.8",
+    "atom-highlight": "^0.3.0",
+    "atom-space-pen-views": "^2.0.3",
+    "sub-atom": "^1.0.0",
+    "temp": "^0.8.1",
+    "underscore-plus": "^1.5.1"
+  },
+  "description": "Haskell IDE",
+  "devDependencies": {},
+  "engines": {
+    "atom": ">=1.13.0 <2.0.0"
+  },
+  "homepage": "https://github.com/atom-haskell/ide-haskell#readme",
+  "keywords": [
+    "ide-haskell",
+    "ide",
+    "haskell"
+  ],
+  "license": "MIT",
+  "main": "./lib/ide-haskell",
+  "name": "ide-haskell",
+  "optionalDependencies": {},
+  "providedServices": {
+    "ide-haskell-upi": {
+      "description": "Universal pluggable interface",
+      "versions": {
+        "0.0.1": "provideUpi",
+        "0.2.0": "provideUpi"
+      }
+    }
+  },
+  "readme": "# IDE-Haskell\n\nWelcome to IDE-Haskell plugin for amazing [Atom](http://atom.io) editor! This\nplugin is intended to help you with development in\n[Haskell](http://haskell.org).\n\n**NOTE:** You must install all this plugin's dependencies in addition to\ninstalling this plugin.  Jump to the [Requirements section](#requirements) below\nand follow all setup instructions.\n\n## Implemented features\n\n#### Haskell project autodetection\n\nIDE-Haskell works only with Haskell projects. When you open a Haskell source file, IDE-Haskell will start automatically.\n\n#### Errors, warnings and linter\n\nAfter saving the current file the check and linter processes will be executed.\nAfter processes are finished, the results can be seen in output panel. You can\nsee different kind of results by switching `Errors`, `Warnings` and `Lints` tab\nbuttons. If you click on message's file name in output panel, Atom will open\nthis file and put cursor near problem that triggered output message.\n\nCheck results can also be seen in left editor gutter (near line numbers) as\nicons. If you hover mouse pointer over such an icon, a tooltip will be shown\nwith problem description. Results are highlighted inside editor as well, so you\ncan easily determine where the problem is.\n\n\n![errors](https://cloud.githubusercontent.com/assets/7275622/9705079/52b38f7c-54c1-11e5-9b23-6b932100e876.gif)\n\n#### Get type/info\n\nIf you have `haskell-ghc-mod` or similar package installed, you can get type of any expression and get info on any symbol.\n\nThere are two options to do so.\n\nFirst one is to hover mouse pointer over any Haskell source in editor, or any\nselection. By default, this will show type for expression/selecton under cursor.\nYou can change this behavior to show info for symbol, or disable it completely\nin IDE-Haskell settings.\n\nAnother option is to use keyboard to get type/info under cursor. No default\nbindings are specified, but you can specify them in your Atom keymap.\n\nSee [Configuration](#configuration) for more information.\n\n![typeinfo](https://cloud.githubusercontent.com/assets/7275622/9705082/52daa81e-54c1-11e5-88a8-99c8029eb14e.gif)\n\n![typeins](https://cloud.githubusercontent.com/assets/7275622/9705080/52cd7e64-54c1-11e5-8ee3-120641da2f85.gif)\n\n#### Autocompletion\n\nAutocompletion facilities have been moved to\n[autocomplete-haskell](https://atom.io/packages/autocomplete-haskell) package.\n\nPlease install it if you want autocompletion.\n\n#### Code beautify\n\nYou can use `stylish-haskell` utility to indent pragmas, imports and data type\ndefinitions. Simply select `Prettify` from Haskel IDE menu to apply\n`stylish-haskell` to current file.\n\n![prettify](https://cloud.githubusercontent.com/assets/7275622/9705081/52d97cf0-54c1-11e5-94f0-96f09e43ada3.gif)\n\n#### Build and test project\n\nIf you have `ide-haskell-cabal` or similar package installed, you can build,\nclean and test your project from ide-haskell (stack and cabal supported)\n\n## Requirements\n\nThe `ide-haskell` plugin assumes that you have a minimal Haskell toolchain\ninstalled on your system.  You can install this toolchain by following the\ninstructions here:\n\n* [Minimal Haskell installers](https://www.haskell.org/downloads#minimal)\n\nAtom plugin dependencies:\n\nOnly the `language-haskell` plugin is strictly required, but you will probably\nalso want to install one of these other plugins as well:\n\n* [`language-haskell`](https://atom.io/packages/language-haskell) - **ABSOLUTELY\n  REQUIRED!**\n* [`ide-haskell-cabal`](https://atom.io/packages/ide-haskell-cabal) - Use this\n  plugin to build and launch Haskell projects\n* [`haskell-ghc-mod`](https://atom.io/packages/haskell-ghc-mod) - Use this plugin\n  to type-check your code on save and add type highlights on mouseover\n* [`autocomplete-haskell`](https://atom.io/packages/autocomplete-haskell) - Use\n  this plugin to autocomplete code.  This plugin depends on `haskell-ghc-mod`\n\nBinary dependencies:\n\n* [`stylish-haskell`](https://github.com/jaspervdj/stylish-haskell) - Required by\n  `ide-haskell` plugin\n* [`ghc-mod` / `ghc-modi`](https://github.com/kazu-yamamoto/ghc-mod) and\n  [`hlint`](https://github.com/ndmitchell/hlint) - Required by `haskell-ghc-mod`\n  if you choose to install that plugin\n\n### Installing binary dependencies with stack\n\nThe most reliable way to build these executable binaries is to use\n`stack install`.\n\nRun the following commands from a command line terminal after you finish\ninstalling the minimal Haskell toolchain:\n\n```bash\n$ stack install stylish-haskell\n...\nCopied executables to {STACK_INSTALL_PATH}:\n- stylish-haskell\n$ stack install ghc-mod\n...\nCopied executables to {STACK_INSTALL_PATH}:\n- ghc-mod\n- ghc-modi\n$ stack install hlint\n...\nCopied executables to {STACK_INSTALL_PATH}:\n- hlint\n```\n\n... where `STACK_INSTALL_PATH` depends on your operating system.  For example,\non OS X or Linux this path will usually be `~/.local/bin/`.\n\nFirst, make sure that `STACK_INSTALL_PATH` is on your executable search path\n(i.e. `$PATH` for OS X and Linux).  However, this alone might not be enough for\nAtom to find your installed executables since Atom in\n[some cases](https://github.com/atom-community/linter/issues/150) Atom does not\ncorrectly pick up the search path upon launch.\n\nIf Atom fails to find a required executable (such as `stylish-haskell`) you will\nget an error that reads something like this:\n\n> Ide-haskell could not spawn stylish-haskell\n>\n> Error: spawn stylish-haskell ENOENT\n\nIf this happens, you will need to modify this package's settings to point to the\nabsolute path to where you installed `stylish-haskell` executable.  For example,\nif your `STACK_INSTALL_PATH` were `/home/johndoe/.local/bin/` then the\nabsolute path to the executable would be\n`/home/johndoe/.local/bin/stylish-haskell`.\n\n### Installing binary dependencies with cabal\n\n***NOTE:*** You do not need to do this if you already installed with stack.\n\nAlternatively, you can use cabal-install if you don't want to use stack for some reason.\n\nIt is advisable to first create a cabal sandbox for the installation to avoid global package database pollution and conflicts. This will also make updating easy.\n\nTo create a sandbox, create a directory, f.ex.\n\n```bash\nmkdir $HOME/ghc-mod-sandbox\n```\n\n***NOTE:*** Windows command line shell uses different syntax for environment variables, and there is usually no `HOME` defined anyway. I sincerely hope you can figure this out.\n\nThen, `cd` into int:\n\n```bash\ncd $HOME/ghc-mod-sandbox\n```\n\nAnd run the following command\n\n```bash\ncabal sandbox init --sandbox=.\n```\n\nThe last `--sandbox=.` part is to simplify paths.\n\nNow you can install ghc-mod and stylish-haskell. *In the same directory* run\n\n```bash\ncabal install ghc-mod stylish-haskell\n```\n*Note:* hlint will be pulled in as ghc-mod dependency.\n\nNow you have ghc-mod and stylish-haskell installed. Binary files are in `$HOME/ghc-mod-sandbox/bin`. You can add this path to PATH, or put full path to **executables** in relevant ide-haskell and haskell-ghc-mod settings.\n\n**Don't forget to replace `$HOME` with actual path to home directory** for the latter option. On Linux, you can run\n\n```bash\necho $HOME/ghc-mod-sandbox/bin/*\n```\n\nin the terminal to get actual paths to all executables, if not sure what those should look like. ***NOTE:*** Bear in mind this trick probably won't work on Windows.\n\nFor example, assuming your `HOME` is `/home/user`:\n\n* In ide-haskell settings, set 'Stylish Haskell Path' to `/home/user/ghc-mod-sandbox/bin/stylish-haskell`\n* In haskell-ghc-mod settings, set 'Ghc Mod Path' to `/home/user/ghc-mod-sandbox/bin/ghc-mod`\n\n## Known conflicts\n\nThis package relies on grammar defined by `language-haskell`. Any other Haskell grammar packages (such as `haskell-grammar`) may conflict with it.\n\n## Installation\n\n```\n$ apm install language-haskell haskell-ghc-mod ide-haskell-cabal ide-haskell autocomplete-haskell\n```\n\n## Configuration\n\nPackage is fully configurable via **Edit → Preferences → Packages → ide-haskell\n→ Settings**\n\nYou will likely need to specify full paths to `stylish-haskell`, if it is not in\nyour `PATH`, at the very least.\n\nYou might also want to look into configuring haskell-ghc-mod ([haskell-ghc-mod README](https://github.com/atom-haskell/haskell-ghc-mod#haskell-ghc-mod-atom-package)) and ide-haskell-cabal ([ide-haskell-cabal README](https://github.com/atom-haskell/ide-haskell-cabal#ide-haskell-cabal-package))\n\n***NOTE***: Since version 1.0.0, some configuration options have been moved to\nbackends, in particular, haskell-ghc-mod. Migration should be automatic, but\nplease check if your configuration is correct just in case.\n\n### Keyboard shortcuts\n\n***NOTE***: Since version 1.0.0, most commands are provided by\nbackends, in particular, haskell-ghc-mod and ide-haskell-cabal. Please revise\nyour keymap accordingly. Refer to ([haskell-ghc-mod README](https://github.com/atom-haskell/haskell-ghc-mod#haskell-ghc-mod-atom-package)) and ([ide-haskell-cabal README](https://github.com/atom-haskell/ide-haskell-cabal#ide-haskell-cabal-package)) for details\n\nIde-Haskell comes with little pre-specified keybindings, so you will need to specify your own, if you want those.\n\nYou can edit Atom keybindings by opening 'Edit → Open Your Keymap'. Here is a template for all commands, provided by ide-haskell:\n\n```cson\n'atom-text-editor[data-grammar~=\"haskell\"]':\n  'escape': 'ide-haskell:close-tooltip' #this is set by default\n  '':'ide-haskell:prettify-file'\n  '':'ide-haskell:next-error'\n  '':'ide-haskell:prev-error'\n\n'atom-text-editor[data-grammar~=\"cabal\"]':\n  '': 'ide-haskell:prettify-file'\n\n'atom-workspace':\n  '': 'ide-haskell:toggle-output'\n```\n\n### Changing output panel look\n\nChanging output panel look can be achieved with Atom stylesheets. You can open your stylesheet with Edit → Stylesheet...\n\nSyntax is [Less](http://lesscss.org/). You can use the following selectors:\n\n* `ide-haskell-panel` -- whole panel\n* `ide-haskell-panel-heading` -- panel heading (control elements)\n* `ide-hashell-panel-items` -- output area\n* `ide-haskell-item-position` -- file/line/column of individual message\n* `ide-haskell-item-description` -- message itself\n\nPlease note, that to change font face in `ide-haskell-item-description`, you need to target it specifically, or use `!important` specifier.\n\nFor example, to change font size in whole panel:\n\n```less\nide-haskell-panel {\n  font-size: 18pt;\n}\n```\n\nOr only in output area:\n\n```less\nide-haskell-panel-items {\n  font-size: 18pt;\n}\n```\n\nTo change font face in panel heading:\n\n```less\nide-haskell-panel-heading {\n  font-family: \"Comic Sans MS\";\n}\n```\n\nTo change font face in messages themselves:\n\n```less\nide-haskell-item-description {\n  font-family: \"Fira Mono\";\n}\n```\n\nYou are free to write any CSS, of course. Bear in mind, however, that any selectors not listed above are subject to sudden change.\n\n## API\n\nIde-haskell provides service-hub API with `ide-haskell-upi` service.\n\nMore information is available in [lib/upi.coffee][upi] source file\n\n[upi]: https://github.com/atom-haskell/ide-haskell/blob/master/lib/upi.coffee\n\n## TODO\n\n- [x] Cabal project autodetection\n- [x] Errors, warnings and linter\n- [x] Get type at point\n- [x] Autocompletion\n- [x] Code beautify\n- [x] Cabal project management (with ide-haskell-cabal)\n- [x] Jump to definition (since haskell-ghc-mod 1.3.0, or with ide-haskell-hasktags)\n- [x] Interactive REPL (alpha, with ide-haskell-repl)\n- [x] Stack project management (with ide-haskell-cabal)\n- [ ] Who calls and vice versa\n- [ ] Documentation support\n\n## Changelog\n\nChangelog is available [here][CHANGELOG].\n\n## IRC Chat\n\nYou can join #atom-haskell on FreeNode, and devs can usually be found there. Bear in mind that if someone's on the channel, it doesn't necessarily mean they aren't AFK.\n\nIf you're not familiar with IRC, you can use [FreeNode's webchat](https://webchat.freenode.net/?channels=#atom-haskell)\n\n## License\n\nCopyright © 2015 Alexander Chaika, Nikolay Yakimov\n\nContributors:\n* John Quigley\n* Ondřej Janošík\n* Luka Horvat\n* Gabriel Gonzalez\n* Daniel Beskin\n* Gabor Greif\n* Daniel Gröber\n\nSee the [LICENSE.md][LICENSE] for details.\n\n[CHANGELOG]: https://github.com/atom-haskell/ide-haskell/blob/master/CHANGELOG.md\n[LICENSE]: https://github.com/atom-haskell/ide-haskell/blob/master/LICENSE.md\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atom-haskell/ide-haskell.git"
+  },
+  "version": "1.9.4"
+}

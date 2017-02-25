@@ -1,0 +1,1 @@
+{"source":":root {\n  font-size: 16px;\n}\n.fuzzy-finder .list-group .character-match {\n  color: rgba(170, 187, 195, 0.6);\n  font-weight: bold;\n}\n"}

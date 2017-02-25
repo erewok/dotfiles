@@ -1,0 +1,64 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "/private/var/folders/wb/vvtxjd7n2qz02f571yjyr9j40000gs/T/d-11718-1442-1rko6h1/package.tgz",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/private/var/folders/wb/vvtxjd7n2qz02f571yjyr9j40000gs/T/d-11718-1442-1rko6h1/package.tgz",
+        "spec": "/private/var/folders/wb/vvtxjd7n2qz02f571yjyr9j40000gs/T/d-11718-1442-1rko6h1/package.tgz",
+        "type": "local"
+      },
+      "/private/var/folders/wb/vvtxjd7n2qz02f571yjyr9j40000gs/T/apm-install-dir-11718-1442-k8pzst"
+    ]
+  ],
+  "_from": "../d-11718-1442-1rko6h1/package.tgz",
+  "_id": "language-haskell@1.12.1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/language-haskell",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/private/var/folders/wb/vvtxjd7n2qz02f571yjyr9j40000gs/T/d-11718-1442-1rko6h1/package.tgz",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/private/var/folders/wb/vvtxjd7n2qz02f571yjyr9j40000gs/T/d-11718-1442-1rko6h1/package.tgz",
+    "spec": "/private/var/folders/wb/vvtxjd7n2qz02f571yjyr9j40000gs/T/d-11718-1442-1rko6h1/package.tgz",
+    "type": "local"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../d-11718-1442-1rko6h1/package.tgz",
+  "_shasum": "d3169c9bb25afcc7e4e475cb4ec0a12208e37221",
+  "_shrinkwrap": null,
+  "_spec": "/private/var/folders/wb/vvtxjd7n2qz02f571yjyr9j40000gs/T/d-11718-1442-1rko6h1/package.tgz",
+  "_where": "/private/var/folders/wb/vvtxjd7n2qz02f571yjyr9j40000gs/T/apm-install-dir-11718-1442-k8pzst",
+  "bugs": {
+    "url": "https://github.com/atom-haskell/language-haskell/issues"
+  },
+  "dependencies": {},
+  "description": "Haskell language support in Atom",
+  "devDependencies": {
+    "clone": "^1.0.2",
+    "coffee-script": "~1.9.0",
+    "season": "^2.0.0",
+    "underscore-plus": "^1.6.6"
+  },
+  "engines": {
+    "atom": ">=1.8.0 <2.0.0"
+  },
+  "homepage": "https://github.com/atom-haskell/language-haskell#readme",
+  "license": "MIT",
+  "name": "language-haskell",
+  "optionalDependencies": {},
+  "readme": "# Haskell support in Atom\n\nAdds syntax highlighting and snippets to Haskell files in Atom.\n\nGrammars:\n\n* Haskell (\\*.hs)\n* Literate Haskell (\\*.lhs)\n* Cabal (\\*.cabal)\n\n![image](https://cloud.githubusercontent.com/assets/7275622/8120540/f16d7ee6-10a8-11e5-9b9d-223ff05a54c6.png)\n\nBased on [Haskell TextMate bundle](https://github.com/textmate/haskell.tmbundle).\n\n# Auto-indent\n\nIf you don't like current auto-indentation settings, you can define your own regexp in `config.cson` (Edit -> Open Your Config), or disable it altogether, e.g.\n\nTo disable auto-indent:\n\n```cson\n\".haskell.source\":\n  editor:\n    increaseIndentPattern: ''\n```\n\nNote that regexp expression is using oniguruma for parsing, and it needs to be a string, not a javascript regexp. You'll also have to escape `\\`.\n\nBy default, `increaseIndentPattern` has the following value:\n\n```cson\n\".haskell.source\":\n  editor:\n    increaseIndentPattern: '(((=|\\\\bdo|\\\\bwhere|\\\\bthen|\\\\belse|\\\\bof)\\\\s*)|(\\\\bif(?!.*\\\\bthen\\\\b.*\\\\belse\\\\b.*).*))$'\n```\n\n# Configuring highlighting\n\nNote, you may need to reopen currently opened files (or restart Atom) for your new stylesheet to be applied.\n\n## Module names\n\n`language-haskell` uses `support.other.module.haskell` scope for module names, both in `import` statements and when using qualified identifiers (like `Prelude.foldl`). Your syntax theme might not support this scope. If you want to highlight module names in this case, you can add the following to your stylesheet (Edit → Stylesheet...):\n\n```less\n// pre Atom 1.13\natom-text-editor::shadow, ide-haskell-panel {\n  .support.other.module.haskell {\n    color: #C0A077; //or whatever color you like\n  }\n}\n// post Atom 1.13\n.syntax--support.syntax--other.syntax--module.syntax--haskell {\n  color: #C0A077; //or whatever color you like\n}\n```\n\n## Operators and infix function application\n\n`language-haskell` uses `keyword.operator.haskell` scope for operators and `keyword.operator.infix.haskell` for infix function application, e.g.\n\n```haskell\nnegate `map` [1..10]\n```\n\nNot all syntax themes support these scopes (almost none support `keyword.operator.infix` particularly)\n\nIf you want to higlight operators and infix function applications you can add the following to your stylesheet (Edit → Stylesheet...):\n\n```less\n// pre Atom 1.13\natom-text-editor::shadow, ide-haskell-panel {\n    .keyword.operator.haskell {\n      color: #CF8C00; // or whatever color you like\n    }\n    .keyword.operator.infix.haskell {\n      color: #CC77AC; // if you want to highlight infix application differently\n    }\n}\n// post Atom 1.13\n.syntax--keyword.syntax--operator.syntax--haskell {\n  color: #CF8C00; // or whatever color you like\n}\n.syntax--keyword.syntax--operator.syntax--infix.syntax--haskell {\n  color: #CC77AC; // if you want to highlight infix application differently\n}\n```\n\n## Special `Prelude` treatment\n\nFor historical and other reasons (see #85 for discussion), `Prelude` identifiers (functions, types, etc) are treated slightly differently and, depending on your highlighting theme, can be highlighted differently.\n\nScopes that are used:\n\n* `support.function.prelude.haskell` for functions and values\n* `support.class.prelude.haskell` for types\n* `entity.other.inherited-class.prelude.haskell` for typeclasses\n* `support.tag.prelude.haskell` for type constructors\n\nIf you want `Prelude` identifiers highlighted differently from all the rest, you can define different colors for all or some of those, f.ex. by adding something like this to your stylesheet (Edit → Stylesheet...):\n\n```less\n// pre Atom 1.13\natom-text-editor::shadow, ide-haskell-panel {\n    .support.function.prelude.haskell {\n      color: #56b6c2; // or whatever color you like\n    }\n    .support.tag.prelude.haskell {\n      color: #e9969d;\n    }\n}\n// post Atom 1.13\n.syntax--support.syntax--function.syntax--prelude.syntax--haskell {\n  color: #56b6c2; // or whatever color you like\n}\n.syntax--support.syntax--tag.syntax--prelude.syntax--haskell {\n  color: #e9969d;\n}\n```\n\nIf you don't want `Prelude` identifiers highlighted differently, you can override it by adding something like this to your stylesheet (Edit → Stylesheet...):\n\n```less\n// pre Atom 1.13\natom-text-editor::shadow, ide-haskell-panel {\n  .prelude.haskell {\n    color: inherit;\n  }\n}\n// post Atom 1.13\n.syntax--prelude.syntax--haskell {\n  color: inherit;\n}\n```\n\nNote, you may need to reopen currently opened files (or restart Atom) for your new stylesheet to be applied.\n\n### Different highlighting for different Prelude identifiers\n\nSince language-haskell v1.12.0 every Prelude identifier has a scope corresponding to its name added, so you can add special highlighting to particular identifiers only.\n\nFor example, if you would like to highlight `undefined` and `error` in angry bold red, you can add something like this to your stylesheet:\n\n```less\n// pre Atom 1.13\natom-text-editor::shadow, ide-haskell-panel {\n  .support.function.prelude.haskell {\n    &.undefined, &.error {\n      color: red;\n      font-weight: bold;\n    }\n  }\n}\n// post Atom 1.13\n.syntax--support.syntax--function.syntax--prelude.syntax--haskell {\n  &.syntax--undefined, &.syntax--error {\n    color: red;\n    font-weight: bold;\n  }\n}\n```\n\nAll identifier scopes are case-sensitive, so, if you want to highlight, f.ex. `IO`, you would use `support.class.prelude.IO.haskell` scope.\n\n# Contributing\n\nSee [CONTRIBUTING.md](https://github.com/atom-haskell/language-haskell/blob/master/CONTRIBUTING.md)\n\n# License\n\nCopyright © 2015 Atom-Haskell\n\nContributors (by number of commits):\n* Nikolay Yakimov\n* Jared Roesch\n* Matthew Griffith\n* samuela\n* Ross Ogilvie\n* Rob Rix\n* Ranjit Jhala\n* Michael Rawson\n* mdgriffith\n* Jesse Cooke\n* Ian D. Bollinger\n\nSee the [LICENSE.md][LICENSE] for details.\n\n[LICENSE]: https://github.com/atom-haskell/language-haskell/blob/master/LICENSE.md\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atom-haskell/language-haskell.git"
+  },
+  "version": "1.12.1"
+}

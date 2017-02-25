@@ -1,0 +1,1 @@
+{"source":":root {\n  font-size: 16px;\n}\n.grammar-status a,\n.grammar-status a:hover {\n  color: rgba(238, 255, 255, 0.8);\n}\n"}
