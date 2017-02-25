@@ -13,6 +13,7 @@ Following are some notes I have written for myself to remember how to set everyt
 - Install git
 - Install zshell
 - Install anaconda for Python 3.6
+- Install stack
 - Install nvm
 
 ### Editor Stuff ###
