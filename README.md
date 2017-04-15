@@ -15,8 +15,26 @@ Following are some notes I have written for myself to remember how to set everyt
 - Install anaconda for Python 3.6
 - Install stack
 - Install nvm
+- Install rustup
+- Install ripgrep
+
+
+### Zshell
+
+Zshell installation:
+
+```
+brew install zsh zsh-completions
+```
+
+[Pure theme](https://github.com/Zearin/zsh-pure)
+
+[Tomorrow Night Eighties Theme](https://github.com/chriskempson/tomorrow-theme)
+
+Import the theme directly into OSX terminal.
+
 
 ### Editor Stuff ###
 
 - Install emacs >= 25
-- Install atom editor
+- Install atom editor (depending on how much memory we have to waste...)
