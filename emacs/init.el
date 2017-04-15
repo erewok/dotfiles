@@ -45,7 +45,6 @@
 (tool-bar-mode -1)
 (show-paren-mode 1)
 (column-number-mode 1)
-(projectile-global-mode)
 (global-font-lock-mode 1)
 (setq-default fill-column 120)
 (setq-default indent-tabs-mode nil)
@@ -55,7 +54,6 @@
 (add-hook 'after-init-hook 'global-flycheck-mode)
 (setq ring-bell-function 'ignore)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-(setq dired-omit-mode t)
 
 (defvar mp-rad-packages
   '(ac-js2
@@ -75,7 +73,7 @@
     flymake-sass
     flymake-yaml
     flymake-easy
-    javascript-eslint
+    ;; javascript-eslint
     ghc
     ghci-completion
     haml-mode
@@ -138,6 +136,9 @@
 (load-theme 'solarized-light t)
 (require 'fill-column-indicator)
 ;; (require 'magit)
+
+(projectile-global-mode)
+(setq dired-omit-mode t)
 
 (require 'helm)
 (require 'helm-config)

@@ -13,6 +13,9 @@ export EDITOR=emacs
 # Python
 export PATH=~/anaconda3/bin:$PATH
 
+# Haskell/Stack
+export PATH=/Users/erik/.local/bin:$PATH
+
 # Rust/Cargo
 source $HOME/.cargo/env
 
