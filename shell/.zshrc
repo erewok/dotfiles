@@ -10,6 +10,11 @@ alias rm='rm -i'
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 export EDITOR=emacs
 
+# GPG Agent
+# eval $(gpg-agent --daemon --allow-preset-passphrase)
+export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
+export GPG_TTY=$(tty)
+
 # Python
 export PATH=~/anaconda3/bin:$PATH
 
