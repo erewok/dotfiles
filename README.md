@@ -11,6 +11,8 @@ Following are some notes I have written for myself to remember how to set everyt
 - Update XCode (Wait for ten days for it complete).
 - Install git
 - Install homebrew
+- Install htop (`brew install htop`)
+- Install jq (json viewer: `brew install jq`)
 - Install nvm
 - Install zshell
 - Install anaconda for Python 3.6
@@ -18,7 +20,6 @@ Following are some notes I have written for myself to remember how to set everyt
 - Install stack
 - Install rustup
 - Install ripgrep
-- Install jq
 - Install Docker for Mac
 
 ### Zshell
