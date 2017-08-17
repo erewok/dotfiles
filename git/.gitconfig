@@ -8,9 +8,10 @@
     ci = commit
     st = status
     co = checkout
-    updates = 'add -u'
-    unstage = 'reset HEAD'
+    pu = push
+    updates = add -u
+    unstage = reset HEAD
     changed = diff --cached
-    last = 'log -1 HEAD'
+    last = log -1 HEAD
     commands = config --get-regexp '^alias'
 
