@@ -16,7 +16,7 @@ export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
 export GPG_TTY=$(tty)
 
 # Python
-export PATH=~/anaconda3/bin:$PATH
+export PATH=~/anaconda/bin:$PATH
 
 # Haskell/Stack
 export PATH=/Users/erik/.local/bin:$PATH
@@ -28,7 +28,10 @@ source $HOME/.cargo/env
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
+# Zsh Completions
 fpath=(/usr/local/share/zsh-completions $fpath)
+plugins=(zsh-completions)
+autoload -U compinit && compinit
 
 # Zshell Pure
 autoload -U promptinit && promptinit
@@ -42,3 +45,10 @@ prompt pure
 # to load these completions, you may need to run this:
 
 #  chmod go-w '/usr/local/share'
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Java
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home
+
+# aliases
+source $HOME/.aliases
