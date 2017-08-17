@@ -7,8 +7,8 @@
   (require 'package)
   (package-initialize)
   (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                           ("marmalade" . "https://marmalade-repo.org/packages/")
-                           ("melpa" . "https://melpa.org/packages/")))
+                           ("melpa" . "https://melpa.org/packages/")
+			   ))
   )
 ;; In order to specify needed packages
 (if (not (package-installed-p 'use-package))
@@ -54,6 +54,12 @@
 (add-hook 'after-init-hook 'global-flycheck-mode)
 (setq ring-bell-function 'ignore)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; Some Key Bindings
+(global-set-key (kbd "C->") 'next-buffer)
+(global-set-key (kbd "C-<") 'previous-buffer)
+(global-set-key (kbd "C-;") 'global-linum-mode)
+(global-set-key (kbd "C-x t") 'load-theme)
 
 (defvar mp-rad-packages
   '(ac-js2
@@ -113,8 +119,7 @@
     json-mode
     simple-httpd
     solarized-theme
-    tabber
-    tox
+    tabbar
     web-mode
     yaml-mode
     yasnippet
@@ -130,7 +135,7 @@
         mp-rad-packages))
 
 ;; Change to represent elpa packages path
-(add-to-list 'load-path (expand-file-name "/Users/erik/.emacs.d/elpa/"))
+(add-to-list 'load-path (expand-file-name "/Users/eaker/.emacs.d/elpa/"))
 
 ;; Default theme. solarized-dark and zenburn also installed.
 (load-theme 'solarized-light t)
@@ -150,7 +155,6 @@
 ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
 (global-set-key (kbd "C-c h") 'helm-command-prefix)
 (global-unset-key (kbd "C-x c"))
-
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
 (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
@@ -165,6 +169,7 @@
       helm-ff-file-name-history-use-recentf t)
 
 (helm-mode 1)
+(global-set-key (kbd "C-|") 'helm-projectile-find-file)
 
 ;; https://github.com/bbatsov/projectile
 (projectile-global-mode)
@@ -172,16 +177,6 @@
 (helm-projectile-on)
 (setq projectile-enable-caching t)
 (setq scss-compile-at-save nil)
-
-;; Some Key Bindings
-(global-set-key (kbd "M-p M-8") 'fci-mode)
-(global-set-key (kbd "C->") 'next-buffer)
-(global-set-key (kbd "C-<") 'previous-buffer)
-(global-set-key (kbd "C-;") 'global-linum-mode)
-(global-set-key (kbd "C-|") 'helm-projectile-find-file)
-(global-set-key (kbd "C-x t") 'load-theme)
-(global-set-key (kbd "C-x m") 'org-indent-mode)
-(global-set-key (kbd "C-c s") 'magit-status)  ;; magit-status
 
 ;; alternate buffer traversal
 (autoload 'cycle-buffer                     "cycle-buffer"
@@ -200,13 +195,18 @@
 (global-set-key [(shift f10)] 'cycle-buffer-permissive)
 
 
-(require 'column-marker)
-(set-face-background 'column-marker-1 "red")
+(require 'fill-column-indicator)
+(setq fci-rule-width 1)
+(setq fci-rule-color "green")
+(setq fci-rule-use-dashes "true")
+(global-set-key (kbd "M-p M-8") 'fci-mode)
 
 (require 'flymake)
-(load-library "flymake-cursor")
+;; (load-library "flymake-cursor")
 
-;; Tabbar
+;; org
+(global-set-key (kbd "C-x m") 'org-indent-mode)
+
 ;; Tabbar
 (require 'tabbar)
 
@@ -242,10 +242,12 @@
         (setq tab-width 4)
         (setq python-indent-offset 4)
         (flycheck-mode)
+        (fci-mode)
         (global-set-key (kbd "C-x p") 'py-autopep8)
-	(column-marker-1 fill-column)))
+     ))
 
 (add-hook 'python-mode-hook 'flymake-mode)
+(add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
 ;; END PYTHON CONFIGURATION
 
 ;; Org mode stuff
@@ -258,10 +260,10 @@
 (add-to-list 'auto-mode-alist '("\\.sls$" . salt-mode))
 
 ;; Haskell mode
-(require 'haskell-mode)
-(add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
-(add-hook 'after-init-hook #'haskell-mode)
-(add-hook 'haskell-mode-hook 'intero-mode)
+;; (require 'haskell-mode)
+;; (add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
+;; (add-hook 'after-init-hook #'haskell-mode)
+;; (add-hook 'haskell-mode-hook 'intero-mode)
 
 ;; (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 ;; (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
@@ -310,12 +312,6 @@
 (add-to-list 'auto-mode-alist '("\\.less\\'" . less-css-mode))
 (add-to-list 'auto-mode-alist '("\\.jade\\'" . jade-mode))
 (add-to-list 'auto-mode-alist '("\\.feature\\'" . feature-mode))
-
-;; Attempt to automatically use django for mixed templates
-(setq web-mode-engines-alist
-      '(("django"  . "\\.djhtml\\.")
-        )
-      )
 
 ;; jslint and coffee mode
 (require 'flymake-jslint)
