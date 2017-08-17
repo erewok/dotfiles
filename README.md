@@ -9,15 +9,17 @@ Following are some notes I have written for myself to remember how to set everyt
 ### Shell Stuff ###
 
 - Update XCode (Wait for ten days for it complete).
-- Install homebrew.
 - Install git
+- Install homebrew
+- Install nvm
 - Install zshell
 - Install anaconda for Python 3.6
+- Install Zulu Azul Java 8
 - Install stack
-- Install nvm
 - Install rustup
 - Install ripgrep
-
+- Install jq
+- Install Docker for Mac
 
 ### Zshell
 
