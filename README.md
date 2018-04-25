@@ -10,16 +10,19 @@ Following are some notes I have written for myself to remember how to set everyt
 
 - Update XCode (Wait for ten days for it complete).
 - Install git
+  - Use gitconfig
 - Install homebrew
 - Install htop (`brew install htop`)
 - Install jq (json viewer: `brew install jq`)
 - Install nvm
 - Install zshell
+  - Copy zshrc and create aliases file
 - Install anaconda for Python 3.6
 - Install Zulu Azul Java 8
 - Install stack
 - Install rustup
 - Install ripgrep
+- Install exa
 - Install Docker for Mac
 
 ### Zshell
@@ -40,4 +43,4 @@ Import the theme directly into OSX terminal.
 ### Editor Stuff ###
 
 - Install emacs >= 25
-- Install atom editor (depending on how much memory we have to waste...)
+- Install VSCode
