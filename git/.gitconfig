@@ -5,7 +5,7 @@
 	email = eraker@gmail.com
 [alias]
     br = branch
-    ci = commit
+    cm = commit
     st = status
     co = checkout
     pu = push
@@ -14,4 +14,3 @@
     changed = diff --cached
     last = log -1 HEAD
     commands = config --get-regexp '^alias'
-

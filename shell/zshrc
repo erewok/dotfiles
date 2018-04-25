@@ -1,0 +1,87 @@
+# aliases
+alias ll='ls -alFG'
+alias la='ls -AG'
+alias l='ls -CFG'
+alias ls='ls -G'
+alias mv='mv -i'
+alias rm='rm -i'
+
+# EMACS
+alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
+export EDITOR=emacs
+
+# GPG Agent
+# eval $(gpg-agent --daemon --allow-preset-passphrase)
+export PATH="~/bin:/usr/local/opt/gpg-agent/bin:$PATH"
+export GPG_TTY=$(tty)
+
+# Postgresql bins
+export PATH=/Library/PostgreSQL/10/bin:$PATH
+
+# Useful Scripts
+export PATH=~/workspace/working_app_dirs/scripts:$PATH
+
+# Python/Conda
+. /Users/eaker/anaconda/etc/profile.d/conda.sh
+
+# Haskell/Stack
+export PATH=/Users/eaker/.local/bin:$PATH
+
+# Rust/Cargo
+source $HOME/.cargo/env
+
+# NPM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Zsh Completions
+fpath=(/usr/local/share/zsh-completions $fpath)
+plugins=(zsh-completions)
+autoload -U compinit && compinit
+
+# Zshell Pure
+autoload -U promptinit && promptinit
+prompt pure
+
+# You may also need to force rebuild `zcompdump`:
+
+#  rm -f ~/.zcompdump; compinit
+
+# Additionally, if you receive "zsh compinit: insecure directories" warnings when attempting
+# to load these completions, you may need to run this:
+
+#  chmod go-w '/usr/local/share'
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Java
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home
+
+
+# Go
+alias go='/usr/local/go/bin/go'
+
+# aliases
+source $HOME/.aliases
+
+## CHECK GPG STUFF
+# This formula is keg-only, which means it was not symlinked into /usr/local,
+# because macOS provides the BSD gettext library & some software gets confused if both are in the library path.
+
+# If you need to have this software first in your PATH run:
+#   echo 'export PATH="/usr/local/opt/gettext/bin:$PATH"' >> ~/.bash_profile
+
+# For compilers to find this software you may need to set:
+#     LDFLAGS:  -L/usr/local/opt/gettext/lib
+#     CPPFLAGS: -I/usr/local/opt/gettext/include
+alias soc="conda activate soc_portal"
+alias di="conda activate qmpd_di"
+alias ansbl="conda activate ansible_dev"
+alias deploy_soc_dev='ansible-playbook -i environments/dev/inventory deploy_soc_portal_api.yml -e "group_name=all_soc_portal_hosts" --tags "soc_portal_api"'
+alias deploy_soc_stg='ansible-playbook -i environments/stg/inventory deploy_soc_portal_api.yml -e "group_name=all_soc_portal_hosts" --tags "soc_portal_api"'
+alias DEPLOY_SOC_PRD='ansible-playbook -i environments/prd/inventory -u srchprd deploy_soc_portal_api.yml -e "group_name=all_soc_portal_hosts" --tags "soc_portal_api"'
+alias soc_tree='exa -T soc_portal -I "__pycache__|*pyc|*.py~"'
+alias run-pd='~/workspace/working_app_dirs/scripts/run-pd-quick.sh'
+alias run-pdso='~/workspace/working_app_dirs/scripts/run-pd-signoff.sh'
+alias last-tags='git tag -n  --sort=-creatordate | head -n 10'
+alias da="conda deactivate"
+alias expy='exa -I "__pycache__|*pyc|*.py~" -T'

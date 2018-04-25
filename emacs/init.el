@@ -26,11 +26,11 @@
  '(coffee-tab-width 2)
  '(custom-safe-themes
    (quote
-    ("40f6a7af0dfad67c0d4df2a1dd86175436d79fc69ea61614d668a635c2cd94ab" "316d29f8cd6ca980bf2e3f1c44d3a64c1a20ac5f825a167f76e5c619b4e92ff4" "d1dbb3c37e11ae8f986ca2d4b6a9d78bb1915fe66f3a6ffab1397cc746c18cba" "21c149e080d562fe9169c8abda51c2f1f9b0a12c89cc2c7a4d9998a758e1cfbd" "9dae95cdbed1505d45322ef8b5aa90ccb6cb59e0ff26fef0b8f411dfc416c552" "3b819bba57a676edf6e4881bd38c777f96d1aa3b3b5bc21d8266fa5b0d0f1ebf" "146d24de1bb61ddfa64062c29b5ff57065552a7c4019bee5d869e938782dfc2a" "cd70962b469931807533f5ab78293e901253f5eeb133a46c2965359f23bfb2ea" "31d3463ee893541ad572c590eb46dcf87103117504099d362eeed1f3347ab18f" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
+    ("67e998c3c23fe24ed0fb92b9de75011b92f35d3e89344157ae0d544d50a63a72" "40f6a7af0dfad67c0d4df2a1dd86175436d79fc69ea61614d668a635c2cd94ab" "316d29f8cd6ca980bf2e3f1c44d3a64c1a20ac5f825a167f76e5c619b4e92ff4" "d1dbb3c37e11ae8f986ca2d4b6a9d78bb1915fe66f3a6ffab1397cc746c18cba" "21c149e080d562fe9169c8abda51c2f1f9b0a12c89cc2c7a4d9998a758e1cfbd" "9dae95cdbed1505d45322ef8b5aa90ccb6cb59e0ff26fef0b8f411dfc416c552" "3b819bba57a676edf6e4881bd38c777f96d1aa3b3b5bc21d8266fa5b0d0f1ebf" "146d24de1bb61ddfa64062c29b5ff57065552a7c4019bee5d869e938782dfc2a" "cd70962b469931807533f5ab78293e901253f5eeb133a46c2965359f23bfb2ea" "31d3463ee893541ad572c590eb46dcf87103117504099d362eeed1f3347ab18f" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
-    (flymake-hlint dante handlebars-mode hindent cargo flycheck-rust rust-mode elm-mode hlint-refactor flymake-php php-mode nix-mode web-mode use-package tabbar solarized-theme scss-mode salt-mode rainbow-delimiters python-info py-autopep8 ng2-mode material-theme markdown-mode magit less-css-mode json-mode jedi jade-mode intero hi2 helm-projectile haml-mode ghci-completion ghc flymake-yaml flymake-sass flymake-python-pyflakes flymake-jslint flymake-haskell-multi flymake-cursor flymake-coffee flx fill-column-indicator f column-marker coffee-mode clj-refactor ac-js2))))
+    (dockerfile-mode hindent dante hasky-extensions lsp-haskell go-mode s wisi flycheck-yamllint zenburn-theme web-mode use-package tabbar solarized-theme scss-mode salt-mode rainbow-delimiters python-info py-autopep8 material-theme markdown-mode magit less-css-mode json-mode jedi jade-mode intero hi2 helm-projectile haml-mode ghci-completion ghc flymake-yaml flymake-sass flymake-python-pyflakes flymake-jslint flymake-haskell-multi flymake-coffee flx fill-column-indicator f coffee-mode clj-refactor ac-js2))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -70,7 +70,6 @@
     cider
     coffee-mode
     company
-    dante
     f
     fill-column-indicator
     ;; flx-ido
@@ -149,15 +148,8 @@
 (projectile-global-mode)
 (setq dired-omit-mode t)
 
-
-(autoload 'markdown-mode "markdown-mode"
-   "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
-(autoload 'gfm-mode "markdown-mode"
-   "Major mode for editing GitHub Flavored Markdown files" t)
-(add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
+(require 's)
+(global-set-key (kbd "C-c c") 's-lower-camel-case)
 (require 'helm)
 (require 'helm-config)
 (require 'rainbow-delimiters)
@@ -255,7 +247,6 @@
         (setq tab-width 4)
         (setq python-indent-offset 4)
         (flycheck-mode)
-        (fci-mode)
         (global-set-key (kbd "C-x p") 'py-autopep8)
      ))
 
@@ -269,26 +260,18 @@
 ;; (global-set-key "\C-ca" 'org-agenda)
 ;; (global-set-key "\C-cb" 'org-iswitchb)
 
-(require 'ng2-mode)
-
 (require 'salt-mode)
 (add-to-list 'auto-mode-alist '("\\.sls$" . salt-mode))
 
 ;; Haskell mode
+;; (require 'haskell-mode)
+;; (add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
+;; (add-hook 'after-init-hook #'haskell-mode)
+;; (add-hook 'haskell-mode-hook 'intero-mode)
 
-(require 'haskell-mode)
-(add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
-(add-hook 'after-init-hook #'haskell-mode)
-(use-package dante
-  :ensure t
-  :after haskell-mode
-  :commands 'dante-mode
-  :init
-  (add-hook 'haskell-mode-hook 'dante-mode)
-  (add-hook 'haskell-mode-hook 'flycheck-mode))
-(add-hook 'dante-mode-hook
-   '(lambda () (flycheck-add-next-checker 'haskell-dante
-                '(warning . haskell-hlint))))
+;; (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
+;; (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+;; (setq haskell-process-type 'cabal-repl)
 
 ;; Javascript mode
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
