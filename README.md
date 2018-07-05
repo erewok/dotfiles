@@ -25,6 +25,7 @@ Following are some notes I have written for myself to remember how to set everyt
 - Install exa
 - Install Docker for Mac
 
+
 ### Zshell
 
 Zshell installation:
@@ -39,6 +40,18 @@ brew install zsh zsh-completions
 
 Import the theme directly into OSX terminal.
 
+If you want `kubectl config current-context` in the shell, use this:
+
+Git clone this to an open_source dir: https://github.com/jonmosco/kube-ps1
+
+And then make sure to uncomment the following in the zshellrc:
+
+```
+# Kubectl context
+NEWLINE=$'\n'
+source ~/open_source/kube-ps1/kube-ps1.sh
+PROMPT='$(kube_ps1)${NEWLINE}'$PROMPT
+```
 
 ### Editor Stuff ###
 
