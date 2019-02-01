@@ -6,26 +6,22 @@ alias ls='ls -G'
 alias mv='mv -i'
 alias rm='rm -i'
 
+# Local Postgresql
+export PATH=/Library/PostgreSQL/10/bin:$PATH
+
 # EMACS
-alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 export EDITOR=emacs
 
 # GPG Agent
 # eval $(gpg-agent --daemon --allow-preset-passphrase)
-export PATH="~/bin:/usr/local/opt/gpg-agent/bin:$PATH"
+export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
 export GPG_TTY=$(tty)
 
-# Postgresql bins
-export PATH=/Library/PostgreSQL/10/bin:$PATH
-
-# Useful Scripts
-export PATH=~/workspace/working_app_dirs/scripts:$PATH
-
-# Python/Conda
-. /Users/eaker/anaconda/etc/profile.d/conda.sh
+# Conda
+. ~/miniconda3/etc/profile.d/conda.sh
 
 # Haskell/Stack
-export PATH=/Users/eaker/.local/bin:$PATH
+export PATH=~/.local/bin:$PATH
 
 # Rust/Cargo
 source $HOME/.cargo/env
@@ -39,13 +35,22 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 plugins=(zsh-completions)
 autoload -U compinit && compinit
 
+# You may also need to force rebuild `zcompdump`:
+#  rm -f ~/.zcompdump; compinit
+
 # Zshell Pure
 autoload -U promptinit && promptinit
 prompt pure
 
-# You may also need to force rebuild `zcompdump`:
+# aliases
+source $HOME/.aliases
 
-#  rm -f ~/.zcompdump; compinit
+# Kubectl context
+NEWLINE=$'\n'
+source ~/open_source/kube-ps1/kube-ps1.sh
+PROMPT='$(kube_ps1)${NEWLINE}'$PROMPT
+# kubernetes tab-completions!
+source <(kubectl completion zsh)
 
 # Additionally, if you receive "zsh compinit: insecure directories" warnings when attempting
 # to load these completions, you may need to run this:
@@ -54,25 +59,12 @@ prompt pure
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Java
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home
-
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-10.jdk
 
 # Go
-alias go='/usr/local/go/bin/go'
+export GOPATH=$HOME/go
 
-# aliases
-source $HOME/.aliases
-
-## CHECK GPG STUFF
-# This formula is keg-only, which means it was not symlinked into /usr/local,
-# because macOS provides the BSD gettext library & some software gets confused if both are in the library path.
-
-# If you need to have this software first in your PATH run:
-#   echo 'export PATH="/usr/local/opt/gettext/bin:$PATH"' >> ~/.bash_profile
-
-# For compilers to find this software you may need to set:
-#     LDFLAGS:  -L/usr/local/opt/gettext/lib
-#     CPPFLAGS: -I/usr/local/opt/gettext/include
+export PATH=$GOPATH/bin:$PATH
 
 # From ~/.aliases...
 alias last-tags='git tag -n  --sort=-creatordate | head -n 10'
