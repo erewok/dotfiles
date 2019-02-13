@@ -15,6 +15,6 @@ https://github.com/chriskempson/tomorrow-theme/blob/master/OS%20X%20Terminal/Tom
 
 Aside from `kubectl` and `helm`, there are also some useful tools you may wish to consider:
 
-[Kube-ps1](https://github.com/jonmosco/kube-ps1)
-[kubectx/kubens](https://github.com/ahmetb/kubectx)
-[fzf](https://github.com/junegunn/fzf)
+- [Kube-ps1](https://github.com/jonmosco/kube-ps1)
+- [kubectx/kubens](https://github.com/ahmetb/kubectx)
+- [fzf](https://github.com/junegunn/fzf)
