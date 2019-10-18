@@ -21,6 +21,7 @@ export GPG_TTY=$(tty)
 . ~/miniconda3/etc/profile.d/conda.sh
 
 # Haskell/Stack
+. ~/.ghcup/env
 export PATH=~/.local/bin:$PATH
 
 # Rust/Cargo
@@ -59,14 +60,9 @@ source <(kubectl completion zsh)
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Java
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-10.jdk
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home/
 
 # Go
 export GOPATH=$HOME/go
 
 export PATH=$GOPATH/bin:$PATH
-
-# From ~/.aliases...
-alias last-tags='git tag -n  --sort=-creatordate | head -n 10'
-alias da="conda deactivate"
-alias expy='exa -I "__pycache__|*pyc|*.py~" -T'

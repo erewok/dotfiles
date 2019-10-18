@@ -1,0 +1,10 @@
+alias k='kubectl'
+alias kube='kubectl'
+alias last-tags='git tag -n  --sort=-creatordate | head -n 10'
+alias da="conda deactivate"
+alias expy='exa -I "__pycache__|*pyc|*.py~" -T'
+alias gut='git'
+alias et='emacsclient -t'
+alias ec='emacsclient -c'
+alias killemacs="emacsclient -e '(client-save-kill-emacs)'"
+

@@ -1,1 +1,0 @@
-("~/workspace/baikal/" "~/.stack/global-project/" "~/workspace/huron/" "~/workspace/devtest/pandas/" "~/workspace/superior/" "~/workspace/salt-master/" "~/workspace/forecast-app-integration/" "~/workspace/quant-econ/" "~/workspace/forecast-api-ws/" "~/parsering/" "~/workspace/example-servant-persistent/" "~/.emacs.d/elpa/jedi-core-20160501.2043/")

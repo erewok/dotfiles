@@ -14,11 +14,10 @@ Following are some notes I have written for myself to remember how to set everyt
 - Install homebrew
 - Install htop (`brew install htop`)
 - Install jq (json viewer: `brew install jq`)
-- Install nvm
-- Install zshell
-  - Copy zshrc and create aliases file
+- Copy zshrc and create aliases file
 - Install anaconda for Python 3.6
-- Install Zulu Azul Java 8
+- Install AdoptOpenJDK Java 11
+- Install ghcup
 - Install stack
 - Install rustup
 - Install ripgrep
@@ -55,5 +54,23 @@ PROMPT='$(kube_ps1)${NEWLINE}'$PROMPT
 
 ### Editor Stuff ###
 
-- Install emacs >= 25
+- Install emacs >= 26: `brew cask install emacs`
 - Install VSCode
+
+
+### Emacs
+
+I have stopped maintaining my emacs environment in favor of [emacs prelude](https://github.com/bbatsov/prelude). This one is a fine enough slate of Emacs
+
+In addition to enabling various language modes, I simply add the following to my custom.el:
+
+```lisp
+(custom-set-faces
+ '(default ((t (:height 120 :weight normal :width expanded :family "Monaco")))))
+
+(global-set-key (kbd "C->") 'next-buffer)
+(global-set-key (kbd "C-<") 'previous-buffer)
+
+(load-theme zenburn)
+
+```
