@@ -15,7 +15,7 @@ Following are some notes I have written for myself to remember how to set everyt
 - Install htop (`brew install htop`)
 - Install jq (json viewer: `brew install jq`)
 - Copy zshrc and create aliases file
-- Install anaconda for Python 3.6
+- Install pyenv and poetry
 - Install AdoptOpenJDK Java 11
 - Install ghcup
 - Install stack
