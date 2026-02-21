@@ -94,8 +94,10 @@
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
- nix.settings.experimental-features = ["nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes" ];
 
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
