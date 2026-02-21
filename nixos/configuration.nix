@@ -108,7 +108,7 @@
     git
     ghostty
     gnumake
-    htop
+    btop
     jq
     just
     pkg-config
@@ -120,6 +120,16 @@
     python314
     uv
     vscode
+    sqlite
+    postgresql
+    docker
+    tmux
+    dig
+    netcat
+    openssl
+    nettools
+    inetutils
+    netcat
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
