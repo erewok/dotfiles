@@ -14,9 +14,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -48,11 +45,9 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the Budgie Desktop environment.
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
-  services.gnome.games.enable=false;
-  environment.gnome.excludePackages = with pkgs; [ gnome-tour gnome-user-docs ];  
+  # Enable the GNOME Desktop Environment.
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -94,39 +89,35 @@
 
   # Install firefox.
   programs.firefox.enable = true;
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  nix.settings.experimental-features = ["nix-command" "flakes" ];
+  # List packages installed in system profile. To search, run:
+ nix.settings.experimental-features = ["nix-command" "flakes" ];
 
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  emacs
-  gcc
-  git
-  ghostty
-  gnumake
-  htop
-  jq
-  just
-  pkg-config
-  autoconf
-  automake
-  libtool
-  ripgrep
-  rustup
-  python314
-  uv
-  vscode
-  vscode-extensions.github.copilot
-  vscode-extensions.rust-lang.rust-analyzer
-  vscode-extensions.charliermarsh.ruff
-  vscode-extensions.ms-python.python
+    gnome-tweaks
+    emacs
+    gcc
+    git
+    ghostty
+    gnumake
+    htop
+    jq
+    just
+    pkg-config
+    autoconf
+    automake
+    libtool
+    ripgrep
+    rustup
+    python314
+    uv
+    vscode
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
