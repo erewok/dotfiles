@@ -236,6 +236,9 @@ in
     alt_hostname = "orca";
   };
 
+  # Install firefox.
+  programs.firefox.enable = true;
+
   system.primaryUser = "erewok";
   # also need to run chsh -s /run/current-system/sw/bin/fish
   environment.variables.SHELL = "${pkgs.zsh}/bin/zsh";
