@@ -197,12 +197,12 @@ in
     gopls
     gotools
     graphviz
-    helm
-    htop
+    hugo
     jq
     just
     kubectl
     kubectx
+    kubernetes-helm
     lazygit
     libressl
     lstr
@@ -215,13 +215,15 @@ in
     pkgs-master.claude-code
     protobuf
     python3
-    python3Packages.uv
+    rectangle
     ripgrep
     rustup
     scc
     shellcheck
+    spotify
     terminal-notifier
     trivy
+    uv
     wget
     yamllint
     zsh-completions
@@ -239,9 +241,11 @@ in
   # Install firefox.
   programs.firefox.enable = true;
 
-  system.primaryUser = "erewok";
+  system.primaryUser = "erik";
   # also need to run chsh -s /run/current-system/sw/bin/fish
   environment.variables.SHELL = "${pkgs.zsh}/bin/zsh";
+
+  fonts.packages = [ pkgs.nerd-fonts.meslo-lg ];
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh = {
@@ -274,6 +278,7 @@ in
 
   homebrew.taps = [
     "homebrew/services"
+    "Azure/kubelogin"
   ];
 
   # these gui apps tend to run better through homebrew
@@ -282,7 +287,9 @@ in
     "azure/azd/azd"
     "azure/kubelogin/kubelogin"
     "dbeaver-community"
+    "docker-desktop"
     "ghostty"
+    "kube-ps1"
     "iterm2"
     "visual-studio-code"
     "zoom"

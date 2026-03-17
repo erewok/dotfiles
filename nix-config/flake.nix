@@ -8,6 +8,8 @@
       url = "github:LnL7/nix-darwin/nix-darwin?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nix-darwin, nixpkgs }:
@@ -36,6 +38,7 @@
               modules = [
                 all
                 ./machines/orca/configuration.nix
+                home-manager.darwinModules.home-manager
               ];
               specialArgs = { inherit inputs nixpkgs; };
             };
