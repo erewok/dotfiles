@@ -102,10 +102,13 @@ in
     expose-animation-duration = 0.8;
     launchanim = true;
     mru-spaces = false;
-    tilesize = 24;
-    mineffect = "genie";
+    # Set the icon size (default is 48)
+    tilesize = 64;
+      # Enable magnification
     magnification = false;
-    largesize = 24;
+    mineffect = "genie";
+    # Set magnified size (pixels)
+    largesize = 64;
     mouse-over-hilite-stack = true;
     minimize-to-application = false;
     orientation = "bottom";
@@ -200,6 +203,7 @@ in
     openssh
     openssl
     pkgs-master.claude-code
+    postgresql
     protobuf
     pure-prompt
     python3
@@ -274,7 +278,7 @@ in
   homebrew.casks = [
     "1password"
     "docker-desktop"
-    "emacs"
+    "emacs-app"
     "firefox"
     "ghostty"
     "google-chrome"
@@ -312,9 +316,11 @@ in
     programs.git = {
       enable = true;
       settings = {
-        userName = "Erik Aker";
-        userEmail = "eraker@gmail.com";
-        aliases = {
+        push.default = "simple";
+        core.sshCommand = "/usr/bin/ssh";
+        user.name = "Erik Aker";
+        user.email = "eraker@gmail.com";
+        alias = {
           br = "branch";
           cm = "commit";
           st = "status";
@@ -325,9 +331,7 @@ in
           changed = "diff --cached";
           last = "log -1 HEAD";
           commands = "config --get-regexp '^alias'";
-        push.default = "simple";
-        core.sshCommand = "/usr/bin/ssh";
-        }
+        };
       };
     };
 
