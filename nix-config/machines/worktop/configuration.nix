@@ -309,7 +309,6 @@ in
   # these gui apps tend to run better through homebrew
   homebrew.casks = [
     "azure/azd/azd"
-    "azure/kubelogin/kubelogin"
     "bitwarden"
     "copilot-cli"
     "dbeaver-community"
@@ -329,6 +328,7 @@ in
   # the nixpkgs version of helm doesn't currently support aarch64-darwin
   # vfkit work around from https://github.com/kevinmichaelchen/dotfiles/commit/ec3438f259f6f1b4e4de4b0ef3bee1308cf85128
   homebrew.brews = [
+    "azure/kubelogin/kubelogin"
     "helm"
     "node"
     "openssl"
