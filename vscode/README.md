@@ -5,7 +5,7 @@ This directory contains machine-specific VSCode configurations managed through N
 ## Files
 
 - `vscode-settings-work.json` - Settings for work machine (worktop)
-- `vscode-settings-personal.json` - Settings for personal machine (orca)
+- `vscode-settings-personal.json` - Settings for personal machine (navanax)
 - `vscode-extension-list-work.json` - Extensions list for work machine
 - `vscode-extension-list-personal.json` - Extensions list for personal machine
 
@@ -16,7 +16,7 @@ This directory contains machine-specific VSCode configurations managed through N
 Your Nix configuration automatically loads the appropriate settings file:
 
 - **worktop** (work): Uses `vscode-settings-work.json`
-- **orca** (personal): Uses `vscode-settings-personal.json`
+- **navanax** (personal): Uses `vscode-settings-personal.json`
 
 Settings are synced automatically when you rebuild your Nix configuration.
 
@@ -28,6 +28,7 @@ We use a **hybrid approach** for extensions:
 2. **All other extensions** can be installed manually via VSCode
 
 This hybrid approach is recommended because:
+
 - Not all extensions are available in nixpkgs
 - Extension versions in nixpkgs may lag behind marketplace
 - Manual installation is straightforward for extensions you rarely change
@@ -49,7 +50,7 @@ This hybrid approach is recommended because:
 - tamasfe.even-better-toml
 ```
 
-**Personal Machine (orca):**
+**Personal Machine (navanax):**
 Same as work machine (lighter set).
 
 ## Managing Extensions
@@ -122,7 +123,7 @@ After modifying settings files:
 darwin-rebuild switch --flake ~/nix-config#worktop
 
 # Personal machine
-darwin-rebuild switch --flake ~/nix-config#orca
+darwin-rebuild switch --flake ~/nix-config#navanax
 ```
 
 Settings will be applied to `~/Library/Application Support/Code/User/settings.json`.

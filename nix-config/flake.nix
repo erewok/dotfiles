@@ -29,7 +29,7 @@
             });
         in
         {
-          "orca" =
+          "navanax" =
             let
               nixpkgs = nixpkgs-darwin;
             in
@@ -37,7 +37,7 @@
               system = "aarch64-darwin";
               modules = [
                 all
-                ./machines/orca/configuration.nix
+                ./machines/navanax/configuration.nix
                 home-manager.darwinModules.home-manager
               ];
               specialArgs = { inherit inputs nixpkgs; };

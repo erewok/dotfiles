@@ -237,7 +237,7 @@ in
     zsh
   ];
   environment.variables = {
-    alt_hostname = "orca";
+    alt_hostname = "navanax";
   };
 
   # Install firefox.
@@ -337,6 +337,12 @@ in
 
     # Export ZSH to nix store path (Home Manager omits this; required for oh-my-zsh)
     home.sessionVariables.ZSH = "${pkgs.oh-my-zsh}/share/oh-my-zsh";
+
+    # Symlink Emacs Prelude configuration from dotfiles
+    home.file.".emacs.d" = {
+      source = "${dotfilesPath}/emacs";
+      recursive = true;
+    };
 
     programs.git = {
       enable = true;

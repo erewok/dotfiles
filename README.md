@@ -2,67 +2,134 @@
 
 This is a repo for keeping track of configuration files for my development environments.
 
-Following are some notes I have written for myself to remember how to set everything up.
+This configuration has primarily moved to a nix-based setup. There are some historical files in here for reference.
 
-## OSX
+## Nix-Darwin Setup
 
-### Shell Stuff ###
+For OSX machines, I have two nix configurations: one for work (worktop) and one for personal (navanax).
 
-- Update XCode (Wait for ten days for it complete).
-- Install git
-  - Use gitconfig
-- Install homebrew
-- Install htop (`brew install htop`)
-- Install jq (json viewer: `brew install jq`)
-- Copy zshrc and create aliases file
-- Install pyenv and poetry
-- Install AdoptOpenJDK Java 11
-- Install ghcup
-- Install stack
-- Install rustup
-- Install ripgrep
-- Install exa
-- Install Docker for Mac
+### Fresh macOS Setup for Navanax
 
+#### 1. Initial System Setup
 
-### Zshell
+```bash
+# Install Xcode Command Line Tools (required for Git and compilation)
+xcode-select --install
 
-Zshell installation:
-
-```
-brew install zsh zsh-completions
+# Clone this repo
+mkdir -p ~/open_source
+cd ~/open_source
+git clone https://github.com/erewok/dotfiles.git
+cd dotfiles
 ```
 
-[Pure theme](https://github.com/Zearin/zsh-pure)
+#### 2. Install Nix
 
-[Tomorrow Night Eighties Theme](https://github.com/chriskempson/tomorrow-theme)
+```bash
+# Install Nix with flakes support (multi-user installation)
+sh <(curl -L https://nixos.org/nix/install)
 
-Import the theme directly into OSX terminal.
-
-If you want `kubectl config current-context` in the shell, use this:
-
-Git clone this to an open_source dir: https://github.com/jonmosco/kube-ps1
-
-And then make sure to uncomment the following in the zshellrc:
-
-```
-# Kubectl context
-NEWLINE=$'\n'
-source ~/open_source/kube-ps1/kube-ps1.sh
-PROMPT='$(kube_ps1)${NEWLINE}'$PROMPT
+# Source Nix in your current shell
+. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 ```
 
-### Editor Stuff ###
+#### 3. Install Homebrew
 
-- Install emacs >= 26: `brew cask install emacs`
-- Install VSCode
+```bash
+# Required for GUI apps and some packages
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+# Add Homebrew to PATH for current session
+eval "$(/opt/homebrew/bin/brew shellenv)"
+```
 
-### Emacs
+#### 4. Build and Activate nix-darwin
 
-I have stopped maintaining my emacs environment in favor of [emacs prelude](https://github.com/bbatsov/prelude). This one is a fine enough slate of Emacs
+```bash
+cd ~/open_source/dotfiles/nix-config
 
-In addition to enabling various language modes, I simply add the following to my custom.el:
+# Build and switch to nix-darwin configuration for navanax (personal)
+nix --extra-experimental-features "nix-command flakes" run nix-darwin -- switch --flake .#navanax
+
+# For work machine, use:
+# nix --extra-experimental-features "nix-command flakes" run nix-darwin -- switch --flake .#worktop
+```
+
+#### 5. Update Default Shell
+
+```bash
+# Change default shell to Nix-managed zsh
+chsh -s /run/current-system/sw/bin/zsh
+
+# Restart terminal for changes to take effect
+```
+
+#### 6. Post-Install Configuration
+
+```bash
+# SSH key setup (for GitHub, etc.)
+# Generate if needed:
+ssh-keygen -t rsa -b 4096 -C "the-email@example.com"
+
+# Add to macOS Keychain
+/usr/bin/ssh-add --apple-use-keychain ~/.ssh/id_rsa
+
+# Install iTerm2 shell integration (if using iTerm2)
+curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
+
+# Install FZF keybindings
+/nix/store/*/bin/fzf-install  # Or reinstall via: $(brew --prefix)/opt/fzf/install
+```
+
+#### 7. Verify Installation
+
+```bash
+# Check nix-darwin is active
+darwin-rebuild --version
+
+# Check installed packages
+nix-env -q
+
+# Use your custom alias for future rebuilds
+nix-rebuild  # Alias defined in zsh config
+```
+
+#### 8. Manual Steps (System Preferences)
+
+Your configuration sets many preferences automatically, but you may want to verify:
+
+- **Trackpad:** Three-finger drag should be enabled
+- **Dock:** Apps should be arranged per config, hot corners set
+- **Security:** Touch ID for sudo should work
+- **Screenshots:** Should save to ~/Pictures/Screenshots
+
+#### Future Updates
+
+```bash
+# Apply configuration changes
+darwin-rebuild switch --flake ~/open_source/dotfiles/nix-config#navanax
+
+# Or use the alias:
+nix-rebuild
+
+# Rollback if needed:
+nix-rollback
+```
+
+#### What Gets Installed (Navanax)
+
+- **Development tools:** emacs (with Prelude auto-configured), vscode, gh, git, direnv, rustup, go, python3, uv
+- **CLI utilities:** bat, ripgrep, fzf, jq, htop, btop, lazygit, tree
+- **GUI apps (Homebrew):** 1Password, Docker Desktop, Ghostty, Firefox, Chrome, iTerm2, VS Code, Zoom
+- **Fonts:** MesloLG Nerd Font (for Pure prompt)
+
+The configuration also sets up macOS defaults, security settings (firewall, Touch ID sudo), and a Linux builder for cross-compilation.
+
+## Emacs
+
+I use [emacs prelude](https://github.com/bbatsov/prelude) for my Emacs configuration. On nix-darwin machines (navanax), this is automatically configured by symlinking the `emacs/` directory to `~/.emacs.d` during system rebuild.
+
+In addition to enabling various language modes, I add the following to my custom.el:
 
 ```lisp
 (custom-set-faces

@@ -258,7 +258,7 @@ in
     zsh
   ];
   environment.variables = {
-    alt_hostname = "orca";
+    alt_hostname = "navanax";
   };
 
   # Install firefox.
