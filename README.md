@@ -26,8 +26,8 @@ cd dotfiles
 #### 2. Install Nix
 
 ```bash
-# Install Nix with flakes support (multi-user installation)
-sh <(curl -L https://nixos.org/nix/install)
+# Install Nix using Determinate Systems installer (flakes enabled by default)
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 
 # Source Nix in your current shell
 . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
@@ -43,16 +43,17 @@ sh <(curl -L https://nixos.org/nix/install)
 eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
-#### 4. Build and Activate nix-darwin
+#### 4. Install and Activate nix-darwin
 
 ```bash
 cd ~/open_source/dotfiles/nix-config
 
-# Build and switch to nix-darwin configuration for navanax (personal)
-nix --extra-experimental-features "nix-command flakes" run nix-darwin -- switch --flake .#navanax
+# This command fetches nix-darwin from the flake, then builds and activates the config
+# (no separate installation step needed with flakes)
+nix run nix-darwin -- switch --flake .#navanax
 
 # For work machine, use:
-# nix --extra-experimental-features "nix-command flakes" run nix-darwin -- switch --flake .#worktop
+# nix run nix-darwin -- switch --flake .#worktop
 ```
 
 #### 5. Update Default Shell
