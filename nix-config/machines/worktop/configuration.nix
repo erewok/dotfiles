@@ -429,7 +429,7 @@ in
         # copilot-cli installs as 'copilot' binary
         copilot-cli = "copilot";
       };
-      initExtra = ''
+      initContent = ''
         # --- Homebrew ---
         eval "$(/opt/homebrew/bin/brew shellenv)"
 

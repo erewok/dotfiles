@@ -367,7 +367,7 @@ in
         nix-rebuild = "sudo darwin-rebuild switch --flake ~/open_source/dotfiles";
         nix-rollback = "sudo darwin-rebuild switch --rollback";
       };
-      initExtra = ''
+      initContent = ''
         # --- Homebrew ---
         eval "$(/opt/homebrew/bin/brew shellenv)"
 
