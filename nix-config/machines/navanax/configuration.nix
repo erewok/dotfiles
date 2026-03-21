@@ -209,11 +209,12 @@ in
     python3
     rectangle
     ripgrep
+    fnm
     rustup
     scc
     shellcheck
     terminal-notifier
-    tree
+    tmux
     uv
     wget
     yamllint
@@ -227,6 +228,7 @@ in
   ];
   environment.variables = {
     alt_hostname = "navanax";
+    LIBRARY_PATH = "${pkgs.libiconv}/lib";
   };
 
   system.primaryUser = "erewok";
@@ -403,6 +405,9 @@ in
         # --- Direnv ---
         eval "$(direnv hook zsh)"
 
+        # --- fnm (Node version manager) ---
+        eval "$(fnm env --use-on-cd --shell zsh)"
+
         # --- SSH (system ssh-add stores passphrase in macOS Keychain) ---
         /usr/bin/ssh-add --apple-use-keychain ~/.ssh/id_rsa 2>/dev/null
 
@@ -424,11 +429,6 @@ in
           fpath=("$HOME/.docker/completions" $fpath)
           autoload -Uz compinit && compinit
         fi
-
-        # --- NVM ---
-        export NVM_DIR="$HOME/.nvm"
-        [[ -s "/opt/homebrew/opt/nvm/nvm.sh" ]] && . "/opt/homebrew/opt/nvm/nvm.sh"
-        [[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ]] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 
         # --- Source custom shell config from dotfiles repo ---
         [[ -f "$HOME/open_source/dotfiles/shell/zshrc" ]] && source "$HOME/open_source/dotfiles/shell/home-zshrc"
