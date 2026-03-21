@@ -193,7 +193,6 @@ in
     direnv
     dive
     egctl
-    emacs
     fluent-bit
     fzf
     gcc
@@ -240,7 +239,6 @@ in
     rustup
     scc
     shellcheck
-    spotify
     stern
     terminal-notifier
     terraform
@@ -312,10 +310,6 @@ in
 
   # homebrew (requires homebrew installed outside of nix)
   # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  environment.shellInit = mkIf brewEnabled ''
-    eval "$(${config.homebrew.brewPrefix}/brew shellenv)"
-  '';
-
   homebrew.enable = true;
   homebrew.onActivation.autoUpdate = true;
   homebrew.onActivation.cleanup = "zap";
@@ -323,6 +317,7 @@ in
 
   homebrew.taps = [
     "Azure/kubelogin"
+    "railwaycat/emacsmacport"
   ];
 
   # these gui apps tend to run better through homebrew
@@ -333,11 +328,13 @@ in
     "copilot-cli"
     "dbeaver-community"
     "docker-desktop"
+    "emacs-mac"
     "firefox"
     "ghostty"
     "google-chrome"
     "iterm2"
     "slack"
+    "spotify"
     "visual-studio-code"
     "zoom"
   ];
@@ -365,33 +362,33 @@ in
 
     programs.git = {
       enable = true;
-      extraConfig.core.sshCommand = "/usr/bin/ssh";
+      settings.core.sshCommand = "/usr/bin/ssh";
     };
 
     # VSCode settings for work machine
     programs.vscode = {
       enable = true;
-      # Set to true to allow manual extension management alongside Nix
       mutableExtensionsDir = true;
 
-      # Load settings from dotfiles repo
-      userSettings = builtins.fromJSON (builtins.readFile "${dotfilesPath}/vscode/vscode-settings-work.json");
+      profiles.default = {
+        # Load settings from dotfiles repo
+        userSettings = builtins.fromJSON (builtins.readFile "${dotfilesPath}/vscode/vscode-settings-work.json");
 
-      # Core extensions managed by Nix (most stable/available)
-      extensions = with pkgs.vscode-extensions; [
-        # Essential dev tools (available in nixpkgs)
-        charliermarsh.ruff
-        dbaeumer.vscode-eslint
-        esbenp.prettier-vscode
-        golang.go
-        jnoortheen.nix-ide
-        mkhl.direnv
-        ms-python.python
-        ms-python.debugpy
-        redhat.vscode-yaml
-        rust-lang.rust-analyzer
-        tamasfe.even-better-toml
-      ];
+        # Core extensions managed by Nix (most stable/available)
+        extensions = with pkgs.vscode-extensions; [
+          charliermarsh.ruff
+          dbaeumer.vscode-eslint
+          esbenp.prettier-vscode
+          golang.go
+          jnoortheen.nix-ide
+          mkhl.direnv
+          ms-python.python
+          ms-python.debugpy
+          redhat.vscode-yaml
+          rust-lang.rust-analyzer
+          tamasfe.even-better-toml
+        ];
+      };
     };
 
     # zsh + oh-my-zsh (HM generates ~/.zshrc)
@@ -431,6 +428,9 @@ in
         copilot-cli = "copilot";
       };
       initExtra = ''
+        # --- Homebrew ---
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+
         # Show timestamps when running `history` command (oh-my-zsh)
         HIST_STAMPS="yyyy-mm-dd"
 

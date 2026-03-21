@@ -170,7 +170,6 @@ in
     curl
     dig
     direnv
-    emacs
     fzf
     gcc
     gh
@@ -206,7 +205,6 @@ in
     rustup
     scc
     shellcheck
-    spotify
     terminal-notifier
     tree
     uv
@@ -262,25 +260,25 @@ in
 
   # homebrew (requires homebrew installed outside of nix)
   # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  environment.shellInit = mkIf brewEnabled ''
-    eval "$(${config.homebrew.brewPrefix}/brew shellenv)"
-  '';
-
   homebrew.enable = true;
   homebrew.onActivation.autoUpdate = true;
   homebrew.onActivation.cleanup = "zap";
   homebrew.global.brewfile = true;
 
-  homebrew.taps = [];
+  homebrew.taps = [
+    "railwaycat/emacsmacport"
+  ];
 
   # these gui apps tend to run better through homebrew
   homebrew.casks = [
     "1password"
     "docker-desktop"
+    "emacs-mac"
     "firefox"
     "ghostty"
     "google-chrome"
     "iterm2"
+    "spotify"
     "visual-studio-code"
     "zoom"
   ];
@@ -312,7 +310,7 @@ in
 
     programs.git = {
       enable = true;
-      extraConfig.core.sshCommand = "/usr/bin/ssh";
+      settings.core.sshCommand = "/usr/bin/ssh";
     };
 
     # VSCode settings for personal machine
@@ -320,23 +318,25 @@ in
       enable = true;
       mutableExtensionsDir = true;  # Allow manual extension management
 
-      # Load settings from dotfiles repo
-      userSettings = builtins.fromJSON (builtins.readFile "${dotfilesPath}/vscode/vscode-settings-personal.json");
+      profiles.default = {
+        # Load settings from dotfiles repo
+        userSettings = builtins.fromJSON (builtins.readFile "${dotfilesPath}/vscode/vscode-settings-personal.json");
 
-      # Core extensions managed by Nix (lighter set for personal use)
-      extensions = with pkgs.vscode-extensions; [
-        charliermarsh.ruff
-        dbaeumer.vscode-eslint
-        esbenp.prettier-vscode
-        golang.go
-        jnoortheen.nix-ide
-        mkhl.direnv
-        ms-python.python
-        ms-python.debugpy
-        redhat.vscode-yaml
-        rust-lang.rust-analyzer
-        tamasfe.even-better-toml
-      ];
+        # Core extensions managed by Nix (lighter set for personal use)
+        extensions = with pkgs.vscode-extensions; [
+          charliermarsh.ruff
+          dbaeumer.vscode-eslint
+          esbenp.prettier-vscode
+          golang.go
+          jnoortheen.nix-ide
+          mkhl.direnv
+          ms-python.python
+          ms-python.debugpy
+          redhat.vscode-yaml
+          rust-lang.rust-analyzer
+          tamasfe.even-better-toml
+        ];
+      };
     };
 
     # zsh + oh-my-zsh (HM generates ~/.zshrc)
@@ -367,6 +367,9 @@ in
         nix-rollback = "sudo darwin-rebuild switch --rollback";
       };
       initExtra = ''
+        # --- Homebrew ---
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+
         # Show timestamps when running `history` command (oh-my-zsh)
         HIST_STAMPS="yyyy-mm-dd"
 
