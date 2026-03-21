@@ -50,12 +50,16 @@ cd ~/open_source/dotfiles/nix-config
 
 # This command fetches nix-darwin from the flake, then builds and activates the config
 # The "switch" command means changes are applied immediately (no separate activation needed)
-# Note: No 'sudo' needed - nix-darwin uses the Nix daemon for permissions
-nix run nix-darwin -- switch --flake .#navanax
+# Recent nix-darwin versions require root for activation
+sudo nix run nix-darwin -- switch --flake .#navanax
+
+# If sudo can't find nix, use the full path:
+# sudo /nix/var/nix/profiles/default/bin/nix run nix-darwin -- switch --flake .#navanax
 
 # For work machine, use:
-# nix run nix-darwin -- switch --flake .#worktop
+# sudo nix run nix-darwin -- switch --flake .#worktop
 ```
+
 
 After this command completes:
 
@@ -89,8 +93,8 @@ ssh-keygen -t rsa -b 4096 -C "the-email@example.com"
 # Install iTerm2 shell integration (if using iTerm2)
 curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
 
-# Install FZF keybindings
-/nix/store/*/bin/fzf-install  # Or reinstall via: $(brew --prefix)/opt/fzf/install
+# Generate FZF shell integration file (fzf is nix-managed; zshrc sources this if present)
+fzf --zsh > ~/.fzf.zsh
 ```
 
 #### 7. Verify Installation
@@ -99,8 +103,8 @@ curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utili
 # Check nix-darwin is active
 darwin-rebuild --version
 
-# Check installed packages
-nix-env -q
+# Check a few key packages are available
+which git bat ripgrep fzf
 
 # Use your custom alias for future rebuilds
 nix-rebuild  # Alias defined in zsh config
@@ -113,15 +117,15 @@ Your configuration sets many preferences automatically, but you may want to veri
 - **Trackpad:** Three-finger drag should be enabled
 - **Dock:** Apps should be arranged per config, hot corners set
 - **Security:** Touch ID for sudo should work
-- **Screenshots:** Should save to ~/Pictures/Screenshots
+- **Screenshots:** Should save to `/Users/erewok/Pictures/Screenshots`
 
 #### Future Updates
 
 ```bash
 # Apply configuration changes
-darwin-rebuild switch --flake ~/open_source/dotfiles/nix-config#navanax
+sudo darwin-rebuild switch --flake ~/open_source/dotfiles/nix-config#navanax
 
-# Or use the alias:
+# Or use the alias (also invokes sudo internally via the alias definition):
 nix-rebuild
 
 # Rollback if needed:
@@ -132,7 +136,8 @@ nix-rollback
 
 - **Development tools:** emacs (with Prelude auto-configured), vscode, gh, git, direnv, rustup, go, python3, uv
 - **CLI utilities:** bat, ripgrep, fzf, jq, htop, btop, lazygit, tree
-- **GUI apps (Homebrew):** 1Password, Docker Desktop, Ghostty, Firefox, Chrome, iTerm2, VS Code, Zoom
+- **GUI apps (Homebrew casks):** 1Password, Docker Desktop, Ghostty, Chrome, iTerm2, Zoom
+- **GUI apps (Nix):** Firefox (via `programs.firefox`), VS Code (via `programs.vscode`)
 - **Fonts:** MesloLG Nerd Font (for Pure prompt)
 
 The configuration also sets up macOS defaults, security settings (firewall, Touch ID sudo), and a Linux builder for cross-compilation.
