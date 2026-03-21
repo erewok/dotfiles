@@ -7,7 +7,7 @@ let
     "system" = "aarch64-darwin";
     config = { allowUnfree = true; };
   };
-  dotfilesPath = /Users/erikaker/open_source/dotfiles;
+  dotfilesPath = /Users/erewok/open_source/dotfiles;
 in
 {
   nix-common = {
@@ -391,7 +391,7 @@ in
       };
       shellAliases = {
         # Nix rebuild shortcuts
-        nix-rebuild = "darwin-rebuild switch --flake ~/nix-config";
+        nix-rebuild = "darwin-rebuild switch --flake ~/open_source/dotfiles/nix-config";
         nix-rollback = "darwin-rebuild switch --rollback";
       };
       initExtra = ''

@@ -49,12 +49,23 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 cd ~/open_source/dotfiles/nix-config
 
 # This command fetches nix-darwin from the flake, then builds and activates the config
-# (no separate installation step needed with flakes)
+# The "switch" command means changes are applied immediately (no separate activation needed)
+# Note: No 'sudo' needed - nix-darwin uses the Nix daemon for permissions
 nix run nix-darwin -- switch --flake .#navanax
 
 # For work machine, use:
 # nix run nix-darwin -- switch --flake .#worktop
 ```
+
+After this command completes:
+
+- All packages are installed
+- System preferences are applied
+- Homebrew packages/casks are installed
+- Shell configuration is active
+- Emacs Prelude is symlinked
+
+**Important:** Open a new terminal window/tab now. The `darwin-rebuild` command and other tools won't be in your PATH until you start a fresh shell session.
 
 #### 5. Update Default Shell
 
@@ -62,7 +73,7 @@ nix run nix-darwin -- switch --flake .#navanax
 # Change default shell to Nix-managed zsh
 chsh -s /run/current-system/sw/bin/zsh
 
-# Restart terminal for changes to take effect
+# Close and reopen terminal for changes to take effect
 ```
 
 #### 6. Post-Install Configuration
