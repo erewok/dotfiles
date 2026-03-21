@@ -125,6 +125,7 @@ in
       "/Applications/Visual\ Studio Code.app"
       "/Applications/Emacs.app"
       "/Applications/Spotify.app"
+      "/Applications/iTerm.app"
       "/Applications/Nix Apps/Signal.app"
       "/System/Applications/Calculator.app"
     ];
@@ -308,8 +309,17 @@ in
     home.homeDirectory = "/Users/erewok";
     home.stateVersion = "24.11";
 
+    # Add cargo-installed binaries to PATH
+    home.sessionPath = [ "$HOME/.cargo/bin" ];
+
     # Export ZSH to nix store path (Home Manager omits this; required for oh-my-zsh)
     home.sessionVariables.ZSH = "${pkgs.oh-my-zsh}/share/oh-my-zsh";
+
+    # Ghostty config
+    home.file.".config/ghostty/config".source = "${dotfilesPath}/ghostty/config";
+
+    # iTerm2 Dynamic Profile (sets font to 16pt; select "Nix" profile in iTerm2 preferences)
+    home.file."Library/Application Support/iTerm2/DynamicProfiles/Nix.json".source = "${dotfilesPath}/iterm2/Nix.json";
 
     # Symlink Emacs Prelude configuration from dotfiles
     home.file.".emacs.d" = {

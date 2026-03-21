@@ -1,0 +1,11 @@
+{
+  "Profiles": [
+    {
+      "Name": "Nix",
+      "Guid": "nix-managed-profile-font16",
+      "Normal Font": "MesloLGSNF-Regular 16",
+      "Non Ascii Font": "MesloLGSNF-Regular 16",
+      "Use Non-ASCII Font": false
+    }
+  ]
+}
