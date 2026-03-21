@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, self, ... }:
 let
   inherit (lib) mkIf elem;
   caskPresent = cask: lib.any (x: x.name == cask) config.homebrew.casks;
@@ -7,7 +7,7 @@ let
     "system" = "aarch64-darwin";
     config = { allowUnfree = true; };
   };
-  dotfilesPath = /Users/erewok/open_source/dotfiles;
+  dotfilesPath = self;
 in
 {
   nix-common = {
@@ -23,6 +23,7 @@ in
   system.startup.chime = false;
 
   # Please stay this way
+  system.keyboard.enableKeyMapping = true;
   system.keyboard.remapCapsLockToControl = true;
 
   system.defaults.NSGlobalDomain = {
@@ -365,7 +366,7 @@ in
         cat = "bat";
         mv = "mv -i";
         rm = "rm -i";
-        nix-rebuild = "sudo darwin-rebuild switch --flake ~/open_source/dotfiles/nix-config --impure";
+        nix-rebuild = "sudo darwin-rebuild switch --flake ~/open_source/dotfiles";
         nix-rollback = "sudo darwin-rebuild switch --rollback";
       };
       initExtra = ''

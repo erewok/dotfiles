@@ -46,18 +46,18 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 #### 4. Install and Activate nix-darwin
 
 ```bash
-cd ~/open_source/dotfiles/nix-config
+cd ~/open_source/dotfiles
 
 # This command fetches nix-darwin from the flake, then builds and activates the config
 # The "switch" command means changes are applied immediately (no separate activation needed)
 # Recent nix-darwin versions require root for activation
-sudo nix run nix-darwin -- switch --flake .#navanax --impure
+sudo nix run nix-darwin -- switch --flake .#navanax
 
 # If sudo can't find nix, use the full path:
-# sudo /nix/var/nix/profiles/default/bin/nix run nix-darwin -- switch --flake .#navanax --impure
+# sudo /nix/var/nix/profiles/default/bin/nix run nix-darwin -- switch --flake .#navanax
 
 # For work machine, use:
-# sudo nix run nix-darwin -- switch --flake .#worktop --impure
+# sudo nix run nix-darwin -- switch --flake .#worktop
 ```
 
 
@@ -123,7 +123,7 @@ Your configuration sets many preferences automatically, but you may want to veri
 
 ```bash
 # Apply configuration changes
-sudo darwin-rebuild switch --flake ~/open_source/dotfiles/nix-config#navanax --impure
+sudo darwin-rebuild switch --flake ~/open_source/dotfiles#navanax
 
 # Or use the alias (also invokes sudo internally via the alias definition):
 nix-rebuild
