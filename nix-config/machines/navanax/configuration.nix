@@ -365,7 +365,7 @@ in
         cat = "bat";
         mv = "mv -i";
         rm = "rm -i";
-        nix-rebuild = "sudo darwin-rebuild switch --flake ~/open_source/dotfiles/nix-config";
+        nix-rebuild = "sudo darwin-rebuild switch --flake ~/open_source/dotfiles/nix-config --impure";
         nix-rollback = "sudo darwin-rebuild switch --rollback";
       };
       initExtra = ''

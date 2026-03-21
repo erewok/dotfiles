@@ -77,7 +77,7 @@
     "cargo build": true,
     "cargo clippy": true,
     "cargo fmt": true,
-    "pytest": true,
+    "pytest": true
   },
   "gitlens.ai.model": "vscode",
   "gitlens.ai.vscode.model": "copilot:gpt-5.3",
