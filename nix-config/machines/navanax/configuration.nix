@@ -19,6 +19,9 @@ in
 
   nix.settings.trusted-users = [ "@admin" ];
 
+  networking.hostName = "navanax";
+  networking.computerName = "navanax";
+
   # mac settings
   system.startup.chime = false;
 

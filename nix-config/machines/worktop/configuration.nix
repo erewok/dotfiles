@@ -36,6 +36,9 @@ in
     settings.trusted-users = [ "@admin" ];
   };
 
+  networking.hostName = "GW3TX9XVDT";
+  networking.computerName = "GW3TX9XVDT";
+
   # mac settings
   system.startup.chime = false;
 
