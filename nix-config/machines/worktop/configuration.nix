@@ -136,9 +136,9 @@ in
 
   system.defaults.trackpad = {
     TrackpadRightClick = true;
-    TrackpadThreeFingerDrag = true;
-    TrackpadThreeFingerHorizSwipeGesture = 0;
-    TrackpadFourFingerHorizSwipeGesture = 2;
+    TrackpadThreeFingerDrag = false;
+    TrackpadThreeFingerHorizSwipeGesture = 2;
+    TrackpadFourFingerHorizSwipeGesture = 0;
   };
 
   system.defaults.finder = {
@@ -276,10 +276,10 @@ in
     ln -sf /run/current-system/sw/bin/popeye       /run/current-system/sw/bin/kubectl-popeye 2>/dev/null || true
   '';
 
-  # Three-finger drag requires both trackpad domains on modern macOS
+  # Force three-finger swipe switching (disable three-finger drag in both trackpad domains)
   system.activationScripts.threeFingerDrag.text = ''
-    /usr/bin/defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
-    /usr/bin/defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool true
+    /usr/bin/defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool false
+    /usr/bin/defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool false
     /usr/bin/defaults write com.apple.AppleMultitouchTrackpad Dragging -bool false
     /usr/bin/defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Dragging -bool false
   '';
