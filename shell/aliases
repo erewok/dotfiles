@@ -1,15 +1,100 @@
+alias code='/Applications/Visual\ Studio\ Code.app/Contents/MacOS/Electron'
+alias getuuid='python -c "import uuid; print(uuid.uuid4())"'
+alias j='just'
 alias k='kubectl'
 alias kube='kubectl'
+alias ka='k get pods --all-namespaces'
+alias krsd='k rollout restart deploy'
 alias last-tags='git tag -n  --sort=-creatordate | head -n 10'
-alias da="conda deactivate"
 alias expy='exa -I "__pycache__|*pyc|*.py~" -T'
 alias gut='git'
+alias gcmm='git co master'
+alias gcm='git co main'
+alias gcm+='git co main && git pull'
+alias gcmm+='git co main && git pull'
+alias gcb='git co -b'
+alias cat='bat'
+alias edd='emacs --daemon'
 alias et='emacsclient -t'
 alias ec='emacsclient -c'
-alias edd='emacs --daemon'
+alias uv-force='uv sync --force-reinstall --no-cache --upgrade'
+
+# Trying to make sure we understand which kube cluster we're dealing with.
+alias pods='kubectl get po'
+alias lpods='kubectl get po --show-labels'
+
+function gwlabel {
+	kubectl label namespaces $1 gateway-allow=$1
+}
+
+function get-msi-client-ids {
+    for env in dev stg prod; do
+	clientId=$(az identity show --name ${env}-$1-workload-identity -g ${env}-mfcloud-internal-rg | jq -r .clientId)
+	echo "${env}-$1-workload-identity:" $clientId
+    done
+}
+
+function get-pod-by-label {
+ kubectl get pods --no-headers -o custom-columns=":metadata.name" -l $1 | head -1
+}
+
+function exec-pod-by-label {
+ k exec -it $(get-pod-by-label $1) -- python
+}
+
+function get-app-permissions {
+    if (( $# == 1 ))
+    then
+        for env in dev stg prod; do
+        	principalId=$(az identity show --name ${env}-$1-workload-identity -g ${env}-mfcloud-internal-rg | jq -r .principalId)
+                echo "*---  ${env}     ---*"
+	        echo "${env}-$1-workload-identity Principal ID:" $principalId
+                az role assignment list --all --assignee $principalId | jq ".[] | {name: .roleDefinitionName, scope: .scope}"
+                echo "\ncheck cosmos permissions..."
+                az cosmosdb sql role assignment list -g "${env}-mfcloud-internal-rg" -a "${env}-kube-cluster-cosmos" --query "[?principalId=='$principalId']" | jq ".[] | {scope: .scope, roleDefinitionId: .roleDefinitionId}"
+        done
+    fi
+    if (( $# == 2 ))
+    then
+        principalId=$(az identity show --name $2-$1-workload-identity -g $2-mfcloud-internal-rg | jq -r .principalId)
+        echo "*---  $2     ---*"
+	echo "$2-$1-workload-identity Principal ID:" $principalId
+        az role assignment list --all --assignee $principalId | jq ".[] | {name: .roleDefinitionName, scope: .scope}"
+	echo "\nchecking cosmos permissions..."
+	az cosmosdb sql role assignment list -g "$2-mfcloud-internal-rg" -a "$2-kube-cluster-cosmos" --query "[?principalId=='$principalId']" | jq ".[] | {scope: .scope, roleDefinitionId: .roleDefinitionId}"
+    fi
+}
+
+function make-secret {
+    python3 -c "import secrets; print(secrets.token_hex($1))"
+}
+function get-node-pods {
+    k get pods --all-namespaces -o wide --field-selector spec.nodeName=$1
+}
+
+function npm-version {
+    npm version $1 --no-commit-hooks --no-git-tag-version
+}
+
+function uniq8char {
+    hexdump -n 8 -e '4/4 "%08X"' /dev/urandom | tr '[:upper:]' '[:lower:]' | sed -e 's/[[:space:]]*$//g'
+}
 
 function killemacs {
     emacsclient -e '(kill-emacs)'
 }
 
+export DEV_KUBE_DIR=~/workspace/infra/dev_mfcloud_kubernetes
+export PROD_KUBE_DIR=~/workspace/infra/prod_mfcloud_kubernetes
 
+function get-secret-raw {
+    if (( $# == 0 ))
+    then echo "you must provide a secret name and key"
+    exit
+    fi
+
+    kubectl get secret $1 -o jsonpath="{.data.$2}" | base64 -D
+}
+
+
+alias ct='cargo test -- --show-output --test-threads=1'

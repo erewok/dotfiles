@@ -1,0 +1,157 @@
+{
+  "workbench.colorTheme": "Solarized Light",
+  "window.openFoldersInNewWindow": "on",
+  "window.zoomLevel": 4,
+  "vs-kubernetes": {
+    "vs-kubernetes.crd-code-completion": "disabled"
+  },
+  "redhat.telemetry.enabled": true,
+  "files.trimTrailingWhitespace": true,
+  "security.workspace.trust.untrustedFiles": "open",
+  "workbench.startupEditor": "none",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "svelte.enable-ts-plugin": true,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "git.openRepositoryInParentFolders": "never",
+  "window.commandCenter": false,
+  "files.associations": {
+    "*.jj": "java"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "docker.extension.dockerEngineAvailabilityPrompt": false,
+  "docker.extension.enableComposeLanguageServer": false,
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.advanced": {},
+  "diffEditor.hideUnchangedRegions.enabled": true,
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "ruff.lineLength": 120,
+  "explorer.confirmDelete": false,
+  "chat.tools.terminal.autoApprove": {
+    "just test": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "uv run pytest --tb=short": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "uv run python -m pytest --no-header -v -x": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "uv run python -m pytest --tb=short -q": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "uv run python -m pytest --tb=no -q": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "uv": true,
+    "python -m pytest -x": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "cargo test": true,
+    "cargo check": true,
+    "cargo build": true,
+    "./target/debug/colibri": true,
+    "python -m pytest tests/controller/test_controller_requests.py -v": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "python3 -m pytest tests/controller/test_controller_requests.py -v": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "python -m pytest tests/test_pending_orders_integration.py -v": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "python -m pytest tests/task/test_graph.py -k \"complete or failure\" -v": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "python test_is_complete_manual.py": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "cargo clippy": true,
+    "/^timeout 10 cargo test --test udp_transport_architecture_tests$/": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "just": true,
+    "/^/Users/erikaker/workspace/web/customer-backend/\\.venv/bin/python -m pytest tests/integration/endpoints/test_webhooks\\.py -v$/": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "/^python -m pytest tests/integration/endpoints/test_webhooks\\.py -x -v$/": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "/^python -m pytest tests/integration/endpoints/test_webhooks\\.py::test_persona_event_to_json_body_basic -v$/": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "git rev-parse": true,
+    "/^cargo test --lib -- --test-threads=1 2>&1 \\| tee /tmp/test_output\\.txt \\| tail -100$/": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "/^python -c \"import aio_azure_clients_toolbox; import inspect; print\\(inspect\\.signature\\(aio_azure_clients_toolbox\\.ManagedAzureServiceBusSender\\.send_message\\)\\)\" 2>/dev/null \\|\\| echo \"Could not get signature\"$/": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "git stash": true,
+    "cargo fmt": true,
+    "/^python -m pytest tests/unit/clients/eventhub/test_request_data\\.py -v$/": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "pytest": true,
+    "/^python -m pytest tests/unit/clients/eventhub/test_new_calc_request_handler\\.py::test_create_calculator_integration_creates_new_offer -xvs 2>&1 \\| head -150$/": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "/^python -m pytest tests/unit/clients/eventhub/test_new_calc_request_handler\\.py -v$/": {
+      "approve": true,
+      "matchCommandLine": true
+    }
+  },
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.typeEvaluation.strictSetInference": true,
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
+  "chat.tools.urls.autoApprove": {
+    "https://cloud.google.com": {
+      "approveRequest": true,
+      "approveResponse": false
+    }
+  }
+}

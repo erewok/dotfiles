@@ -1,0 +1,621 @@
+[
+  {
+    "identifier": {
+      "id": "bradlc.vscode-tailwindcss",
+      "uuid": "4db62a7c-7d70-419c-96d2-6c3a4dc77ea5"
+    },
+    "displayName": "Tailwind CSS IntelliSense",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "chad.zenburn-proper",
+      "uuid": "9875baee-c19a-4ee1-bd84-143f34ee27e7"
+    },
+    "displayName": "Zenburn Proper",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "charliermarsh.ruff",
+      "uuid": "c2ca9b43-fa38-44fc-928e-5125970b9c00"
+    },
+    "displayName": "Ruff",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "connor4312.esbuild-problem-matchers",
+      "uuid": "51d2c32a-22da-4506-b800-5ab8805f79e1"
+    },
+    "displayName": "esbuild Problem Matchers",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "davidanson.vscode-markdownlint",
+      "uuid": "daf8b44d-8aae-4da2-80c5-1f770219f643"
+    },
+    "displayName": "markdownlint",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "dbaeumer.vscode-eslint",
+      "uuid": "583b2b34-2c1e-4634-8c0b-0b82e283ea3a"
+    },
+    "displayName": "ESLint",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "docker.docker",
+      "uuid": "aa98a064-0f79-4961-a4b7-78df16d547ee"
+    },
+    "displayName": "Docker DX",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "esbenp.prettier-vscode",
+      "uuid": "96fa4707-6983-4489-b7c5-d5ffdfdcce90"
+    },
+    "displayName": "Prettier - Code formatter",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "fill-labs.dependi",
+      "uuid": "456278dd-7f50-4cbe-8314-ab06540c1057"
+    },
+    "displayName": "Dependi",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "github.copilot-chat",
+      "uuid": "7ec7d6e6-b89e-4cc5-a59b-d6c4d238246f"
+    },
+    "displayName": "GitHub Copilot Chat",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "github.vscode-github-actions",
+      "uuid": "04f49bfc-8330-4eee-8237-ea938fb755ef"
+    },
+    "displayName": "GitHub Actions",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "golang.go",
+      "uuid": "d6f6cfea-4b6f-41f4-b571-6ad2ab7918da"
+    },
+    "displayName": "Go",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "jebbs.plantuml",
+      "uuid": "d95cb424-7a5a-4e08-9698-107d6fd590cf"
+    },
+    "displayName": "PlantUML",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "jeremyrajan.webpack",
+      "uuid": "37f65113-9520-4561-86e6-7342505a3942"
+    },
+    "displayName": "webpack",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "jnoortheen.nix-ide",
+      "uuid": "0ffebccd-4265-4f2d-a855-db1adcf278c7"
+    },
+    "displayName": "Nix IDE",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "mermaidchart.vscode-mermaid-chart",
+      "uuid": "fc969a50-709b-438b-82f3-a3afa38993c4"
+    },
+    "displayName": "Mermaid",
+    "disabled": true,
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "mkhl.direnv",
+      "uuid": "e365e970-aeef-4dcd-8e4a-17306a27ab62"
+    },
+    "displayName": "direnv",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-azuretools.azure-dev",
+      "uuid": "fb1e66ca-2967-4d44-998d-bebe4014aadc"
+    },
+    "displayName": "Azure Developer CLI",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-azuretools.vscode-azureresourcegroups",
+      "uuid": "260e9ed1-160d-4f7e-807c-2eb076ba3846"
+    },
+    "displayName": "Azure Resources",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-azuretools.vscode-bicep",
+      "uuid": "1e9f2dc9-aa4c-4e27-afc5-f781e9a9cd9b"
+    },
+    "displayName": "Bicep",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-azuretools.vscode-containers",
+      "uuid": "2cd1d691-3d69-4d2d-ae39-fda4bc4cfd3d"
+    },
+    "displayName": "Container Tools",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-azuretools.vscode-docker",
+      "uuid": "0479fc1c-3d67-49f9-b087-fb9069afe48f"
+    },
+    "displayName": "Docker",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-dotnettools.csdevkit",
+      "uuid": "7ad42776-8f7e-4214-bf67-4f0b518ef629"
+    },
+    "displayName": "C# Dev Kit",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-dotnettools.csharp",
+      "uuid": "d0bfc4ab-1d3a-4487-8782-7cf6027b4fff"
+    },
+    "displayName": "C#",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-dotnettools.vscode-dotnet-runtime",
+      "uuid": "1aab81a1-b3d9-4aef-976b-577d5d90fe3f"
+    },
+    "displayName": ".NET Install Tool",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-kubernetes-tools.vscode-kubernetes-tools",
+      "uuid": "4837e4f3-1b01-4732-b1a6-daa57ef64cab"
+    },
+    "displayName": "Kubernetes",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-python.black-formatter",
+      "uuid": "859e640c-c157-47da-8699-9080b81c8371"
+    },
+    "displayName": "Black Formatter",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-python.debugpy",
+      "uuid": "4bd5d2c9-9d65-401a-b0b2-7498d9f17615"
+    },
+    "displayName": "Python Debugger",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-python.isort",
+      "uuid": "4ad0ce32-ff3f-49f0-83b5-93e5dc00cfff"
+    },
+    "displayName": "isort",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-python.python",
+      "uuid": "f1f59ae4-9318-4f3c-a9b5-81b2eaa5f8a5"
+    },
+    "displayName": "Python",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-python.vscode-pylance",
+      "uuid": "364d2426-116a-433a-a5d8-a5098dc3afbd"
+    },
+    "displayName": "Pylance",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-python.vscode-python-envs",
+      "uuid": "b41d8e8a-b6d4-4202-8f07-7189bdda81be"
+    },
+    "displayName": "Python Environments",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-toolsai.jupyter",
+      "uuid": "6c2f1801-1e7f-45b2-9b5c-7782f1e076e8"
+    },
+    "displayName": "Jupyter",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-toolsai.jupyter-keymap",
+      "uuid": "9f6dc8db-620c-4844-b8c5-e74914f1be27"
+    },
+    "displayName": "Jupyter Keymap",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-toolsai.jupyter-renderers",
+      "uuid": "b15c72f8-d5fe-421a-a4f7-27ed9f6addbf"
+    },
+    "displayName": "Jupyter Notebook Renderers",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-toolsai.prompty",
+      "uuid": "caa1276d-3c20-44bf-ab43-6cf03ad139e9"
+    },
+    "displayName": "Prompty",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-toolsai.vscode-jupyter-cell-tags",
+      "uuid": "ab4fb32a-befb-4102-adf9-1652d0cd6a5e"
+    },
+    "displayName": "Jupyter Cell Tags",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-toolsai.vscode-jupyter-slideshow",
+      "uuid": "e153ca70-b543-4865-b4c5-b31d34185948"
+    },
+    "displayName": "Jupyter Slide Show",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-vscode-remote.remote-containers",
+      "uuid": "93ce222b-5f6f-49b7-9ab1-a0463c6238df"
+    },
+    "displayName": "Dev Containers",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "nefrob.vscode-just-syntax",
+      "uuid": "4d059c6e-aaea-42e3-97f5-f4fd35b70d3d"
+    },
+    "displayName": "vscode-just",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "redhat.java",
+      "uuid": "198a707e-28af-4e84-8610-6e2f628dd12d"
+    },
+    "displayName": "Language Support for Java(TM) by Red Hat",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "redhat.vscode-xml",
+      "uuid": "6703768d-d42f-474e-9f6e-5f288d53f6e8"
+    },
+    "displayName": "XML",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "redhat.vscode-yaml",
+      "uuid": "2061917f-f76a-458a-8da9-f162de22b97e"
+    },
+    "displayName": "YAML",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "rust-lang.rust-analyzer",
+      "uuid": "06574cb4-e5dc-4631-8174-a543a4533621"
+    },
+    "displayName": "rust-analyzer",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "salesforce.salesforce-vscode-slds",
+      "uuid": "1152b6c2-ae7b-4dfe-b005-34c5c2b1b93d"
+    },
+    "displayName": "SLDS Validator",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "salesforce.salesforcedx-einstein-gpt",
+      "uuid": "c39d9e29-6f6a-49ee-acd2-726a3a4eff5f"
+    },
+    "displayName": "Agentforce Vibes",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "salesforce.salesforcedx-vscode",
+      "uuid": "d35d7d8d-7504-48d6-bdfd-8cfd4b6d50ae"
+    },
+    "displayName": "Salesforce Extension Pack",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "salesforce.salesforcedx-vscode-apex",
+      "uuid": "fb928002-4623-4d99-b7e0-4a1d473e77a3"
+    },
+    "displayName": "Apex",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "salesforce.salesforcedx-vscode-apex-debugger",
+      "uuid": "20fb552a-4c08-44e4-b441-95ccffcc7a2b"
+    },
+    "displayName": "Apex Interactive Debugger",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "salesforce.salesforcedx-vscode-apex-log",
+      "uuid": "03760a4b-d3ef-458a-9a3d-3713a8b2a9ac"
+    },
+    "displayName": "Salesforce Apex Log",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "salesforce.salesforcedx-vscode-apex-oas",
+      "uuid": "1105dc0b-762c-4755-9405-f3627913f3b9"
+    },
+    "displayName": "Apex OpenAPI Specification",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "salesforce.salesforcedx-vscode-apex-replay-debugger",
+      "uuid": "96eedf2b-6b4f-49c5-a31d-bed9be8dfd64"
+    },
+    "displayName": "Apex Replay Debugger",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "salesforce.salesforcedx-vscode-apex-testing",
+      "uuid": "51b6af66-33e5-4d8e-bd9d-87e00ba3a8b8"
+    },
+    "displayName": "Apex Testing",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "salesforce.salesforcedx-vscode-core",
+      "uuid": "1d9d0701-6f65-4174-a1a6-5720ffa59b61"
+    },
+    "displayName": "Salesforce CLI",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "salesforce.salesforcedx-vscode-lightning",
+      "uuid": "72747198-3a76-4040-9fc0-a6fe07b25a0d"
+    },
+    "displayName": "Aura Components",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "salesforce.salesforcedx-vscode-lwc",
+      "uuid": "9b3fc708-d0ad-46ec-ba0b-67f140786bef"
+    },
+    "displayName": "Lightning Web Components",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "salesforce.salesforcedx-vscode-metadata",
+      "uuid": "19edd4ab-4324-4936-b850-e13801f896d5"
+    },
+    "displayName": "Salesforce Metadata",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "salesforce.salesforcedx-vscode-org",
+      "uuid": "f8ed277c-db83-4759-8e22-25fdbc474a68"
+    },
+    "displayName": "Salesforce Org Management",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "salesforce.salesforcedx-vscode-services",
+      "uuid": "f4404beb-110d-4c74-9c83-10e10b1069f0"
+    },
+    "displayName": "Salesforce Services",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "salesforce.salesforcedx-vscode-soql",
+      "uuid": "e51a0546-dfbb-4d74-9826-207c122ced51"
+    },
+    "displayName": "SOQL",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "salesforce.salesforcedx-vscode-visualforce",
+      "uuid": "5468b156-80fa-447d-9b40-d5993e0e2b7e"
+    },
+    "displayName": "Visualforce",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "salesforce.sfdx-code-analyzer-vscode",
+      "uuid": "f850b987-193d-4e75-9dc1-b4a6a9ca03c6"
+    },
+    "displayName": "Salesforce Code Analyzer",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "svelte.svelte-vscode",
+      "uuid": "c5463f77-75d9-4a25-8cc4-d8541a461285"
+    },
+    "displayName": "Svelte for VS Code",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "tamasfe.even-better-toml",
+      "uuid": "b2215d5f-675e-4a2b-b6ac-1ca737518b78"
+    },
+    "displayName": "Even Better TOML",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "tauri-apps.tauri-vscode",
+      "uuid": "53763e89-ec31-4d0c-b220-f714761180e5"
+    },
+    "displayName": "Tauri",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "tlaplus.vscode-ide",
+      "uuid": "a733f44a-190d-485b-8b85-d0bdfca40840"
+    },
+    "displayName": "TLA+ (Temporal Logic of Actions)",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "visualstudioexptteam.intellicode-api-usage-examples",
+      "uuid": "9fa2a00e-3bfa-4c2a-abc4-a865bb2b5cf3"
+    },
+    "displayName": "IntelliCode API Usage Examples",
+    "disabled": true,
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "visualstudioexptteam.vscodeintellicode",
+      "uuid": "876e8f93-74d0-4f4f-91b7-34a09f19f444"
+    },
+    "displayName": "IntelliCode",
+    "disabled": true,
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "vscjava.migrate-java-to-azure",
+      "uuid": "67eb125c-be8b-4984-82d2-d7adea5d3677"
+    },
+    "displayName": "GitHub Copilot modernization",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "vscjava.vscode-gradle",
+      "uuid": "a226f06e-9b5e-493b-b92a-553d3572f969"
+    },
+    "displayName": "Gradle for Java",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "vscjava.vscode-java-debug",
+      "uuid": "61fcd0cf-64d7-4836-8d6b-d55f4fb83281"
+    },
+    "displayName": "Debugger for Java",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "vscjava.vscode-java-dependency",
+      "uuid": "7865e561-1c83-410e-9b99-aabada597a7e"
+    },
+    "displayName": "Project Manager for Java",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "vscjava.vscode-java-pack",
+      "uuid": "96f11e1f-1a46-4592-b084-f025b2c2a81f"
+    },
+    "displayName": "Extension Pack for Java",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "vscjava.vscode-java-test",
+      "uuid": "67c06b0d-1891-42ca-b2a8-113e79bff069"
+    },
+    "displayName": "Test Runner for Java",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "vscjava.vscode-java-upgrade",
+      "uuid": "3b948aef-5c6f-4aa5-aef0-ae1c777b02bb"
+    },
+    "displayName": "GitHub Copilot modernization - upgrade for Java",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "vscjava.vscode-maven",
+      "uuid": "b0f06c6b-24fb-4d7b-bd79-bc5e2fa17312"
+    },
+    "displayName": "Maven for Java",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "vstirbu.vscode-mermaid-preview",
+      "uuid": "b7b3f8c2-0526-4262-9e55-045c954adac4"
+    },
+    "displayName": "Mermaid Preview",
+    "applicationScoped": false
+  }
+]

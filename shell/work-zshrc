@@ -1,0 +1,45 @@
+# ============================================================================
+# Personal ZSH Configuration
+# Sourced by Home Manager after Nix-managed setup (Pure, kube-ps1, direnv, etc.)
+# ============================================================================
+
+# --- Custom Exports ---
+export SECRETS='/Users/erikaker/creds'
+export azme=...
+
+# --- Kubectl Aliases (k, kubectl, kctx, kns defined by Nix Home Manager) ---
+# Additional kubectl path if needed (typically Nix-managed kubectl should be sufficient)
+# export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"  # Already in Nix config
+
+# --- Emacs ---
+alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs"
+export EDITOR="/Applications/Emacs.app/Contents/MacOS/Emacs"
+
+# --- Load additional aliases from separate file ---
+[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
+[[ -f "$HOME/open_source/dotfiles/shell/aliases" ]] && source "$HOME/open_source/dotfiles/shell/aliases"
+
+# --- SSH Agent (Nix config also adds keys to keychain) ---
+# eval $(ssh-agent)
+# Uncomment if you need additional keys:
+# ssh-add /Users/erikaker/.ssh/github-personal
+
+# --- Java ---
+export JAVA_HOME=/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+
+# --- Rust/Cargo ---
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+
+# --- pnpm ---
+export PNPM_HOME="/Users/erikaker/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# --- Custom Paths ---
+export PATH="${PATH}:/Users/erikaker/bin:/Users/erikaker/.linkerd2/bin"
+export PATH="${PATH}:/Applications/Postgres.app/Contents/Versions/latest/bin"
+export PATH="$HOME/.local/bin:$PATH"

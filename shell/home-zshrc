@@ -1,0 +1,31 @@
+# ============================================================================
+# Personal ZSH Configuration
+# Sourced by Home Manager after Nix-managed setup (Pure, kube-ps1, direnv, etc.)
+# ============================================================================
+
+# --- Custom Exports ---
+
+# --- Emacs ---
+alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs"
+export EDITOR="/Applications/Emacs.app/Contents/MacOS/Emacs"
+
+# --- Load additional aliases from separate file ---
+[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
+[[ -f "$HOME/open_source/dotfiles/shell/aliases" ]] && source "$HOME/open_source/dotfiles/shell/aliases"
+
+# --- GhcUP (Haskell) ---
+[[ -f "/Users/erikaker/.ghcup/env" ]] && source "/Users/erikaker/.ghcup/env"
+
+# --- Rust/Cargo ---
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+
+# --- pnpm ---
+export PNPM_HOME="/Users/erikaker/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# --- Custom Paths ---
+export PATH="${PATH}:/Applications/Postgres.app/Contents/Versions/latest/bin"
+export PATH="$HOME/.local/bin:$PATH"

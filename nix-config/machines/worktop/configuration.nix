@@ -130,9 +130,8 @@ in
     persistent-apps = [
       "/System/Applications/Mission\ Control.app"
       "/System/Applications/System\ Settings.app"
-      "/Applications/Firefox.app"
-      "/Applications/Ghostty.app"
-      "/Applications/Emacs.app"
+      "/Applications/iTerm.app"
+      "/Applications/Bitwarden.app"
       "/Applications/Visual\ Studio Code.app"
       "/System/Applications/Calculator.app"
     ];
@@ -165,7 +164,7 @@ in
   };
 
   system.defaults.screencapture = {
-    location = "/Users/erewok/Pictures/Screenshots";
+    location = "/Users/erikaker/Pictures/Screenshots";
     type = "png";
     disable-shadow = false;
   };
@@ -177,15 +176,24 @@ in
     reattach = true;
   };
 
-  # Personal machine packages - dev tools without k8s/cloud stuff
+  # Just install everything as systemPackages rather than futz with home-manager for now
+  # use chezmoi for compatibility with non NixOS / nix-darwin systems
+  # some packages such as libressl and openssh already exist in OSX, but we want the latest
   environment.systemPackages = with pkgs; [
+    argocd
+    argo-workflows
     aspell
+    azure-cli
     bat
     btop
+    chezmoi
     curl
     dig
     direnv
+    dive
+    egctl
     emacs
+    fluent-bit
     fzf
     gcc
     gdb
@@ -202,6 +210,14 @@ in
     hugo
     jq
     just
+    kubectl
+    kubecolor
+    kubeconform
+    kubectx
+    kubectl-images
+    kubectl-tree
+    kubernetes-helm
+    krew
     lazygit
     libressl
     lstr
@@ -214,6 +230,8 @@ in
     openssh
     openssl
     pkgs-master.claude-code
+    popeye
+    postgresql
     protobuf
     pure-prompt
     python3
@@ -223,8 +241,11 @@ in
     scc
     shellcheck
     spotify
+    stern
     terminal-notifier
+    terraform
     tree
+    trivy
     uv
     wget
     yamllint
@@ -243,12 +264,12 @@ in
   # Install firefox.
   programs.firefox.enable = true;
 
-  system.primaryUser = "erewok";
+  system.primaryUser = "erikaker";
 
   # Required by Home Manager to resolve home.username / home.homeDirectory
-  users.users.erewok = {
-    name = "erewok";
-    home = "/Users/erewok";
+  users.users.erikaker = {
+    name = "erikaker";
+    home = "/Users/erikaker";
   };
 
   # also need to run chsh -s /run/current-system/sw/bin/zsh
@@ -256,6 +277,19 @@ in
 
   # Fonts (Required for Pure prompt icons)
   fonts.packages = [ pkgs.nerd-fonts.meslo-lg ];
+
+  # kubectl plugins not in nixpkgs — install via krew at build time (flame has no darwin/arm64)
+  system.activationScripts.krewPlugins.text = ''
+    sudo -u erikaker /run/current-system/sw/bin/krew install ai deprecations 2>/dev/null || true
+  '';
+
+  # kubectl plugin symlinks (Nix installs some plugins under different names)
+  system.activationScripts.kubectlPlugins.text = ''
+    ln -sf /run/current-system/sw/bin/kubectx     /run/current-system/sw/bin/kubectl-ctx    2>/dev/null || true
+    ln -sf /run/current-system/sw/bin/kubens      /run/current-system/sw/bin/kubectl-ns     2>/dev/null || true
+    ln -sf /run/current-system/sw/bin/kubectl-tree /run/current-system/sw/bin/kubectl-tree   2>/dev/null || true
+    ln -sf /run/current-system/sw/bin/popeye       /run/current-system/sw/bin/kubectl-popeye 2>/dev/null || true
+  '';
 
   # Three-finger drag requires both trackpad domains on modern macOS
   system.activationScripts.threeFingerDrag.text = ''
@@ -273,7 +307,7 @@ in
 
   # iTerm2: copy on selection (select text → auto-copied to clipboard)
   system.activationScripts.iterm2CopyOnSelect.text = ''
-    sudo -u erewok /usr/bin/defaults write com.googlecode.iterm2 CopySelection -bool true
+    sudo -u erikaker /usr/bin/defaults write com.googlecode.iterm2 CopySelection -bool true
   '';
 
   # Create /etc/zshrc that loads the nix-darwin environment.
@@ -289,6 +323,7 @@ in
       cat = "bat";
       mv = "mv -i";
       rm = "rm -i";
+      switch = "darwin-rebuild switch --flake ~/nix-config/flake.nix";
     };
     # ... other zsh options like setOptions, etc. ...
   };
@@ -306,15 +341,21 @@ in
 
   homebrew.taps = [
     "homebrew/services"
+    "Azure/kubelogin"
   ];
 
   # these gui apps tend to run better through homebrew
   homebrew.casks = [
-    "1password"
+    "azure/azd/azd"
+    "azure/kubelogin/kubelogin"
+    "bitwarden"
+    "copilot-cli"
+    "dbeaver-community"
     "docker-desktop"
     "ghostty"
     "google-chrome"
     "iterm2"
+    "slack"
     "visual-studio-code"
     "zoom"
   ];
@@ -322,6 +363,8 @@ in
   # the nixpkgs version of helm doesn't currently support aarch64-darwin
   # vfkit work around from https://github.com/kevinmichaelchen/dotfiles/commit/ec3438f259f6f1b4e4de4b0ef3bee1308cf85128
   homebrew.brews = [
+    "helm"
+    "kube-ps1"
     "node"
     "openssl"
     "vfkit"
@@ -330,9 +373,9 @@ in
   # Home Manager Configuration for ZSH and Dotfiles
   home-manager.useGlobalPkgs = true;
   home-manager.backupFileExtension = "bak";
-  home-manager.users.erewok = { pkgs, lib, ... }: {
-    home.username = "erewok";
-    home.homeDirectory = "/Users/erewok";
+  home-manager.users.erikaker = { pkgs, lib, ... }: {
+    home.username = "erikaker";
+    home.homeDirectory = "/Users/erikaker";
     home.stateVersion = "24.11";
 
     # Export ZSH to nix store path (Home Manager omits this; required for oh-my-zsh)
@@ -343,16 +386,18 @@ in
       extraConfig.core.sshCommand = "/usr/bin/ssh";
     };
 
-    # VSCode settings for personal machine
+    # VSCode settings for work machine
     programs.vscode = {
       enable = true;
-      mutableExtensionsDir = true;  # Allow manual extension management
+      # Set to true to allow manual extension management alongside Nix
+      mutableExtensionsDir = true;
 
       # Load settings from dotfiles repo
-      userSettings = builtins.fromJSON (builtins.readFile "${dotfilesPath}/vscode/vscode-settings-personal.json");
+      userSettings = builtins.fromJSON (builtins.readFile "${dotfilesPath}/vscode/vscode-settings-work.json");
 
-      # Core extensions managed by Nix (lighter set for personal use)
+      # Core extensions managed by Nix (most stable/available)
       extensions = with pkgs.vscode-extensions; [
+        # Essential dev tools (available in nixpkgs)
         charliermarsh.ruff
         dbaeumer.vscode-eslint
         esbenp.prettier-vscode
@@ -383,9 +428,17 @@ in
         theme = "";
       };
       shellAliases = {
+        # Nix-managed kubectl aliases
+        k = "kubecolor";
+        kubectl = "kubecolor";
+        kk = "krew";
+        kctx = "kubectx";
+        kns = "kubens";
         # Nix rebuild shortcuts
         nix-rebuild = "darwin-rebuild switch --flake ~/nix-config";
         nix-rollback = "darwin-rebuild switch --rollback";
+        # copilot-cli installs as 'copilot' binary
+        copilot-cli = "copilot";
       };
       initExtra = ''
         # Show timestamps when running `history` command (oh-my-zsh)
@@ -395,6 +448,20 @@ in
         if type prompt_pure_setup &>/dev/null; then
           prompt pure
         fi
+
+        # --- Kube-ps1 (load after Pure so we can append to its PROMPT line) ---
+        for _kube_ps1 in /opt/homebrew/share/kube-ps1.sh /usr/local/share/kube-ps1.sh; do
+          if [[ -f "$_kube_ps1" ]]; then
+            source "$_kube_ps1"
+            # Produces:
+            # ~/path master* ⇣
+            # [14:32:05] (⎈|cluster:namespace) ❯
+            # ▌  ← cursor here
+            PROMPT='%F{242}[%D{%H:%M:%S}]%f $(kube_ps1) '$PROMPT$'\n'
+            break
+          fi
+        done
+        unset _kube_ps1
 
         # --- Direnv ---
         eval "$(direnv hook zsh)"
@@ -415,6 +482,10 @@ in
         bindkey "^[[1;3D" backward-word  # Option+Left (xterm-style)
         bindkey "^[[1;3C" forward-word   # Option+Right
 
+        # --- Kubectl completion ---
+        source <(kubectl completion zsh 2>/dev/null) || true
+        export KUBE_EDITOR="vim"
+
         # --- Docker Desktop completions ---
         if [[ -d "$HOME/.docker/completions" ]]; then
           fpath=("$HOME/.docker/completions" $fpath)
@@ -427,7 +498,7 @@ in
         [[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ]] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 
         # --- Source custom shell config from dotfiles repo ---
-        [[ -f "$HOME/open_source/dotfiles/shell/zshrc" ]] && source "$HOME/open_source/dotfiles/shell/home-zshrc"
+        [[ -f "$HOME/open_source/dotfiles/shell/zshrc" ]] && source "$HOME/open_source/dotfiles/shell/work-zshrc"
       '';
     };
   };

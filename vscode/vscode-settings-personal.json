@@ -1,0 +1,95 @@
+{
+  "workbench.colorTheme": "Solarized Light",
+  "window.openFoldersInNewWindow": "on",
+  "window.zoomLevel": 4,
+  "vs-kubernetes": {
+    "vs-kubernetes.crd-code-completion": "disabled"
+  },
+  "redhat.telemetry.enabled": true,
+  "files.trimTrailingWhitespace": true,
+  "security.workspace.trust.untrustedFiles": "open",
+  "workbench.startupEditor": "none",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "svelte.enable-ts-plugin": true,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "git.openRepositoryInParentFolders": "never",
+  "window.commandCenter": false,
+  "files.associations": {
+    "*.jj": "java"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "docker.extension.dockerEngineAvailabilityPrompt": false,
+  "docker.extension.enableComposeLanguageServer": false,
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.advanced": {},
+  "diffEditor.hideUnchangedRegions.enabled": true,
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "ruff.lineLength": 120,
+  "explorer.confirmDelete": false,
+  "chat.tools.terminal.autoApprove": {
+    "just test": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "uv run pytest --tb=short": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "uv run python -m pytest --no-header -v -x": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "uv run python -m pytest --tb=short -q": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "uv run python -m pytest --tb=no -q": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "uv": true,
+    "just": true,
+    "git rev-parse": true,
+    "cargo test": true,
+    "cargo check": true,
+    "cargo build": true,
+    "cargo clippy": true,
+    "cargo fmt": true,
+    "pytest": true,
+  },
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-5.3",
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.typeEvaluation.strictSetInference": true,
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
+  "chat.tools.urls.autoApprove": {
+    "https://cloud.google.com": {
+      "approveRequest": true,
+      "approveResponse": false
+    }
+  }
+}

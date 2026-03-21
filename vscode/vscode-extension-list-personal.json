@@ -1,0 +1,227 @@
+[
+  {
+    "identifier": {
+      "id": "bradlc.vscode-tailwindcss",
+      "uuid": "4db62a7c-7d70-419c-96d2-6c3a4dc77ea5"
+    },
+    "displayName": "Tailwind CSS IntelliSense",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "chad.zenburn-proper",
+      "uuid": "9875baee-c19a-4ee1-bd84-143f34ee27e7"
+    },
+    "displayName": "Zenburn Proper",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "charliermarsh.ruff",
+      "uuid": "c2ca9b43-fa38-44fc-928e-5125970b9c00"
+    },
+    "displayName": "Ruff",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "connor4312.esbuild-problem-matchers",
+      "uuid": "51d2c32a-22da-4506-b800-5ab8805f79e1"
+    },
+    "displayName": "esbuild Problem Matchers",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "davidanson.vscode-markdownlint",
+      "uuid": "daf8b44d-8aae-4da2-80c5-1f770219f643"
+    },
+    "displayName": "markdownlint",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "dbaeumer.vscode-eslint",
+      "uuid": "583b2b34-2c1e-4634-8c0b-0b82e283ea3a"
+    },
+    "displayName": "ESLint",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "docker.docker",
+      "uuid": "aa98a064-0f79-4961-a4b7-78df16d547ee"
+    },
+    "displayName": "Docker DX",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "esbenp.prettier-vscode",
+      "uuid": "96fa4707-6983-4489-b7c5-d5ffdfdcce90"
+    },
+    "displayName": "Prettier - Code formatter",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "fill-labs.dependi",
+      "uuid": "456278dd-7f50-4cbe-8314-ab06540c1057"
+    },
+    "displayName": "Dependi",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "github.copilot-chat",
+      "uuid": "7ec7d6e6-b89e-4cc5-a59b-d6c4d238246f"
+    },
+    "displayName": "GitHub Copilot Chat",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "github.vscode-github-actions",
+      "uuid": "04f49bfc-8330-4eee-8237-ea938fb755ef"
+    },
+    "displayName": "GitHub Actions",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "golang.go",
+      "uuid": "d6f6cfea-4b6f-41f4-b571-6ad2ab7918da"
+    },
+    "displayName": "Go",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "jebbs.plantuml",
+      "uuid": "d95cb424-7a5a-4e08-9698-107d6fd590cf"
+    },
+    "displayName": "PlantUML",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "jnoortheen.nix-ide",
+      "uuid": "0ffebccd-4265-4f2d-a855-db1adcf278c7"
+    },
+    "displayName": "Nix IDE",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "mermaidchart.vscode-mermaid-chart",
+      "uuid": "fc969a50-709b-438b-82f3-a3afa38993c4"
+    },
+    "displayName": "Mermaid",
+    "disabled": true,
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "mkhl.direnv",
+      "uuid": "e365e970-aeef-4dcd-8e4a-17306a27ab62"
+    },
+    "displayName": "direnv",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-python.debugpy",
+      "uuid": "4bd5d2c9-9d65-401a-b0b2-7498d9f17615"
+    },
+    "displayName": "Python Debugger",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-python.python",
+      "uuid": "f1f59ae4-9318-4f3c-a9b5-81b2eaa5f8a5"
+    },
+    "displayName": "Python",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "ms-python.vscode-python-envs",
+      "uuid": "b41d8e8a-b6d4-4202-8f07-7189bdda81be"
+    },
+    "displayName": "Python Environments",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "nefrob.vscode-just-syntax",
+      "uuid": "4d059c6e-aaea-42e3-97f5-f4fd35b70d3d"
+    },
+    "displayName": "vscode-just",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "redhat.java",
+      "uuid": "198a707e-28af-4e84-8610-6e2f628dd12d"
+    },
+    "displayName": "Language Support for Java(TM) by Red Hat",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "redhat.vscode-xml",
+      "uuid": "6703768d-d42f-474e-9f6e-5f288d53f6e8"
+    },
+    "displayName": "XML",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "redhat.vscode-yaml",
+      "uuid": "2061917f-f76a-458a-8da9-f162de22b97e"
+    },
+    "displayName": "YAML",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "rust-lang.rust-analyzer",
+      "uuid": "06574cb4-e5dc-4631-8174-a543a4533621"
+    },
+    "displayName": "rust-analyzer",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "svelte.svelte-vscode",
+      "uuid": "c5463f77-75d9-4a25-8cc4-d8541a461285"
+    },
+    "displayName": "Svelte for VS Code",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "tamasfe.even-better-toml",
+      "uuid": "b2215d5f-675e-4a2b-b6ac-1ca737518b78"
+    },
+    "displayName": "Even Better TOML",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "tlaplus.vscode-ide",
+      "uuid": "a733f44a-190d-485b-8b85-d0bdfca40840"
+    },
+    "displayName": "TLA+ (Temporal Logic of Actions)",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "vstirbu.vscode-mermaid-preview",
+      "uuid": "b7b3f8c2-0526-4262-9e55-045c954adac4"
+    },
+    "displayName": "Mermaid Preview",
+    "applicationScoped": false
+  }
+]
