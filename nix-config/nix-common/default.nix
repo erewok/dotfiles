@@ -14,7 +14,8 @@ in
   };
   config = lib.mkIf cfg.enable {
     nix = {
-      enable = true;
+      # Determinate Systems manages the nix daemon on Darwin; nix-darwin must not conflict
+      enable = !cfg.isDarwin;
       package = pkgs.nixVersions.latest;
       checkConfig = true;
       gc = {
