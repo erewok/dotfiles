@@ -364,7 +364,24 @@ in
 
     programs.git = {
       enable = true;
-      settings.core.sshCommand = "/usr/bin/ssh";
+      userName = "Erik Aker";
+      userEmail = "eaker@mulliganfunding.com";
+      aliases = {
+        br = "branch";
+        cm = "commit";
+        st = "status";
+        co = "checkout";
+        pu = "push";
+        updates = "add -u";
+        unstage = "reset HEAD";
+        changed = "diff --cached";
+        last = "log -1 HEAD";
+        commands = "config --get-regexp '^alias'";
+      };
+      settings = {
+        push.default = "simple";
+        core.sshCommand = "/usr/bin/ssh";
+      };
     };
 
     # VSCode settings for work machine
