@@ -37,7 +37,7 @@
               ./machines/navanax/configuration.nix
               home-manager.darwinModules.home-manager
             ];
-            specialArgs = { inherit inputs nixpkgs; };
+            specialArgs = { inherit inputs nixpkgs self; };
           };
           "worktop" = nix-darwin.lib.darwinSystem {
             system = "aarch64-darwin";
@@ -46,7 +46,7 @@
               ./machines/worktop/configuration.nix
               home-manager.darwinModules.home-manager
             ];
-            specialArgs = { inherit inputs nixpkgs; };
+            specialArgs = { inherit inputs nixpkgs self; };
           };
         };
   };
