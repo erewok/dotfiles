@@ -319,6 +319,7 @@ in
     "ghostty"
     "google-chrome"
     "iterm2"
+    "kubecontext"
     "slack"
     "spotify"
     "visual-studio-code"

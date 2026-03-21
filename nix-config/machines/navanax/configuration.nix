@@ -125,6 +125,7 @@ in
       "/Applications/Visual\ Studio Code.app"
       "/Applications/Emacs.app"
       "/Applications/Spotify.app"
+      "/Applications/Nix Apps/Signal.app"
       "/System/Applications/Calculator.app"
     ];
     show-process-indicators = true;
@@ -213,6 +214,7 @@ in
     rustup
     scc
     shellcheck
+    pkgs-master.signal-desktop
     terminal-notifier
     tmux
     uv

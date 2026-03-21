@@ -137,7 +137,7 @@ nix-rollback
 - **Development tools:** vscode, gh, git, direnv, rustup, go, python3, uv
 - **CLI utilities:** bat, ripgrep, fzf, jq, htop, btop, lazygit, tree
 - **GUI apps (Homebrew casks):** 1Password, Docker Desktop, Emacs, Firefox, Ghostty, Chrome, iTerm2, Spotify, VS Code, Zoom
-- **GUI apps (Nix):** VS Code (via home-manager `programs.vscode`)
+- **GUI apps (Nix):** VS Code (via home-manager `programs.vscode`), Signal Desktop (`pkgs-master.signal-desktop`)
 - **Fonts:** MesloLG Nerd Font (for Pure prompt)
 
 The configuration also sets up macOS defaults, security settings (firewall, Touch ID sudo), and a Linux builder for cross-compilation.
