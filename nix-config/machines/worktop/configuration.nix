@@ -168,7 +168,7 @@ in
   };
 
   system.defaults.screencapture = {
-    location = "/Users/erikaker/Pictures/Screenshots";
+    location = "/Users/eaker/Pictures/Screenshots";
     type = "png";
     disable-shadow = false;
   };
@@ -262,12 +262,12 @@ in
     alt_hostname = "GW3TX9XVDT";
   };
 
-  system.primaryUser = "erikaker";
+  system.primaryUser = "eaker";
 
   # Required by Home Manager to resolve home.username / home.homeDirectory
-  users.users.erikaker = {
-    name = "erikaker";
-    home = "/Users/erikaker";
+  users.users.eaker = {
+    name = "eaker";
+    home = "/Users/eaker";
   };
 
   # also need to run chsh -s /run/current-system/sw/bin/zsh
@@ -278,7 +278,7 @@ in
 
   # kubectl plugins not in nixpkgs — install via krew at build time (flame has no darwin/arm64)
   system.activationScripts.krewPlugins.text = ''
-    sudo -u erikaker /run/current-system/sw/bin/krew install ai deprecations 2>/dev/null || true
+    sudo -u eaker /run/current-system/sw/bin/krew install ai deprecations 2>/dev/null || true
   '';
 
   # kubectl plugin symlinks (Nix installs some plugins under different names)
@@ -305,7 +305,7 @@ in
 
   # iTerm2: copy on selection (select text → auto-copied to clipboard)
   system.activationScripts.iterm2CopyOnSelect.text = ''
-    sudo -u erikaker /usr/bin/defaults write com.googlecode.iterm2 CopySelection -bool true
+    sudo -u eaker /usr/bin/defaults write com.googlecode.iterm2 CopySelection -bool true
   '';
 
   # Create /etc/zshrc that loads the nix-darwin environment.
@@ -354,9 +354,9 @@ in
   # Home Manager Configuration for ZSH and Dotfiles
   home-manager.useGlobalPkgs = true;
   home-manager.backupFileExtension = "bak";
-  home-manager.users.erikaker = { pkgs, lib, ... }: {
-    home.username = "erikaker";
-    home.homeDirectory = "/Users/erikaker";
+  home-manager.users.eaker = { pkgs, lib, ... }: {
+    home.username = "eaker";
+    home.homeDirectory = "/Users/eaker";
     home.stateVersion = "24.11";
 
     # Export ZSH to nix store path (Home Manager omits this; required for oh-my-zsh)
@@ -364,23 +364,23 @@ in
 
     programs.git = {
       enable = true;
-      userName = "Erik Aker";
-      userEmail = "eaker@mulliganfunding.com";
-      aliases = {
-        br = "branch";
-        cm = "commit";
-        st = "status";
-        co = "checkout";
-        pu = "push";
-        updates = "add -u";
-        unstage = "reset HEAD";
-        changed = "diff --cached";
-        last = "log -1 HEAD";
-        commands = "config --get-regexp '^alias'";
-      };
       settings = {
+        userName = "Erik Aker";
+        userEmail = "eraker@gmail.com";
+        aliases = {
+          br = "branch";
+          cm = "commit";
+          st = "status";
+          co = "checkout";
+          pu = "push";
+          updates = "add -u";
+          unstage = "reset HEAD";
+          changed = "diff --cached";
+          last = "log -1 HEAD";
+          commands = "config --get-regexp '^alias'";
         push.default = "simple";
         core.sshCommand = "/usr/bin/ssh";
+        }
       };
     };
 

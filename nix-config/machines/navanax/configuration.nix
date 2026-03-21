@@ -311,23 +311,23 @@ in
 
     programs.git = {
       enable = true;
-      userName = "Erik Aker";
-      userEmail = "eraker@gmail.com";
-      aliases = {
-        br = "branch";
-        cm = "commit";
-        st = "status";
-        co = "checkout";
-        pu = "push";
-        updates = "add -u";
-        unstage = "reset HEAD";
-        changed = "diff --cached";
-        last = "log -1 HEAD";
-        commands = "config --get-regexp '^alias'";
-      };
       settings = {
+        userName = "Erik Aker";
+        userEmail = "eraker@gmail.com";
+        aliases = {
+          br = "branch";
+          cm = "commit";
+          st = "status";
+          co = "checkout";
+          pu = "push";
+          updates = "add -u";
+          unstage = "reset HEAD";
+          changed = "diff --cached";
+          last = "log -1 HEAD";
+          commands = "config --get-regexp '^alias'";
         push.default = "simple";
         core.sshCommand = "/usr/bin/ssh";
+        }
       };
     };
 
