@@ -39,6 +39,15 @@
             ];
             specialArgs = { inherit inputs nixpkgs; };
           };
+          "worktop" = nix-darwin.lib.darwinSystem {
+            system = "aarch64-darwin";
+            modules = [
+              all
+              ./machines/worktop/configuration.nix
+              home-manager.darwinModules.home-manager
+            ];
+            specialArgs = { inherit inputs nixpkgs; };
+          };
         };
   };
 }
