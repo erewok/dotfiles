@@ -268,15 +268,13 @@ in
   homebrew.onActivation.cleanup = "zap";
   homebrew.global.brewfile = true;
 
-  homebrew.taps = [
-    "railwaycat/emacsmacport"
-  ];
+  homebrew.taps = [];
 
   # these gui apps tend to run better through homebrew
   homebrew.casks = [
     "1password"
     "docker-desktop"
-    "emacs-mac"
+    "emacs"
     "firefox"
     "ghostty"
     "google-chrome"

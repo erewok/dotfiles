@@ -320,7 +320,6 @@ in
 
   homebrew.taps = [
     "Azure/kubelogin"
-    "railwaycat/emacsmacport"
   ];
 
   # these gui apps tend to run better through homebrew
@@ -331,7 +330,7 @@ in
     "copilot-cli"
     "dbeaver-community"
     "docker-desktop"
-    "emacs-mac"
+    "emacs"
     "firefox"
     "ghostty"
     "google-chrome"

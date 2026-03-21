@@ -136,7 +136,7 @@ nix-rollback
 
 - **Development tools:** vscode, gh, git, direnv, rustup, go, python3, uv
 - **CLI utilities:** bat, ripgrep, fzf, jq, htop, btop, lazygit, tree
-- **GUI apps (Homebrew casks):** 1Password, Docker Desktop, Emacs (emacs-mac), Firefox, Ghostty, Chrome, iTerm2, Spotify, VS Code, Zoom
+- **GUI apps (Homebrew casks):** 1Password, Docker Desktop, Emacs, Firefox, Ghostty, Chrome, iTerm2, Spotify, VS Code, Zoom
 - **GUI apps (Nix):** VS Code (via home-manager `programs.vscode`)
 - **Fonts:** MesloLG Nerd Font (for Pure prompt)
 
