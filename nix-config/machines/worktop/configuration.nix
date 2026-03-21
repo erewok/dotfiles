@@ -479,7 +479,8 @@ in
         [[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ]] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 
         # --- Source custom shell config from dotfiles repo ---
-        [[ -f "$HOME/open_source/dotfiles/shell/zshrc" ]] && source "$HOME/open_source/dotfiles/shell/work-zshrc"
+        [[ -f "$HOME/open_source/dotfiles/shell/work-zshrc" ]] && source "$HOME/open_source/dotfiles/shell/work-zshrc"
+        [[ -f "$HOME/open_source/dotfiles/shell/work-aliases" ]] && source "$HOME/open_source/dotfiles/shell/work-aliases"
       '';
     };
   };

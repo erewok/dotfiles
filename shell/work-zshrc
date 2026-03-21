@@ -17,7 +17,7 @@ export EDITOR="/Applications/Emacs.app/Contents/MacOS/Emacs"
 
 # --- Load additional aliases from separate file ---
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
-[[ -f "$HOME/open_source/dotfiles/shell/aliases" ]] && source "$HOME/open_source/dotfiles/shell/aliases"
+[[ -f "$HOME/open_source/dotfiles/shell/work-aliases" ]] && source "$HOME/open_source/dotfiles/shell/work-aliases"
 
 # --- SSH Agent (Nix config also adds keys to keychain) ---
 # eval $(ssh-agent)
