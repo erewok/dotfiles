@@ -132,8 +132,9 @@ in
       "/System/Applications/System\ Settings.app"
       "/Applications/Firefox.app"
       "/Applications/Ghostty.app"
-      "/Applications/Emacs.app"
       "/Applications/Visual\ Studio Code.app"
+      "/Applications/Emacs.app"
+      "/Applications/Spotify.app"
       "/System/Applications/Calculator.app"
     ];
     show-process-indicators = true;
