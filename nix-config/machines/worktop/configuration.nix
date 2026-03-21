@@ -322,7 +322,6 @@ in
   homebrew.global.brewfile = true;
 
   homebrew.taps = [
-    "homebrew/services"
     "Azure/kubelogin"
   ];
 

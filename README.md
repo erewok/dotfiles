@@ -100,8 +100,8 @@ fzf --zsh > ~/.fzf.zsh
 #### 7. Verify Installation
 
 ```bash
-# Check nix-darwin is active
-darwin-rebuild --version
+# Check nix-darwin is active (it runs without "command not found" if activation succeeded)
+darwin-rebuild --help > /dev/null && echo "nix-darwin active"
 
 # Check a few key packages are available
 which git bat ripgrep fzf

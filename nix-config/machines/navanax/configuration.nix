@@ -271,9 +271,7 @@ in
   homebrew.onActivation.cleanup = "zap";
   homebrew.global.brewfile = true;
 
-  homebrew.taps = [
-    "homebrew/services"
-  ];
+  homebrew.taps = [];
 
   # these gui apps tend to run better through homebrew
   homebrew.casks = [
