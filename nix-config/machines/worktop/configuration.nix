@@ -196,6 +196,7 @@ in
     direnv
     dive
     egctl
+    fnm
     fluent-bit
     fzf
     gcc
@@ -231,12 +232,11 @@ in
     nmap
     openssh
     openssl
-    pkgs-master.claude-code
     popeye
     postgresql
     protobuf
-    pure-prompt
     python3
+    starship
     rectangle
     ripgrep
     rustup
@@ -260,6 +260,7 @@ in
   ];
   environment.variables = {
     alt_hostname = "GW3TX9XVDT";
+    LIBRARY_PATH = "${pkgs.libiconv}/lib";
   };
 
   system.primaryUser = "eaker";
@@ -345,7 +346,6 @@ in
   # vfkit work around from https://github.com/kevinmichaelchen/dotfiles/commit/ec3438f259f6f1b4e4de4b0ef3bee1308cf85128
   homebrew.brews = [
     "helm"
-    "kube-ps1"
     "node"
     "openssl"
     "vfkit"
@@ -361,6 +361,10 @@ in
 
     # Export ZSH to nix store path (Home Manager omits this; required for oh-my-zsh)
     home.sessionVariables.ZSH = "${pkgs.oh-my-zsh}/share/oh-my-zsh";
+
+    # Starship prompt — config file lives in the dotfiles repo
+    programs.starship.enable = true;
+    home.file.".config/starship.toml".source = "${dotfilesPath}/starship/starship.toml";
 
     programs.git = {
       enable = true;
@@ -453,27 +457,11 @@ in
         # Show timestamps when running `history` command (oh-my-zsh)
         HIST_STAMPS="yyyy-mm-dd"
 
-        # --- Pure prompt (Nix-installed, must be first) ---
-        if type prompt_pure_setup &>/dev/null; then
-          prompt pure
-        fi
-
-        # --- Kube-ps1 (load after Pure so we can append to its PROMPT line) ---
-        for _kube_ps1 in /opt/homebrew/share/kube-ps1.sh /usr/local/share/kube-ps1.sh; do
-          if [[ -f "$_kube_ps1" ]]; then
-            source "$_kube_ps1"
-            # Produces:
-            # ~/path master* ⇣
-            # [14:32:05] (⎈|cluster:namespace) ❯
-            # ▌  ← cursor here
-            PROMPT='%F{242}[%D{%H:%M:%S}]%f $(kube_ps1) '$PROMPT$'\n'
-            break
-          fi
-        done
-        unset _kube_ps1
-
         # --- Direnv ---
         eval "$(direnv hook zsh)"
+
+        # --- fnm (Node version manager) ---
+        eval "$(fnm env --use-on-cd --shell zsh)"
 
         # --- SSH (system ssh-add stores passphrase in macOS Keychain) ---
         /usr/bin/ssh-add --apple-use-keychain ~/.ssh/id_rsa 2>/dev/null

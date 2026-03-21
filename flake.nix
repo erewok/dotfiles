@@ -48,4 +48,5 @@
             specialArgs = { inherit inputs nixpkgs self; };
           };
         };
+  };
 }
