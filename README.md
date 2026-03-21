@@ -85,7 +85,7 @@ chsh -s /run/current-system/sw/bin/zsh
 ```bash
 # SSH key setup (for GitHub, etc.)
 # Generate if needed:
-ssh-keygen -t rsa -b 4096 -C "the-email@example.com"
+ssh-keygen -t ed25519 -C "your_email@example.com"
 
 # Add to macOS Keychain
 /usr/bin/ssh-add --apple-use-keychain ~/.ssh/id_rsa

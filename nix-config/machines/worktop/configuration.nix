@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, self, ... }:
 let
   inherit (lib) mkIf elem;
   caskPresent = cask: lib.any (x: x.name == cask) config.homebrew.casks;
@@ -7,7 +7,7 @@ let
     "system" = "aarch64-darwin";
     config = { allowUnfree = true; };
   };
-  dotfilesPath = /Users/erikaker/open_source/dotfiles;
+  dotfilesPath = self;
 in
 {
   nix-common = {
@@ -40,6 +40,7 @@ in
   system.startup.chime = false;
 
   # Please stay this way
+  system.keyboard.enableKeyMapping = true;
   system.keyboard.remapCapsLockToControl = true;
 
   system.defaults.NSGlobalDomain = {
@@ -258,11 +259,8 @@ in
     zsh
   ];
   environment.variables = {
-    alt_hostname = "navanax";
+    alt_hostname = "worktop";
   };
-
-  # Install firefox.
-  programs.firefox.enable = true;
 
   system.primaryUser = "erikaker";
 
@@ -311,22 +309,7 @@ in
   '';
 
   # Create /etc/zshrc that loads the nix-darwin environment.
-  programs.zsh = {
-    enable = true;
-    shellAliases = {
-      # Define your aliases here
-      ll = "ls -alFG";
-      la = "ls -aG";
-      l = "ls -CFG";
-      ls = "ls -G";
-      tree = "lstr";
-      cat = "bat";
-      mv = "mv -i";
-      rm = "rm -i";
-      switch = "darwin-rebuild switch --flake ~/nix-config/flake.nix";
-    };
-    # ... other zsh options like setOptions, etc. ...
-  };
+  programs.zsh.enable = true;
 
   # homebrew (requires homebrew installed outside of nix)
   # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -352,6 +335,7 @@ in
     "copilot-cli"
     "dbeaver-community"
     "docker-desktop"
+    "firefox"
     "ghostty"
     "google-chrome"
     "iterm2"
@@ -428,6 +412,14 @@ in
         theme = "";
       };
       shellAliases = {
+        ll = "ls -alFG";
+        la = "ls -aG";
+        l = "ls -CFG";
+        ls = "ls -G";
+        tree = "lstr";
+        cat = "bat";
+        mv = "mv -i";
+        rm = "rm -i";
         # Nix-managed kubectl aliases
         k = "kubecolor";
         kubectl = "kubecolor";
@@ -435,8 +427,8 @@ in
         kctx = "kubectx";
         kns = "kubens";
         # Nix rebuild shortcuts
-        nix-rebuild = "darwin-rebuild switch --flake ~/nix-config";
-        nix-rollback = "darwin-rebuild switch --rollback";
+        nix-rebuild = "sudo darwin-rebuild switch --flake ~/open_source/dotfiles";
+        nix-rollback = "sudo darwin-rebuild switch --rollback";
         # copilot-cli installs as 'copilot' binary
         copilot-cli = "copilot";
       };
