@@ -80,8 +80,8 @@ in
 
   system.defaults.menuExtraClock = {
     IsAnalog = false;
-    Show24Hour = true;
-    ShowAMPM = false;
+    Show24Hour = false;
+    ShowAMPM = true;
     ShowDayOfMonth = true;
     ShowDayOfWeek = true;
     ShowDate = 1;
@@ -115,9 +115,12 @@ in
     persistent-apps = [
       "/System/Applications/Mission\ Control.app"
       "/System/Applications/System\ Settings.app"
-      "/Applications/iTerm.app"
       "/Applications/Bitwarden.app"
+      "/Applications/Firefox.app"
+      "/Applications/Ghostty.app"
       "/Applications/Visual\ Studio Code.app"
+      "/Applications/Emacs.app"
+      "/Applications/Spotify.app"
       "/System/Applications/Calculator.app"
     ];
     show-process-indicators = true;
@@ -178,7 +181,6 @@ in
     dive
     egctl
     fnm
-    fluent-bit
     fzf
     gcc
     gh
@@ -312,7 +314,7 @@ in
     "copilot-cli"
     "dbeaver-community"
     "docker-desktop"
-    "emacs"
+    "emacs-app"
     "firefox"
     "ghostty"
     "google-chrome"
