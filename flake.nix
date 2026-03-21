@@ -38,7 +38,7 @@
             ];
             specialArgs = { inherit inputs nixpkgs self; };
           };
-          "GW3TX9XVDT" = nix-darwin.lib.darwinSystem {
+          "worktop" = nix-darwin.lib.darwinSystem {
             system = "aarch64-darwin";
             modules = [
               all
@@ -48,5 +48,4 @@
             specialArgs = { inherit inputs nixpkgs self; };
           };
         };
-  };
 }

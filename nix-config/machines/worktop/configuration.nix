@@ -365,9 +365,11 @@ in
     programs.git = {
       enable = true;
       settings = {
-        userName = "Erik Aker";
-        userEmail = "eraker@gmail.com";
-        aliases = {
+        push.default = "simple";
+        core.sshCommand = "/usr/bin/ssh";
+        user.name = "Erik Aker";
+        user.email = "eraker@gmail.com";
+        alias = {
           br = "branch";
           cm = "commit";
           st = "status";
@@ -378,9 +380,7 @@ in
           changed = "diff --cached";
           last = "log -1 HEAD";
           commands = "config --get-regexp '^alias'";
-        push.default = "simple";
-        core.sshCommand = "/usr/bin/ssh";
-        }
+        };
       };
     };
 
