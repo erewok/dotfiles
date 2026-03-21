@@ -258,21 +258,7 @@ in
   '';
 
   # Create /etc/zshrc that loads the nix-darwin environment.
-  programs.zsh = {
-    enable = true;
-    shellAliases = {
-      # Define your aliases here
-      ll = "ls -alFG";
-      la = "ls -aG";
-      l = "ls -CFG";
-      ls = "ls -G";
-      tree = "lstr";
-      cat = "bat";
-      mv = "mv -i";
-      rm = "rm -i";
-    };
-    # ... other zsh options like setOptions, etc. ...
-  };
+  programs.zsh.enable = true;
 
   # homebrew (requires homebrew installed outside of nix)
   # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -371,7 +357,14 @@ in
         theme = "";
       };
       shellAliases = {
-        # Nix rebuild shortcuts
+        ll = "ls -alFG";
+        la = "ls -aG";
+        l = "ls -CFG";
+        ls = "ls -G";
+        tree = "lstr";
+        cat = "bat";
+        mv = "mv -i";
+        rm = "rm -i";
         nix-rebuild = "sudo darwin-rebuild switch --flake ~/open_source/dotfiles/nix-config";
         nix-rollback = "sudo darwin-rebuild switch --rollback";
       };
