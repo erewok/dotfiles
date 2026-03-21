@@ -136,8 +136,8 @@ nix-rollback
 
 - **Development tools:** emacs (with Prelude auto-configured), vscode, gh, git, direnv, rustup, go, python3, uv
 - **CLI utilities:** bat, ripgrep, fzf, jq, htop, btop, lazygit, tree
-- **GUI apps (Homebrew casks):** 1Password, Docker Desktop, Ghostty, Chrome, iTerm2, Zoom
-- **GUI apps (Nix):** Firefox (via `programs.firefox`), VS Code (via `programs.vscode`)
+- **GUI apps (Homebrew casks):** 1Password, Docker Desktop, Firefox, Ghostty, Chrome, iTerm2, VS Code, Zoom
+- **GUI apps (Nix):** VS Code (via home-manager `programs.vscode`)
 - **Fonts:** MesloLG Nerd Font (for Pure prompt)
 
 The configuration also sets up macOS defaults, security settings (firewall, Touch ID sudo), and a Linux builder for cross-compilation.

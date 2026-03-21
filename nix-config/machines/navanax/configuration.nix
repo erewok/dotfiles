@@ -224,9 +224,6 @@ in
     alt_hostname = "navanax";
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
-
   system.primaryUser = "erewok";
 
   # Required by Home Manager to resolve home.username / home.homeDirectory
@@ -296,6 +293,7 @@ in
   homebrew.casks = [
     "1password"
     "docker-desktop"
+    "firefox"
     "ghostty"
     "google-chrome"
     "iterm2"
