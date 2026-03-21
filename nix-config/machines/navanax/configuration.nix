@@ -173,7 +173,6 @@ in
     emacs
     fzf
     gcc
-    gdb
     gh
     git
     git-lfs
