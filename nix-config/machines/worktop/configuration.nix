@@ -100,10 +100,13 @@ in
     expose-animation-duration = 0.8;
     launchanim = true;
     mru-spaces = false;
-    tilesize = 24;
-    mineffect = "genie";
+    # Set the icon size (default is 48)
+    tilesize = 64;
+    # Enable magnification
     magnification = false;
-    largesize = 24;
+    mineffect = "genie";
+    # Set magnified size (pixels)
+    largesize = 64;
     mouse-over-hilite-stack = true;
     minimize-to-application = false;
     orientation = "bottom";
@@ -308,7 +311,6 @@ in
 
   # these gui apps tend to run better through homebrew
   homebrew.casks = [
-    "azure/azd/azd"
     "bitwarden"
     "copilot-cli"
     "dbeaver-community"
@@ -429,7 +431,7 @@ in
         kctx = "kubectx";
         kns = "kubens";
         # Nix rebuild shortcuts
-        nix-rebuild = "sudo darwin-rebuild switch --flake ~/open_source/dotfiles";
+        nix-rebuild = "sudo darwin-rebuild switch --flake ~/open_source/dotfiles/#worktop";
         nix-rollback = "sudo darwin-rebuild switch --rollback";
         # copilot-cli installs as 'copilot' binary
         copilot-cli = "copilot";

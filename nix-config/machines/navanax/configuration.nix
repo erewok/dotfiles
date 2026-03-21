@@ -104,7 +104,7 @@ in
     mru-spaces = false;
     # Set the icon size (default is 48)
     tilesize = 64;
-      # Enable magnification
+    # Enable magnification
     magnification = false;
     mineffect = "genie";
     # Set magnified size (pixels)
