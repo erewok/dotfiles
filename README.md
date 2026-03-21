@@ -57,7 +57,7 @@ sudo nix run nix-darwin -- switch --flake .#navanax
 # sudo /nix/var/nix/profiles/default/bin/nix run nix-darwin -- switch --flake .#navanax
 
 # For work machine, use:
-# sudo nix run nix-darwin -- switch --flake .#worktop
+# sudo nix run nix-darwin -- switch --flake .#GW3TX9XVDT
 ```
 
 

@@ -43,7 +43,7 @@ in
       };
     };
     nixpkgs.config.allowUnfree = true;
-    system.stateVersion = if cfg.isDarwin then 4 else config.system.nixos.release;
+    system.stateVersion = lib.mkDefault (if cfg.isDarwin then 5 else config.system.nixos.release);
   };
 }
 

@@ -77,7 +77,7 @@ extensions = with pkgs.vscode-extensions; [
 ];
 ```
 
-3. Rebuild: `darwin-rebuild switch --flake ~/nix-config#worktop`
+3. Rebuild: `darwin-rebuild switch --flake ~/open_source/dotfiles#GW3TX9XVDT`
 
 ### Option 3: Fetch from Marketplace (Advanced)
 
@@ -120,10 +120,10 @@ After modifying settings files:
 
 ```bash
 # Work machine
-darwin-rebuild switch --flake ~/nix-config#worktop
+darwin-rebuild switch --flake ~/open_source/dotfiles#GW3TX9XVDT
 
 # Personal machine
-darwin-rebuild switch --flake ~/nix-config#navanax
+darwin-rebuild switch --flake ~/open_source/dotfiles#navanax
 ```
 
 Settings will be applied to `~/Library/Application Support/Code/User/settings.json`.

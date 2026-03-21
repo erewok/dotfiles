@@ -259,7 +259,7 @@ in
     zsh
   ];
   environment.variables = {
-    alt_hostname = "worktop";
+    alt_hostname = "GW3TX9XVDT";
   };
 
   system.primaryUser = "erikaker";
