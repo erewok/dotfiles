@@ -88,7 +88,7 @@ chsh -s /run/current-system/sw/bin/zsh
 ssh-keygen -t ed25519 -C "your_email@example.com"
 
 # Add to macOS Keychain
-/usr/bin/ssh-add --apple-use-keychain ~/.ssh/id_rsa
+/usr/bin/ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 
 # Install iTerm2 shell integration (if using iTerm2)
 curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash

@@ -118,7 +118,7 @@ in
     persistent-apps = [
       "/System/Applications/Mission\ Control.app"
       "/System/Applications/System\ Settings.app"
-      "/Applications/Bitwarden.app"
+      "/Applications/Slack.app"
       "/Applications/Firefox.app"
       "/Applications/Ghostty.app"
       "/Applications/Visual\ Studio Code.app"
