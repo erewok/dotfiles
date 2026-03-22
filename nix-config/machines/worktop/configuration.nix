@@ -1,83 +1,28 @@
 { config, lib, pkgs, inputs, self, ... }:
 let
-  inherit (lib) mkIf elem;
-  caskPresent = cask: lib.any (x: x.name == cask) config.homebrew.casks;
-  brewEnabled = config.homebrew.enable;
-  pkgs-master = import inputs.nixos-master {
-    "system" = "aarch64-darwin";
-    config = { allowUnfree = true; };
-  };
   dotfilesPath = self;
 in
 {
+  imports = [
+    ../../nix-common
+    ../../modules/macos.nix
+    ../../modules/packages-base.nix
+    ../../modules/homebrew-base.nix
+    ./packages.nix
+  ];
+
   nix-common = {
     enable = true;
     isDarwin = true;
     autoGC = false;
   };
+
   ids.gids.nixbld = 350;
 
   networking.hostName = "GW3TX9XVDT";
   networking.computerName = "GW3TX9XVDT";
 
-  # mac settings
-  system.startup.chime = false;
-
-  # Please stay this way
-  system.keyboard.enableKeyMapping = true;
-  system.keyboard.remapCapsLockToControl = true;
-
-  system.defaults.NSGlobalDomain = {
-    AppleShowAllFiles = true;
-    AppleEnableMouseSwipeNavigateWithScrolls = false;
-    AppleEnableSwipeNavigateWithScrolls = false;
-    AppleShowAllExtensions = true;
-    "com.apple.trackpad.scaling" = 1.0;
-    "com.apple.trackpad.enableSecondaryClick" = true;
-    "com.apple.trackpad.trackpadCornerClickBehavior" = 1;
-    "com.apple.swipescrolldirection" = false;
-    AppleInterfaceStyleSwitchesAutomatically = true;
-    AppleMeasurementUnits = "Inches";
-    AppleMetricUnits = 0;
-    AppleShowScrollBars = "Always";
-    AppleScrollerPagingBehavior = false;
-    AppleTemperatureUnit = "Fahrenheit";
-    InitialKeyRepeat = 15;
-    KeyRepeat = 2;
-    NSAutomaticCapitalizationEnabled = false;
-    NSAutomaticDashSubstitutionEnabled = false;
-    NSAutomaticPeriodSubstitutionEnabled = false;
-    NSAutomaticQuoteSubstitutionEnabled = false;
-    NSAutomaticSpellingCorrectionEnabled = false;
-    NSDisableAutomaticTermination = true;
-    NSAutomaticWindowAnimationsEnabled = true;
-    NSDocumentSaveNewDocumentsToCloud = false;
-    AppleWindowTabbingMode = "manual";
-    NSNavPanelExpandedStateForSaveMode = true;
-    NSNavPanelExpandedStateForSaveMode2 = true;
-    PMPrintingExpandedStateForPrint = true;
-    PMPrintingExpandedStateForPrint2 = true;
-    NSTableViewDefaultSizeMode = 1;
-    NSTextShowsControlCharacters = true;
-    NSUseAnimatedFocusRing = true;
-    NSScrollAnimationEnabled = true;
-    NSWindowResizeTime = 0.25;
-    NSWindowShouldDragOnGesture = false;
-    _HIHideMenuBar = false;
-    "com.apple.keyboard.fnState" = false;
-    "com.apple.sound.beep.volume" = 0.2;
-    "com.apple.sound.beep.feedback" = 1;
-    AppleICUForce24HourTime = true;
-    "com.apple.springing.enabled" = false;
-    "com.apple.springing.delay" = 1.0;
-  };
-
-  # firewall set to block and stealth mode
-  networking.applicationFirewall = {
-    enableStealthMode = true;
-    blockAllIncoming = true;
-  };
-
+  # Clock: 12h / AM-PM on work machine (navanax uses 24h)
   system.defaults.menuExtraClock = {
     IsAnalog = false;
     Show24Hour = false;
@@ -88,413 +33,138 @@ in
     ShowSeconds = false;
   };
 
-  # dock settings require relogging in
-  system.defaults.dock = {
-    appswitcher-all-displays = true;
-    autohide = true;
-    autohide-delay = 0.24;
-    autohide-time-modifier = 0.8;
-    dashboard-in-overlay = true;
-    expose-group-apps = false;
-    enable-spring-load-actions-on-all-items = true;
-    expose-animation-duration = 0.8;
-    launchanim = true;
-    mru-spaces = false;
-    # Set the icon size (default is 48)
-    tilesize = 64;
-    # Enable magnification
-    magnification = false;
-    mineffect = "genie";
-    # Set magnified size (pixels)
-    largesize = 64;
-    mouse-over-hilite-stack = true;
-    minimize-to-application = false;
-    orientation = "bottom";
-    # Do the hot corners
-    wvous-bl-corner = 4; # Desktop
-    wvous-br-corner = 13; # Lock Screen
-    wvous-tl-corner = 2; # Mission Control
-    wvous-tr-corner = 2; # Mission Control
-    persistent-apps = [
-      "/System/Applications/Mission\ Control.app"
-      "/System/Applications/System\ Settings.app"
-      "/Applications/Slack.app"
-      "/Applications/Firefox.app"
-      "/Applications/Ghostty.app"
-      "/Applications/Visual\ Studio Code.app"
-      "/Applications/iTerm.app"
-      "/Applications/Emacs.app"
-      "/Applications/Spotify.app"
-      "/System/Applications/Calculator.app"
-    ];
-    show-process-indicators = true;
-    showhidden = true;
-    show-recents = false;
-    static-only = false;
-  };
-
-  system.defaults.spaces.spans-displays = false;
-
-  system.defaults.trackpad = {
-    TrackpadRightClick = true;
-    TrackpadThreeFingerDrag = false;
-    TrackpadThreeFingerHorizSwipeGesture = 2;
-    TrackpadFourFingerHorizSwipeGesture = 0;
-  };
-
-  system.defaults.finder = {
-    AppleShowAllFiles = true;
-    ShowStatusBar = true;
-    ShowPathbar = true;
-    FXEnableExtensionChangeWarning = true;
-    FXDefaultSearchScope = "SCcf";
-    FXPreferredViewStyle = "clmv"; #list
-    AppleShowAllExtensions = true;
-    CreateDesktop = false;
-    QuitMenuItem = false;
-    _FXShowPosixPathInTitle = true;
-  };
-
-  system.defaults.screencapture = {
-    location = "/Users/eaker/Pictures/Screenshots";
-    type = "png";
-    disable-shadow = false;
-  };
-
-  # why is this not the default in MacOS?
-  security.pam.services.sudo_local = {
-    enable = true;
-    touchIdAuth = true;
-    reattach = true;
-  };
-
-  # Just install everything as systemPackages rather than futz with home-manager for now
-  # use chezmoi for compatibility with non NixOS / nix-darwin systems
-  # some packages such as libressl and openssh already exist in OSX, but we want the latest
-  environment.systemPackages = with pkgs; [
-    argocd
-    argo-workflows
-    aspell
-    azure-cli
-    bat
-    btop
-    chezmoi
-    curl
-    dig
-    direnv
-    dive
-    egctl
-    fnm
-    fzf
-    gcc
-    gh
-    git
-    git-lfs
-    gnuplot
-    go
-    go-outline
-    gopls
-    gotools
-    graphviz
-    htop
-    hugo
-    jq
-    just
-    kubectl
-    kubecolor
-    kubeconform
-    kubectx
-    kubectl-images
-    kubectl-tree
-    kubernetes-helm
-    krew
-    lazygit
-    libressl
-    lstr
-    netcat
-    nginx
-    nil
-    nix-zsh-completions
-    nixpkgs-fmt
-    nmap
-    openssh
-    openssl
-    popeye
-    postgresql
-    protobuf
-    python3
-    starship
-    rectangle
-    ripgrep
-    rustup
-    scc
-    shellcheck
-    stern
-    terminal-notifier
-    terraform
-    tree
-    trivy
-    uv
-    wget
-    yamllint
-    zsh-completions
-    zsh-syntax-highlighting
+  system.defaults.dock.persistent-apps = [
+    "/System/Applications/Mission\ Control.app"
+    "/System/Applications/System\ Settings.app"
+    "/Applications/Slack.app"
+    "/Applications/Firefox.app"
+    "/Applications/Ghostty.app"
+    "/Applications/Visual\ Studio Code.app"
+    "/Applications/iTerm.app"
+    "/Applications/Emacs.app"
+    "/Applications/Spotify.app"
+    "/System/Applications/Calculator.app"
   ];
 
-  environment.shells = with pkgs; [
-    bashInteractive
-    zsh
+  system.defaults.screencapture.location = "/Users/eaker/Pictures/Screenshots";
+
+  # Work-machine-only taps, casks, and brews
+  homebrew.taps = [ "Azure/kubelogin" ];
+  homebrew.casks = [
+    "bitwarden"
+    "copilot-cli"
+    "dbeaver-community"
+    "kubecontext"
+    "slack"
   ];
-  environment.variables = {
-    alt_hostname = "GW3TX9XVDT";
-    LIBRARY_PATH = "${pkgs.libiconv}/lib";
-  };
+  homebrew.brews = [
+    "azure/kubelogin/kubelogin"
+    "helm"
+  ];
+
+  # iTerm2: copy on selection
+  system.activationScripts.iterm2CopyOnSelect.text = ''
+    sudo -u eaker /usr/bin/defaults write com.googlecode.iterm2 CopySelection -bool true
+  '';
+
+  # kubectl plugins not in nixpkgs — install via krew at build time
+  system.activationScripts.krewPlugins.text = ''
+    sudo -u eaker /run/current-system/sw/bin/krew install ai deprecations 2>/dev/null || true
+  '';
+
+  # Symlink kubectl plugins that Nix installs under different names
+  system.activationScripts.kubectlPlugins.text = ''
+    ln -sf /run/current-system/sw/bin/kubectx      /run/current-system/sw/bin/kubectl-ctx    2>/dev/null || true
+    ln -sf /run/current-system/sw/bin/kubens       /run/current-system/sw/bin/kubectl-ns     2>/dev/null || true
+    ln -sf /run/current-system/sw/bin/kubectl-tree /run/current-system/sw/bin/kubectl-tree   2>/dev/null || true
+    ln -sf /run/current-system/sw/bin/popeye       /run/current-system/sw/bin/kubectl-popeye 2>/dev/null || true
+  '';
 
   system.primaryUser = "eaker";
-
-  # Required by Home Manager to resolve home.username / home.homeDirectory
   users.users.eaker = {
     name = "eaker";
     home = "/Users/eaker";
   };
 
-  # also need to run chsh -s /run/current-system/sw/bin/zsh
-  environment.variables.SHELL = "${pkgs.zsh}/bin/zsh";
+  environment.variables.alt_hostname = "GW3TX9XVDT";
 
-  # Fonts (Required for Pure prompt icons)
-  fonts.packages = [ pkgs.nerd-fonts.meslo-lg ];
-
-  # kubectl plugins not in nixpkgs — install via krew at build time (flame has no darwin/arm64)
-  system.activationScripts.krewPlugins.text = ''
-    sudo -u eaker /run/current-system/sw/bin/krew install ai deprecations 2>/dev/null || true
-  '';
-
-  # kubectl plugin symlinks (Nix installs some plugins under different names)
-  system.activationScripts.kubectlPlugins.text = ''
-    ln -sf /run/current-system/sw/bin/kubectx     /run/current-system/sw/bin/kubectl-ctx    2>/dev/null || true
-    ln -sf /run/current-system/sw/bin/kubens      /run/current-system/sw/bin/kubectl-ns     2>/dev/null || true
-    ln -sf /run/current-system/sw/bin/kubectl-tree /run/current-system/sw/bin/kubectl-tree   2>/dev/null || true
-    ln -sf /run/current-system/sw/bin/popeye       /run/current-system/sw/bin/kubectl-popeye 2>/dev/null || true
-  '';
-
-  # Force three-finger swipe switching (disable three-finger drag in both trackpad domains)
-  system.activationScripts.threeFingerDrag.text = ''
-    /usr/bin/defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool false
-    /usr/bin/defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool false
-    /usr/bin/defaults write com.apple.AppleMultitouchTrackpad Dragging -bool false
-    /usr/bin/defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Dragging -bool false
-  '';
-
-  # Enable macOS locate: load daemon (weekly Sat 03:15) and build DB at rebuild
-  system.activationScripts.locate.text = ''
-    launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist 2>/dev/null || true
-    /usr/libexec/locate.updatedb
-  '';
-
-  # iTerm2: copy on selection (select text → auto-copied to clipboard)
-  system.activationScripts.iterm2CopyOnSelect.text = ''
-    sudo -u eaker /usr/bin/defaults write com.googlecode.iterm2 CopySelection -bool true
-  '';
-
-  # Create /etc/zshrc that loads the nix-darwin environment.
-  programs.zsh.enable = true;
-
-  # homebrew (requires homebrew installed outside of nix)
-  # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  homebrew.enable = true;
-  homebrew.onActivation.autoUpdate = true;
-  homebrew.onActivation.cleanup = "zap";
-  homebrew.global.brewfile = true;
-
-  homebrew.taps = [
-    "Azure/kubelogin"
-  ];
-
-  # these gui apps tend to run better through homebrew
-  homebrew.casks = [
-    "bitwarden"
-    "copilot-cli"
-    "dbeaver-community"
-    "docker-desktop"
-    "emacs-app"
-    "firefox"
-    "ghostty"
-    "google-chrome"
-    "iterm2"
-    "kubecontext"
-    "slack"
-    "spotify"
-    "visual-studio-code"
-    "zoom"
-  ];
-
-  # the nixpkgs version of helm doesn't currently support aarch64-darwin
-  # vfkit work around from https://github.com/kevinmichaelchen/dotfiles/commit/ec3438f259f6f1b4e4de4b0ef3bee1308cf85128
-  homebrew.brews = [
-    "azure/kubelogin/kubelogin"
-    "helm"
-    "node"
-    "openssl"
-    "vfkit"
-  ];
-
-  # Home Manager Configuration for ZSH and Dotfiles
+  # Home Manager
   home-manager.useGlobalPkgs = true;
   home-manager.backupFileExtension = "bak";
+  home-manager.extraSpecialArgs = { inherit dotfilesPath; };
   home-manager.users.eaker = { pkgs, lib, ... }: {
+    imports = [ ../../modules/home-base.nix ];
+
     home.username = "eaker";
     home.homeDirectory = "/Users/eaker";
-    home.stateVersion = "24.11";
 
-    # Add cargo-installed binaries to PATH
-    home.sessionPath = [ "$HOME/.cargo/bin" ];
-
-    # Export ZSH to nix store path (Home Manager omits this; required for oh-my-zsh)
-    home.sessionVariables.ZSH = "${pkgs.oh-my-zsh}/share/oh-my-zsh";
-
-    # Starship prompt — config file lives in the dotfiles repo
+    # Starship prompt
     programs.starship.enable = true;
     home.file.".config/starship.toml".source = "${dotfilesPath}/starship/starship.toml";
 
-    # Ghostty config
-    home.file.".config/ghostty/config".source = "${dotfilesPath}/ghostty/config";
+    programs.vscode.profiles.default.userSettings =
+      builtins.fromJSON (builtins.readFile "${dotfilesPath}/vscode/vscode-settings-work.json");
 
-    # iTerm2 Dynamic Profile (sets font to 16pt; select "Nix" profile in iTerm2 preferences)
-    home.file."Library/Application Support/iTerm2/DynamicProfiles/Nix.json".source = "${dotfilesPath}/iterm2/Nix.json";
-
-    programs.git = {
-      enable = true;
-      settings = {
-        push.default = "simple";
-        core.sshCommand = "/usr/bin/ssh";
-        user.name = "Erik Aker";
-        user.email = "eraker@gmail.com";
-        alias = {
-          br = "branch";
-          cm = "commit";
-          st = "status";
-          co = "checkout";
-          pu = "push";
-          updates = "add -u";
-          unstage = "reset HEAD";
-          changed = "diff --cached";
-          last = "log -1 HEAD";
-          commands = "config --get-regexp '^alias'";
-        };
-      };
+    programs.zsh.shellAliases = {
+      nix-rebuild = "sudo darwin-rebuild switch --flake ~/open_source/dotfiles/#worktop";
+      # kubectl
+      k = "kubecolor";
+      kubectl = "kubecolor";
+      kk = "krew";
+      kctx = "kubectx";
+      kns = "kubens";
+      # copilot-cli installs as 'copilot' binary
+      copilot-cli = "copilot";
     };
 
-    # VSCode settings for work machine
-    programs.vscode = {
-      enable = true;
-      mutableExtensionsDir = true;
+    programs.zsh.initContent = ''
+      # --- Homebrew ---
+      eval "$(/opt/homebrew/bin/brew shellenv)"
 
-      profiles.default = {
-        # Load settings from dotfiles repo
-        userSettings = builtins.fromJSON (builtins.readFile "${dotfilesPath}/vscode/vscode-settings-work.json");
+      # Show timestamps when running `history` command (oh-my-zsh)
+      HIST_STAMPS="yyyy-mm-dd"
 
-        # Core extensions managed by Nix (most stable/available)
-        extensions = with pkgs.vscode-extensions; [
-          charliermarsh.ruff
-          dbaeumer.vscode-eslint
-          esbenp.prettier-vscode
-          golang.go
-          jnoortheen.nix-ide
-          mkhl.direnv
-          ms-python.python
-          ms-python.debugpy
-          redhat.vscode-yaml
-          rust-lang.rust-analyzer
-          tamasfe.even-better-toml
-        ];
-      };
-    };
+      # --- Direnv ---
+      eval "$(direnv hook zsh)"
 
-    # zsh + oh-my-zsh (HM generates ~/.zshrc)
-    programs.zsh = {
-      enable = true;
-      history = {
-        extended = true;  # Save timestamps in history file (: timestamp:0;command)
-        size = 50000;
-        save = 50000;
-        share = true;     # Share history between sessions
-        ignoreDups = true;
-      };
-      oh-my-zsh = {
-        enable = true;
-        plugins = [ "git" ];
-        theme = "";
-      };
-      shellAliases = {
-        ll = "ls -alFG";
-        la = "ls -aG";
-        l = "ls -CFG";
-        ls = "ls -G";
-        tree = "lstr";
-        cat = "bat";
-        mv = "mv -i";
-        rm = "rm -i";
-        # Nix-managed kubectl aliases
-        k = "kubecolor";
-        kubectl = "kubecolor";
-        kk = "krew";
-        kctx = "kubectx";
-        kns = "kubens";
-        # Nix rebuild shortcuts
-        nix-rebuild = "sudo darwin-rebuild switch --flake ~/open_source/dotfiles/#worktop";
-        nix-rollback = "sudo darwin-rebuild switch --rollback";
-        # copilot-cli installs as 'copilot' binary
-        copilot-cli = "copilot";
-      };
-      initContent = ''
-        # --- Homebrew ---
-        eval "$(/opt/homebrew/bin/brew shellenv)"
+      # --- fnm (Node version manager) ---
+      eval "$(fnm env --use-on-cd --shell zsh)"
 
-        # Show timestamps when running `history` command (oh-my-zsh)
-        HIST_STAMPS="yyyy-mm-dd"
+      # --- SSH (system ssh-add stores passphrase in macOS Keychain) ---
+      /usr/bin/ssh-add --apple-use-keychain ~/.ssh/id_rsa 2>/dev/null
 
-        # --- Direnv ---
-        eval "$(direnv hook zsh)"
+      # --- iTerm2 shell integration ---
+      [[ -f "$HOME/.iterm2_shell_integration.zsh" ]] && source "$HOME/.iterm2_shell_integration.zsh"
 
-        # --- fnm (Node version manager) ---
-        eval "$(fnm env --use-on-cd --shell zsh)"
+      # --- FZF ---
+      [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
-        # --- SSH (system ssh-add stores passphrase in macOS Keychain) ---
-        /usr/bin/ssh-add --apple-use-keychain ~/.ssh/id_rsa 2>/dev/null
+      # --- Word jump (Option+Left/Right) ---
+      # iTerm2: Profiles → Keys → Left/Right Option = "Esc+"; add: Option+Left → "b", Option+Right → "f"
+      bindkey "^[b" backward-word
+      bindkey "^[f" forward-word
+      bindkey "^[[1;3D" backward-word  # Option+Left (xterm-style)
+      bindkey "^[[1;3C" forward-word   # Option+Right
 
-        # --- iTerm2 shell integration ---
-        [[ -f "$HOME/.iterm2_shell_integration.zsh" ]] && source "$HOME/.iterm2_shell_integration.zsh"
+      # --- Kubectl completion ---
+      source <(kubectl completion zsh 2>/dev/null) || true
+      export KUBE_EDITOR="vim"
 
-        # --- FZF ---
-        [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+      # --- Docker Desktop completions ---
+      if [[ -d "$HOME/.docker/completions" ]]; then
+        fpath=("$HOME/.docker/completions" $fpath)
+        autoload -Uz compinit && compinit
+      fi
 
-        # --- Word jump (Option+Left/Right): stop Option from printing chars; use Esc+b / Esc+f ---
-        # iTerm2: Preferences → Profiles → Keys → Left/Right Option = "Esc+"; add: Option+Left → Send "b", Option+Right → Send "f"
-        bindkey "^[b" backward-word
-        bindkey "^[f" forward-word
-        bindkey "^[[1;3D" backward-word  # Option+Left (xterm-style)
-        bindkey "^[[1;3C" forward-word   # Option+Right
+      # --- NVM ---
+      export NVM_DIR="$HOME/.nvm"
+      [[ -s "/opt/homebrew/opt/nvm/nvm.sh" ]] && . "/opt/homebrew/opt/nvm/nvm.sh"
+      [[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ]] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 
-        # --- Kubectl completion ---
-        source <(kubectl completion zsh 2>/dev/null) || true
-        export KUBE_EDITOR="vim"
-
-        # --- Docker Desktop completions ---
-        if [[ -d "$HOME/.docker/completions" ]]; then
-          fpath=("$HOME/.docker/completions" $fpath)
-          autoload -Uz compinit && compinit
-        fi
-
-        # --- NVM ---
-        export NVM_DIR="$HOME/.nvm"
-        [[ -s "/opt/homebrew/opt/nvm/nvm.sh" ]] && . "/opt/homebrew/opt/nvm/nvm.sh"
-        [[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ]] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
-
-        # --- Source custom shell config from dotfiles repo ---
-        [[ -f "$HOME/open_source/dotfiles/shell/work-zshrc" ]] && source "$HOME/open_source/dotfiles/shell/work-zshrc"
-        [[ -f "$HOME/open_source/dotfiles/shell/work-aliases" ]] && source "$HOME/open_source/dotfiles/shell/work-aliases"
-      '';
-    };
+      # --- Source custom shell config from dotfiles repo ---
+      [[ -f "$HOME/open_source/dotfiles/shell/work-zshrc" ]] && source "$HOME/open_source/dotfiles/shell/work-zshrc"
+      [[ -f "$HOME/open_source/dotfiles/shell/work-aliases" ]] && source "$HOME/open_source/dotfiles/shell/work-aliases"
+    '';
   };
 
   nixpkgs.hostPlatform = "aarch64-darwin";

@@ -19,34 +19,23 @@
     inputs = { inherit nixpkgs nixos-master nix-darwin home-manager; };
   in
   {
-    darwinConfigurations =
-        let
-          all =
-            ({ modulePath, ... }: {
-              imports = [
-                ./nix-config/nix-common
-              ];
-            });
-        in
-        {
-          "navanax" = nix-darwin.lib.darwinSystem {
-            system = "aarch64-darwin";
-            modules = [
-              all
-              ./nix-config/machines/navanax/configuration.nix
-              home-manager.darwinModules.home-manager
-            ];
-            specialArgs = { inherit inputs nixpkgs self; };
-          };
-          "worktop" = nix-darwin.lib.darwinSystem {
-            system = "aarch64-darwin";
-            modules = [
-              all
-              ./nix-config/machines/worktop/configuration.nix
-              home-manager.darwinModules.home-manager
-            ];
-            specialArgs = { inherit inputs nixpkgs self; };
-          };
-        };
+    darwinConfigurations = {
+      "navanax" = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        modules = [
+          ./nix-config/machines/navanax/configuration.nix
+          home-manager.darwinModules.home-manager
+        ];
+        specialArgs = { inherit inputs nixpkgs self; };
+      };
+      "worktop" = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        modules = [
+          ./nix-config/machines/worktop/configuration.nix
+          home-manager.darwinModules.home-manager
+        ];
+        specialArgs = { inherit inputs nixpkgs self; };
+      };
+    };
   };
 }

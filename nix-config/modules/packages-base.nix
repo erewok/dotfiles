@@ -1,0 +1,53 @@
+{ pkgs, ... }:
+{
+  # Packages installed on all machines; machine-specific packages live in machines/*/packages.nix
+  environment.systemPackages = with pkgs; [
+    aspell
+    bat
+    btop
+    curl
+    dig
+    direnv
+    fnm
+    fzf
+    gcc
+    gh
+    git
+    git-lfs
+    gnuplot
+    go
+    go-outline
+    gopls
+    gotools
+    graphviz
+    htop
+    hugo
+    jq
+    just
+    lazygit
+    libressl
+    lstr
+    netcat
+    nginx
+    nil
+    nix-zsh-completions
+    nixpkgs-fmt
+    nmap
+    openssh
+    openssl
+    postgresql
+    protobuf
+    python3
+    rectangle
+    ripgrep
+    rustup
+    scc
+    shellcheck
+    terminal-notifier
+    uv
+    wget
+    yamllint
+    zsh-completions
+    zsh-syntax-highlighting
+  ];
+}
