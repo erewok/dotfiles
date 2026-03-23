@@ -2,6 +2,9 @@
 ;; read-only nix symlink, so Emacs must not try to write back to it).
 (setq custom-file (expand-file-name "custom-local.el" user-emacs-directory))
 
+;; Suppress bytecomp warnings from third-party packages (not user config issues)
+(setq warning-suppress-types '((bytecomp)))
+
 ;; THEME
 (prelude-require-packages '(solarized-theme))
 (setq prelude-theme 'solarized-light)
