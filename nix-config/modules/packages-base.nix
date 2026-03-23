@@ -2,7 +2,7 @@
 {
   # Packages installed on all machines; machine-specific packages live in machines/*/packages.nix
   environment.systemPackages = with pkgs; [
-    aspell
+    (aspellWithDicts (dicts: [ dicts.en ]))
     bat
     btop
     curl

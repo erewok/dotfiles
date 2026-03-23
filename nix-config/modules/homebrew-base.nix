@@ -9,6 +9,7 @@
   homebrew.casks = [
     "docker-desktop"
     "emacs-app"
+    "font-jetbrains-mono-nerd-font"
     "firefox"
     "ghostty"
     "google-chrome"

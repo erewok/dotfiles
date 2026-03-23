@@ -1,7 +1,28 @@
-{ pkgs, dotfilesPath, ... }:
+{ pkgs, lib, dotfilesPath, ... }:
 {
   home.stateVersion = "24.11";
   home.sessionPath = [ "$HOME/.cargo/bin" ];
+
+  # Emacs Prelude: clone the framework on first setup, symlink personal config
+  home.activation.emacsPrelude = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    if [ ! -d "$HOME/.emacs.d/.git" ]; then
+      if [ -d "$HOME/.emacs.d" ]; then
+        if [ -d "$HOME/.emacs.d.bak" ]; then
+          echo "WARNING: ~/.emacs.d has no git repo and ~/.emacs.d.bak already exists."
+          echo "Please resolve manually (remove or inspect both directories) and re-run."
+          exit 1
+        fi
+        echo "Backing up ~/.emacs.d to ~/.emacs.d.bak before cloning Prelude..."
+        mv "$HOME/.emacs.d" "$HOME/.emacs.d.bak"
+      fi
+      echo "Cloning Emacs Prelude into ~/.emacs.d..."
+      ${pkgs.git}/bin/git clone https://github.com/bbatsov/prelude.git "$HOME/.emacs.d"
+    fi
+  '';
+
+  home.file.".emacs.d/personal/custom.el".source = "${dotfilesPath}/emacs/personal/custom.el";
+  home.file.".emacs.d/personal/prelude-modules.el".source = "${dotfilesPath}/emacs/personal/prelude-modules.el";
+  home.file.".emacs.d/personal/preload/compatibility.el".source = "${dotfilesPath}/emacs/personal/preload/compatibility.el";
 
   # Required for oh-my-zsh (Home Manager omits this env var)
   home.sessionVariables.ZSH = "${pkgs.oh-my-zsh}/share/oh-my-zsh";
