@@ -8,6 +8,7 @@ in
     ../../modules/macos.nix
     ../../modules/packages-base.nix
     ../../modules/homebrew-base.nix
+    ../../modules/services.nix
     ./packages.nix
   ];
 

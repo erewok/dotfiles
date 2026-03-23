@@ -35,7 +35,6 @@
     nmap
     openssh
     openssl
-    postgresql
     protobuf
     python3
     rectangle

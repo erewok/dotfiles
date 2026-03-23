@@ -25,5 +25,11 @@
     "node"
     "openssl"
     "vfkit"
+    # PostgreSQL managed by Homebrew so brew services handles launchd + initdb
+    {
+      name = "postgresql@17";
+      restart_service = true;
+      link = true;
+    }
   ];
 }
