@@ -23,7 +23,7 @@
 (require 'prelude-js)
 ;; (require 'prelude-latex)
 (require 'prelude-lisp)
-(require 'prelude-lsp)
+;; (require 'prelude-lsp) ;; not available in this Prelude version; lsp-mode loaded via custom.el
 ;; (require 'prelude-ocaml)
 (require 'prelude-org)
 (require 'prelude-perl)

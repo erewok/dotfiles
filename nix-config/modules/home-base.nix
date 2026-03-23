@@ -99,6 +99,7 @@
       mv = "mv -i";
       rm = "rm -i";
       nix-rollback = "sudo darwin-rebuild switch --rollback";
+      nix-gc = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
     };
   };
 }
