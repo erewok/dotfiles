@@ -17,6 +17,7 @@
     kubernetes-helm
     krew
     popeye
+    redis
     starship
     stern
     terraform
