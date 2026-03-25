@@ -8,7 +8,6 @@ in
     ../../modules/macos.nix
     ../../modules/packages-base.nix
     ../../modules/homebrew-base.nix
-    ../../modules/services.nix
     ./packages.nix
   ];
 
@@ -74,6 +73,10 @@ in
 
     home.username = "erewok";
     home.homeDirectory = "/Users/erewok";
+
+    # Terminal config files (font-size 16 — navanax display)
+    home.file.".config/ghostty/config".source = "${dotfilesPath}/ghostty/config";
+    home.file."Library/Application Support/iTerm2/DynamicProfiles/Nix.json".source = "${dotfilesPath}/iterm2/Nix.json";
 
     programs.vscode.profiles.default.userSettings =
       builtins.fromJSON (builtins.readFile "${dotfilesPath}/vscode/vscode-settings-personal.json");

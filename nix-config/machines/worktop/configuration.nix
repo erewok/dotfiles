@@ -61,6 +61,12 @@ in
   homebrew.brews = [
     "azure/kubelogin/kubelogin"
     "helm"
+    # PostgreSQL managed by Homebrew so brew services handles launchd + initdb
+    {
+      name = "postgresql@17";
+      restart_service = true;
+      link = true;
+    }
   ];
 
   # iTerm2: copy on selection
@@ -98,6 +104,10 @@ in
 
     home.username = "eaker";
     home.homeDirectory = "/Users/eaker";
+
+    # Terminal config files (font-size 18 — worktop display)
+    home.file.".config/ghostty/config".source = "${dotfilesPath}/ghostty/config-worktop";
+    home.file."Library/Application Support/iTerm2/DynamicProfiles/Nix.json".source = "${dotfilesPath}/iterm2/Nix-worktop.json";
 
     # Starship prompt
     programs.starship.enable = true;

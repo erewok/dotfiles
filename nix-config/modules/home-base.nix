@@ -27,10 +27,6 @@
   # Required for oh-my-zsh (Home Manager omits this env var)
   home.sessionVariables.ZSH = "${pkgs.oh-my-zsh}/share/oh-my-zsh";
 
-  # Terminal config files
-  home.file.".config/ghostty/config".source = "${dotfilesPath}/ghostty/config";
-  home.file."Library/Application Support/iTerm2/DynamicProfiles/Nix.json".source = "${dotfilesPath}/iterm2/Nix.json";
-
   # Git
   programs.git = {
     enable = true;
