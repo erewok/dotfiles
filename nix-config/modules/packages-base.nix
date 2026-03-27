@@ -5,6 +5,7 @@
     (aspellWithDicts (dicts: [ dicts.en ]))
     bat
     btop
+    cargo-nextest
     curl
     dig
     direnv

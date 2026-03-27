@@ -41,9 +41,9 @@ in
     "/Applications/Visual\ Studio Code.app"
     "/Applications/Emacs.app"
     "/Applications/Spotify.app"
-    "/Applications/iTerm.app"
     "/Applications/Nix Apps/Signal.app"
     "/System/Applications/Calculator.app"
+    "/Applications/iTerm.app"
   ];
 
   system.defaults.screencapture.location = "/Users/erewok/Pictures/Screenshots";

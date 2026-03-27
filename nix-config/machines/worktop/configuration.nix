@@ -41,9 +41,9 @@ in
     "/Applications/Firefox.app"
     "/Applications/Ghostty.app"
     "/Applications/Visual\ Studio Code.app"
-    "/Applications/iTerm.app"
     "/Applications/Emacs.app"
     "/Applications/Spotify.app"
+    "/Applications/iTerm.app"
     "/System/Applications/Calculator.app"
   ];
 
@@ -166,6 +166,9 @@ in
         fpath=("$HOME/.docker/completions" $fpath)
         autoload -Uz compinit && compinit
       fi
+
+      # Kubernetes
+      export KUBE_EDITOR="emacs"
 
       # --- NVM ---
       export NVM_DIR="$HOME/.nvm"
