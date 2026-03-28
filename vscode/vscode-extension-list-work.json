@@ -119,6 +119,22 @@
     "displayName": "Nix IDE",
     "applicationScoped": false
   },
+    {
+    "identifier": {
+      "id": "shd101wyy.markdown-preview-enhanced",
+      "uuid": "3b1db1fc-c7f7-4bd6-9fa4-b499dfa99a8a"
+    },
+    "displayName": "Markdown Preview Enhanced",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "bierner.markdown-mermaid",
+      "uuid": "f8d0ffc4-66bb-4a9c-8149-ef8f043691a1"
+    },
+    "displayName": "Markdown Preview Mermaid Support",
+    "applicationScoped": false
+  },
   {
     "identifier": {
       "id": "mermaidchart.vscode-mermaid-chart",
@@ -206,14 +222,6 @@
       "uuid": "4837e4f3-1b01-4732-b1a6-daa57ef64cab"
     },
     "displayName": "Kubernetes",
-    "applicationScoped": false
-  },
-  {
-    "identifier": {
-      "id": "ms-python.black-formatter",
-      "uuid": "859e640c-c157-47da-8699-9080b81c8371"
-    },
-    "displayName": "Black Formatter",
     "applicationScoped": false
   },
   {

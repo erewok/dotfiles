@@ -41,6 +41,22 @@
   },
   {
     "identifier": {
+      "id": "shd101wyy.markdown-preview-enhanced",
+      "uuid": "3b1db1fc-c7f7-4bd6-9fa4-b499dfa99a8a"
+    },
+    "displayName": "Markdown Preview Enhanced",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
+      "id": "bierner.markdown-mermaid",
+      "uuid": "f8d0ffc4-66bb-4a9c-8149-ef8f043691a1"
+    },
+    "displayName": "Markdown Preview Mermaid Support",
+    "applicationScoped": false
+  },
+  {
+    "identifier": {
       "id": "dbaeumer.vscode-eslint",
       "uuid": "583b2b34-2c1e-4634-8c0b-0b82e283ea3a"
     },
