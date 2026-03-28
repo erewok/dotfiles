@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   # --- Startup & Keyboard ---
   system.startup.chime = false;
@@ -126,8 +126,19 @@
   fonts.packages = [ pkgs.nerd-fonts.meslo-lg ];
   programs.zsh.enable = true;
   environment.variables = {
-    LIBRARY_PATH = "${pkgs.libiconv}/lib";
     SHELL = "${pkgs.zsh}/bin/zsh";
+    LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
+    LIBRARY_PATH = lib.concatStringsSep ":" [
+      "${pkgs.libiconv}/lib"
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/lib"
+    ];
+    MACOSX_DEPLOYMENT_TARGET = "15.4";
+    SDKROOT = "/Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk";
+    CPATH = "/Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include";
+    # Force cc/c++ to Apple's toolchain, not Nix GCC
+    CC = "/usr/bin/clang";
+    CXX = "/usr/bin/clang++";
+    AR = "/usr/bin/ar";
   };
 
   # --- Activation scripts ---

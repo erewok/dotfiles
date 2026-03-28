@@ -6,6 +6,7 @@
     bat
     btop
     cargo-nextest
+    cmake
     curl
     dig
     direnv
@@ -26,8 +27,12 @@
     jq
     just
     lazygit
+    llvmPackages.clang
+    llvmPackages.libclang
+    libiconv
     libressl
     lstr
+    nasm
     netcat
     nginx
     nil
