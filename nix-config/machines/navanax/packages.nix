@@ -11,6 +11,7 @@ in
     pkgs-master.claude-code
     pkgs-master.signal-desktop
     pure-prompt
+    reaper
     tmux
   ];
 }

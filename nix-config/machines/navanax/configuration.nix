@@ -39,9 +39,10 @@ in
     "/Applications/Firefox.app"
     "/Applications/Ghostty.app"
     "/Applications/Visual\ Studio Code.app"
+    "/Applications/Nix\ Apps/Reaper.app"
     "/Applications/Emacs.app"
     "/Applications/Spotify.app"
-    "/Applications/Nix Apps/Signal.app"
+    "/Applications/Nix\ Apps/Signal.app"
     "/System/Applications/Calculator.app"
     "/Applications/iTerm.app"
   ];
