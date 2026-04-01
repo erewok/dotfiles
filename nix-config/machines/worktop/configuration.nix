@@ -61,6 +61,7 @@ in
   homebrew.brews = [
     "azure/kubelogin/kubelogin"
     "helm"
+    "pango" # required for weasyprint
     # PostgreSQL managed by Homebrew so brew services handles launchd + initdb
     {
       name = "postgresql@17";
