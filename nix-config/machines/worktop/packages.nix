@@ -16,6 +16,7 @@
     kubectl-tree
     kubernetes-helm
     krew
+    ollama
     popeye
     redis
     starship
