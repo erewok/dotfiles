@@ -49,8 +49,17 @@ in
 
   system.defaults.screencapture.location = "/Users/erewok/Pictures/Screenshots";
 
-  # Personal-machine-only casks
+  # Personal-machine-only homebrew packages
   homebrew.casks = [ "1password" ];
+  homebrew.brews = [
+    # PostgreSQL managed by Homebrew so brew services handles launchd + initdb
+    {
+      name = "postgresql@18";
+      restart_service = true;
+      link = true;
+    }
+    "pgvector"
+  ];
 
   # iTerm2: copy on selection
   system.activationScripts.iterm2CopyOnSelect.text = ''

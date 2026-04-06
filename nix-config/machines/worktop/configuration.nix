@@ -64,10 +64,11 @@ in
     "pango" # required for weasyprint
     # PostgreSQL managed by Homebrew so brew services handles launchd + initdb
     {
-      name = "postgresql@17";
+      name = "postgresql@18";
       restart_service = true;
       link = true;
     }
+    "pgvector"
   ];
 
   # iTerm2: copy on selection
