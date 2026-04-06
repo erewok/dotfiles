@@ -69,6 +69,7 @@ in
       link = true;
     }
     "pgvector"
+    "qsv"
   ];
 
   # iTerm2: copy on selection
