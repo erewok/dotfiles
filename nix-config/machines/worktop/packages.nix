@@ -22,6 +22,7 @@
     starship
     stern
     terraform
+    tmux
     tree
     trivy
   ];

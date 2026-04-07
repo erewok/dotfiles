@@ -127,6 +127,7 @@
   programs.zsh.enable = true;
   environment.variables = {
     SHELL = "${pkgs.zsh}/bin/zsh";
+    XDG_CONFIG_HOME="$HOME/.config";
     LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
     LIBRARY_PATH = lib.concatStringsSep ":" [
       "${pkgs.libiconv}/lib"

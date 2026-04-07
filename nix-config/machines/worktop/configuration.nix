@@ -110,6 +110,9 @@ in
 
     # Terminal config files (font-size 18 — worktop display)
     home.file.".config/ghostty/config".source = "${dotfilesPath}/ghostty/config-worktop";
+    home.file.".config/ghostty/config.ghostty".source = "${dotfilesPath}/ghostty/config-worktop";
+    home.file."Library/Application Support/com.mitchellh.ghostty/config".source = "${dotfilesPath}/ghostty/config-worktop";
+    home.file."Library/Application Support/com.mitchellh.ghostty/config.ghostty".source = "${dotfilesPath}/ghostty/config-worktop";
     home.file."Library/Application Support/iTerm2/DynamicProfiles/Nix.json".source = "${dotfilesPath}/iterm2/Nix-worktop.json";
 
     # Starship prompt

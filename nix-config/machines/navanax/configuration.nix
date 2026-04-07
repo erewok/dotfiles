@@ -86,6 +86,9 @@ in
 
     # Terminal config files (font-size 16 — navanax display)
     home.file.".config/ghostty/config".source = "${dotfilesPath}/ghostty/config";
+    home.file.".config/ghostty/config.ghostty".source = "${dotfilesPath}/ghostty/config";
+    home.file."Library/Application Support/com.mitchellh.ghostty/config".source = "${dotfilesPath}/ghostty/config";
+    home.file."Library/Application Support/com.mitchellh.ghostty/config.ghostty".source = "${dotfilesPath}/ghostty/config";
     home.file."Library/Application Support/iTerm2/DynamicProfiles/Nix.json".source = "${dotfilesPath}/iterm2/Nix.json";
 
     programs.vscode.profiles.default.userSettings =
