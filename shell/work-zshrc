@@ -41,5 +41,10 @@ esac
 
 # --- Custom Paths ---
 export PATH="${PATH}:/Users/erikaker/bin:/Users/erikaker/.linkerd2/bin"
-export PATH="${PATH}:/Applications/Postgres.app/Contents/Versions/latest/bin"
+if [[ -d "/opt/homebrew/opt/postgres/bin" ]]; then
+  case ":$PATH:" in
+    *":/opt/homebrew/opt/postgres/bin:"*) ;;
+    *) export PATH="${PATH}:/opt/homebrew/opt/postgres/bin" ;;
+  esac
+fi
 export PATH="$HOME/.local/bin:$PATH"
