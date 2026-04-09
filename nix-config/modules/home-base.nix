@@ -32,6 +32,7 @@
     enable = true;
     settings = {
       push.default = "simple";
+      core.pager = "less -FRX";
       core.sshCommand = "/usr/bin/ssh";
       user.name = "Erik Aker";
       user.email = "eraker@gmail.com";
