@@ -47,7 +47,7 @@ format = '\([$state( $progress_current/$progress_total)]($style)\) '
 
 [kubernetes]
 disabled = false
-format = '[$symbol$context( \($namespace\))]($style) '
+format = '[$symbol$context(.$namespace)]($style) '
 symbol = "⎈ "
 style = "bold blue"
 
