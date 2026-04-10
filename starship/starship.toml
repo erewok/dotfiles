@@ -2,7 +2,6 @@
 # https://starship.rs/config/
 "$schema" = 'https://starship.rs/config-schema.json'
 
-
 format = """
 $kubernetes\
 $cmd_duration\
@@ -17,6 +16,9 @@ $character"""
 [directory]
 truncation_length = 4
 truncate_to_repo = true
+
+[fill]
+symbol = " "
 
 [git_branch]
 format = "[$symbol$branch]($style) "
