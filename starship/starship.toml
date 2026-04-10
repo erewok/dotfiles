@@ -20,6 +20,12 @@ truncate_to_repo = true
 [fill]
 symbol = " "
 
+[time]
+disabled = false
+time_format = "%R"
+style ="bold yellow"
+format = '[$time]($style)'
+
 [git_branch]
 format = "[$symbol$branch]($style) "
 symbol = " "
@@ -62,6 +68,7 @@ error_symbol = "[❯](bold red)"
 [cmd_duration]
 format = "[$duration]($style) "
 style = "yellow"
+min_time = 2000
 
 [line_break]
 disabled = false
