@@ -50,6 +50,10 @@
       };
     };
   };
+  programs.java = {
+    enable = true;
+    package = pkgs.jdk21;
+  };
 
   # VSCode — shared extensions; userSettings and any extra extensions set per machine
   programs.vscode = {
@@ -99,4 +103,5 @@
       nix-gc = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
     };
   };
+
 }
