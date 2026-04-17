@@ -9,6 +9,7 @@ in
   # Work machine packages — k8s, cloud, and infra tooling
   environment.systemPackages = with pkgs; [
     pkgs-master.claude-code
+    pkgs-master.ollama
     argocd
     argo-workflows
     azure-cli
@@ -23,7 +24,6 @@ in
     kubectl-tree
     kubernetes-helm
     krew
-    ollama
     popeye
     redis
     starship
