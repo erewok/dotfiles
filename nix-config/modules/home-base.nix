@@ -96,7 +96,7 @@
       l = "ls -CFG";
       ls = "ls -G";
       tree = "lstr";
-      cat = "bat";
+      cat = "bat -p";
       mv = "mv -i";
       rm = "rm -i";
       nix-rollback = "sudo darwin-rebuild switch --rollback";
