@@ -1,7 +1,18 @@
 { pkgs, lib, dotfilesPath, ... }:
 {
   home.stateVersion = "24.11";
-  home.sessionPath = [ "$HOME/.cargo/bin" ];
+  home.sessionPath = [ "$HOME/.cargo/bin" "$HOME/bin" ];
+
+  # Symlink ~/workspace/scripts/* into ~/bin when the directory exists
+  home.activation.linkWorkspaceScripts = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    if [ -d "$HOME/workspace/scripts" ]; then
+      mkdir -p "$HOME/bin"
+      for script in "$HOME/workspace/scripts"/*; do
+        [ -e "$script" ] || continue
+        ln -sf "$script" "$HOME/bin/$(basename "$script")"
+      done
+    fi
+  '';
 
   # Emacs Prelude: clone the framework on first setup, symlink personal config
   home.activation.emacsPrelude = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
