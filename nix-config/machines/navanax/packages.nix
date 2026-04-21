@@ -12,6 +12,7 @@ in
     pkgs-master.ollama
     pkgs-master.signal-desktop
     pkgs-master.zola
+    ghc
     pure-prompt
     reaper
     tmux
