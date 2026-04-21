@@ -140,6 +140,7 @@ in
 
       # --- Source custom shell config from dotfiles repo ---
       [[ -f "$HOME/open_source/dotfiles/shell/home-zshrc" ]] && source "$HOME/open_source/dotfiles/shell/home-zshrc"
+      [[ -f "$HOME/open_source/dotfiles/shell/home-aliases" ]] && source "$HOME/open_source/dotfiles/shell/home-aliases"
     '';
   };
 

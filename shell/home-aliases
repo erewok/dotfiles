@@ -1,0 +1,4 @@
+# alias oclaude='ollama launch claude --model qwen3.5:35b'
+alias oclaude='ollama launch claude --model gemma4:26b'
+# alias olaunch='OLLAMA_NUM_PARALLEL=8 ollama serve'
+alias olaunch='OLLAMA_NUM_PARALLEL=8 /Applications/Ollama.app/Contents/Resources/ollama serve'
