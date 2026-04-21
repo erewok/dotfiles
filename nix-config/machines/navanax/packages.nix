@@ -13,6 +13,8 @@ in
     pkgs-master.signal-desktop
     pkgs-master.zola
     ghc
+    cabal-install
+    haskell-language-server
     pure-prompt
     reaper
     tmux
