@@ -82,6 +82,9 @@
 
   system.defaults.spaces.spans-displays = false;
 
+  # Disable window tiling (drag-to-corner fullscreen/tile, macOS Sequoia+)
+  system.defaults.WindowManager.GloballyEnabled = false;
+
   system.defaults.trackpad = {
     TrackpadRightClick = true;
     TrackpadThreeFingerDrag = false;
