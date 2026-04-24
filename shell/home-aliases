@@ -1,2 +1,21 @@
-alias oclaude='ollama launch claude'
-alias olaunch='OLLAMA_NUM_PARALLEL=4 /Applications/Ollama.app/Contents/Resources/ollama serve'
+function llama-claude {
+    echo -e "Running 'claude --model $1' against local llama-cpp server at http://localhost:12345\n"
+    echo -e "List llama-cpp models with 'llama-cli -cl'\n"
+    echo -e "Run a llama server like: 'llama-server -hf unsloth/gemma-4-26B-A4B-it-GGUF'\n"
+
+    ANTHROPIC_BASE_URL="http://localhost:12345" \
+        ANTHROPIC_API_KEY="sk-no-key-required" \
+        ANTHROPIC_MODEL="Qwen3-Coder-Next" \
+        CLAUDE_CODE_ATTRIBUTION_HEADER=0 \
+        CLAUDE_CODE_DISABLE_1M_CONTEXT=1 \
+        CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1" \
+        claude --model $1
+}
+
+function make-secret {
+    python3 -c "import secrets; print(secrets.token_hex($1))"
+}
+
+function uniq8char {
+    hexdump -n 8 -e '4/4 "%08X"' /dev/urandom | tr '[:upper:]' '[:lower:]' | sed -e 's/[[:space:]]*$//g'
+}

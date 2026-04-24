@@ -9,7 +9,7 @@ in
   # Work machine packages — k8s, cloud, and infra tooling
   environment.systemPackages = with pkgs; [
     pkgs-master.claude-code
-    pkgs-master.ollama
+    pkgs-master.llama-cpp
     argocd
     argo-workflows
     azure-cli

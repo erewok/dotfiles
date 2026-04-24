@@ -9,7 +9,7 @@ in
   # Personal machine packages — dev tools, no k8s/cloud
   environment.systemPackages = with pkgs; [
     pkgs-master.claude-code
-    pkgs-master.ollama
+    pkgs-master.llama-cpp
     pkgs-master.signal-desktop
     pkgs-master.zola
     ghc
