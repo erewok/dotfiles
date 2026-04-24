@@ -15,7 +15,6 @@
     "google-chrome"
     "iterm2"
     "spotify"
-    "tla+-toolbox"
     "visual-studio-code"
     "zoom"
   ];
