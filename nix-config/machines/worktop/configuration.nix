@@ -18,36 +18,18 @@ in
     autoGC = false;
   };
 
-  ids.gids.nixbld = 350;
-
   networking.hostName = "GW3TX9XVDT";
   networking.computerName = "GW3TX9XVDT";
 
   # Clock: 12h / AM-PM on work machine (navanax uses 24h)
   system.defaults.menuExtraClock = {
-    IsAnalog = false;
     Show24Hour = false;
     ShowAMPM = true;
-    ShowDayOfMonth = true;
-    ShowDayOfWeek = true;
-    ShowDate = 1;
-    ShowSeconds = false;
   };
 
   system.defaults.dock.persistent-apps = [
-    "/System/Applications/Mission\ Control.app"
-    "/System/Applications/System\ Settings.app"
     "/Applications/Slack.app"
-    "/Applications/Firefox.app"
-    "/Applications/Ghostty.app"
-    "/Applications/Visual\ Studio Code.app"
-    "/Applications/Emacs.app"
-    "/Applications/Spotify.app"
-    "/Applications/iTerm.app"
-    "/System/Applications/Calculator.app"
   ];
-
-  system.defaults.screencapture.location = "/Users/eaker/Pictures/Screenshots";
 
   # Work-machine-only taps, casks, and brews
   homebrew.taps = [ "Azure/kubelogin" ];
@@ -71,11 +53,6 @@ in
     "pgvector"
     "qsv"
   ];
-
-  # iTerm2: copy on selection
-  system.activationScripts.iterm2CopyOnSelect.text = ''
-    sudo -u eaker /usr/bin/defaults write com.googlecode.iterm2 CopySelection -bool true
-  '';
 
   # kubectl plugins not in nixpkgs — install via krew at build time
   system.activationScripts.krewPlugins.text = ''
@@ -109,10 +86,10 @@ in
     home.homeDirectory = "/Users/eaker";
 
     # Terminal config files (font-size 18 — worktop display)
-    home.file.".config/ghostty/config".source = "${dotfilesPath}/ghostty/config-worktop";
-    home.file.".config/ghostty/config.ghostty".source = "${dotfilesPath}/ghostty/config-worktop";
-    home.file."Library/Application Support/com.mitchellh.ghostty/config".source = "${dotfilesPath}/ghostty/config-worktop";
-    home.file."Library/Application Support/com.mitchellh.ghostty/config.ghostty".source = "${dotfilesPath}/ghostty/config-worktop";
+    home.file.".config/ghostty/config".source = "${dotfilesPath}/ghostty/config";
+    home.file.".config/ghostty/config.ghostty".source = "${dotfilesPath}/ghostty/config";
+    home.file."Library/Application Support/com.mitchellh.ghostty/config".source = "${dotfilesPath}/ghostty/config";
+    home.file."Library/Application Support/com.mitchellh.ghostty/config.ghostty".source = "${dotfilesPath}/ghostty/config";
     home.file."Library/Application Support/iTerm2/DynamicProfiles/Nix.json".source = "${dotfilesPath}/iterm2/Nix-worktop.json";
 
     # Starship prompt
@@ -165,7 +142,6 @@ in
 
       # --- Kubectl completion ---
       source <(kubectl completion zsh 2>/dev/null) || true
-      export KUBE_EDITOR="vim"
 
       # --- Docker Desktop completions ---
       if [[ -d "$HOME/.docker/completions" ]]; then

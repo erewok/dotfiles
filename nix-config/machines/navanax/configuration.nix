@@ -17,37 +17,19 @@ in
     autoGC = false;
   };
 
-  ids.gids.nixbld = 350;
-
   networking.hostName = "navanax";
   networking.computerName = "navanax";
 
   # Clock: 24h on personal machine (worktop uses 12h/AM-PM)
   system.defaults.menuExtraClock = {
-    IsAnalog = false;
     Show24Hour = true;
     ShowAMPM = false;
-    ShowDayOfMonth = true;
-    ShowDayOfWeek = true;
-    ShowDate = 1;
-    ShowSeconds = false;
   };
 
   system.defaults.dock.persistent-apps = [
-    "/System/Applications/Mission\ Control.app"
-    "/System/Applications/System\ Settings.app"
-    "/Applications/Firefox.app"
-    "/Applications/Ghostty.app"
-    "/Applications/Visual\ Studio Code.app"
     "/Applications/Nix\ Apps/Reaper.app"
-    "/Applications/Emacs.app"
-    "/Applications/Spotify.app"
     "/Applications/Nix\ Apps/Signal.app"
-    "/System/Applications/Calculator.app"
-    "/Applications/iTerm.app"
   ];
-
-  system.defaults.screencapture.location = "/Users/erewok/Pictures/Screenshots";
 
   # Personal-machine-only homebrew packages
   homebrew.casks = [ "1password" ];
@@ -60,11 +42,6 @@ in
     }
     "pgvector"
   ];
-
-  # iTerm2: copy on selection
-  system.activationScripts.iterm2CopyOnSelect.text = ''
-    sudo -u erewok /usr/bin/defaults write com.googlecode.iterm2 CopySelection -bool true
-  '';
 
   system.primaryUser = "erewok";
   users.users.erewok = {

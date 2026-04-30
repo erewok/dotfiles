@@ -1,0 +1,31 @@
+# ============================================================================
+# Common ZSH Configuration
+# Sourced by both home-zshrc and work-zshrc
+# ============================================================================
+
+# --- Emacs ---
+alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs"
+export EDITOR="/Applications/Emacs.app/Contents/MacOS/Emacs"
+
+# --- Load additional aliases from separate file ---
+[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
+
+# --- Rust/Cargo ---
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+
+# --- pnpm ---
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# --- PostgreSQL PATH ---
+if [[ -d "/opt/homebrew/opt/postgres/bin" ]]; then
+  case ":$PATH:" in
+    *":/opt/homebrew/opt/postgres/bin:"*) ;;
+    *) export PATH="${PATH}:/opt/homebrew/opt/postgres/bin" ;;
+  esac
+fi
+
+export PATH="$HOME/.local/bin:$PATH"

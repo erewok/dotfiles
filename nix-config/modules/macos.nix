@@ -1,5 +1,8 @@
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 {
+  # --- Shared user/group IDs ---
+  ids.gids.nixbld = 350;
+
   # --- Startup & Keyboard ---
   system.startup.chime = false;
   system.keyboard.enableKeyMapping = true;
@@ -51,7 +54,7 @@
     "com.apple.springing.delay" = 1.0;
   };
 
-  # Dock layout — persistent-apps set per machine
+  # Dock layout — persistent-apps merged per machine (shared base + machine-specific)
   system.defaults.dock = {
     appswitcher-all-displays = true;
     autohide = true;
@@ -80,7 +83,31 @@
     static-only = false;
   };
 
+  # Shared dock apps — machines append their own (list concatenation)
+  system.defaults.dock.persistent-apps = [
+    "/System/Applications/Mission\ Control.app"
+    "/System/Applications/System\ Settings.app"
+    "/Applications/Firefox.app"
+    "/Applications/Ghostty.app"
+    "/Applications/Visual\ Studio Code.app"
+    "/Applications/Emacs.app"
+    "/Applications/Spotify.app"
+    "/System/Applications/Calculator.app"
+    "/Applications/iTerm.app"
+  ];
+
   system.defaults.spaces.spans-displays = false;
+
+  # Clock — shared base, override Show24Hour/ShowAMPM per machine
+  system.defaults.menuExtraClock = {
+    IsAnalog = false;
+    Show24Hour = true;  # override per machine (true=24h navanax, false=12h worktop)
+    ShowAMPM = false;   # override per machine
+    ShowDayOfMonth = true;
+    ShowDayOfWeek = true;
+    ShowDate = 1;
+    ShowSeconds = false;
+  };
 
   # Disable window tiling (drag-to-corner fullscreen/tile, macOS Sequoia+)
   system.defaults.WindowManager.GloballyEnabled = false;
@@ -106,10 +133,7 @@
   };
 
   # Screencapture — location set per machine (different usernames)
-  system.defaults.screencapture = {
-    type = "png";
-    disable-shadow = false;
-  };
+  system.defaults.screencapture.location = "${config.users.users.${config.system.primaryUser}.home}/Pictures/Screenshots";
 
   # --- Security & Networking ---
   networking.applicationFirewall = {
@@ -146,6 +170,11 @@
   };
 
   # --- Activation scripts ---
+  # iTerm2: copy on selection
+  system.activationScripts.iterm2CopyOnSelect.text = ''
+    sudo -u ${config.system.primaryUser} /usr/bin/defaults write com.googlecode.iterm2 CopySelection -bool true
+  '';
+
   # Force three-finger swipe for space switching (disable three-finger drag in both trackpad domains)
   system.activationScripts.threeFingerDrag.text = ''
     /usr/bin/defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool false

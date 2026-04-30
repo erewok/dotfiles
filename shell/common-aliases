@@ -1,0 +1,26 @@
+# ============================================================================
+# Common Shell Aliases & Functions
+# Sourced by both home-aliases and work-aliases
+# ============================================================================
+
+function make-secret {
+    python3 -c "import secrets; print(secrets.token_hex($1))"
+}
+
+function uniq8char {
+    hexdump -n 8 -e '4/4 "%08X"' /dev/urandom | tr '[:upper:]' '[:lower:]' | sed -e 's/[[:space:]]*$//g'
+}
+
+function llama-claude {
+    echo -e "Running 'claude --model $1' against local llama-cpp server at http://localhost:12345\n"
+    echo -e "List llama-cpp models with 'llama-cli -cl'\n"
+    echo -e "Run a llama server like: 'llama-server -hf unsloth/Qwen3.6-35B-A3B-GGUF --port 12345'\n"
+
+    ANTHROPIC_BASE_URL="http://localhost:12345" \
+        ANTHROPIC_API_KEY="sk-no-key-required" \
+        ANTHROPIC_MODEL="$1" \
+        CLAUDE_CODE_ATTRIBUTION_HEADER=0 \
+        CLAUDE_CODE_DISABLE_1M_CONTEXT=1 \
+        CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1" \
+        claude --model $1
+}
