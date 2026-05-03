@@ -71,10 +71,6 @@ in
     programs.vscode.profiles.default.userSettings =
       builtins.fromJSON (builtins.readFile "${dotfilesPath}/vscode/vscode-settings-personal.json");
 
-    programs.zsh.shellAliases = {
-      nix-rebuild = "sudo darwin-rebuild switch --flake ~/open_source/dotfiles";
-    };
-
     programs.zsh.initContent = ''
       # --- Homebrew ---
       eval "$(/opt/homebrew/bin/brew shellenv)"

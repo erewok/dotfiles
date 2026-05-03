@@ -110,6 +110,7 @@
       cat = "bat -p";
       mv = "mv -i";
       rm = "rm -i";
+      nix-rebuild = "sudo darwin-rebuild switch --flake ~/open_source/dotfiles";
       nix-rollback = "sudo darwin-rebuild switch --rollback";
       nix-gc = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
     };
