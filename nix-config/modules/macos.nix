@@ -101,8 +101,8 @@
   # Clock — shared base, override Show24Hour/ShowAMPM per machine
   system.defaults.menuExtraClock = {
     IsAnalog = false;
-    Show24Hour = true;  # override per machine (true=24h navanax, false=12h worktop)
-    ShowAMPM = false;   # override per machine
+    Show24Hour = lib.mkDefault true;  # override per machine (true=24h navanax, false=12h worktop)
+    ShowAMPM = lib.mkDefault false;   # override per machine
     ShowDayOfMonth = true;
     ShowDayOfWeek = true;
     ShowDate = 1;
