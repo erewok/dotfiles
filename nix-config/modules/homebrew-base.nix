@@ -22,8 +22,8 @@
   # CLI tools via Homebrew
   # vfkit workaround: https://github.com/kevinmichaelchen/dotfiles/commit/ec3438f259f6f1b4e4de4b0ef3bee1308cf85128
   homebrew.brews = [
-    "node"
     "nvtop"
+    "node"
     "pre-commit"
     "openssl"
     "vfkit"
