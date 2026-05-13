@@ -100,6 +100,7 @@ in
       builtins.fromJSON (builtins.readFile "${dotfilesPath}/vscode/vscode-settings-work.json");
 
     programs.zsh.shellAliases = {
+      nix-rebuild = lib.mkForce "sudo darwin-rebuild switch --flake ~/open_source/dotfiles#worktop";
       # kubectl
       k = "kubecolor";
       kubectl = "kubecolor";
