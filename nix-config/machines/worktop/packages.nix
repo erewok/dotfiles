@@ -34,7 +34,6 @@ in
   # Work machine packages — k8s, cloud, and infra tooling
   environment.systemPackages = with pkgs; [
     pkgs-master.claude-code
-    pkgs-master.llama-cpp
     pkgs-master.linkerd_edge
     argocd
     argo-workflows
