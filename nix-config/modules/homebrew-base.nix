@@ -7,6 +7,7 @@
 
   # GUI apps that run better through Homebrew than nixpkgs on macOS
   homebrew.casks = [
+    "claude-code"
     "docker-desktop"
     "emacs-app"
     "font-jetbrains-mono-nerd-font"
