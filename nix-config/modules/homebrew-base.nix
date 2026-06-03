@@ -2,7 +2,7 @@
 {
   homebrew.enable = true;
   homebrew.onActivation.autoUpdate = true;
-  homebrew.onActivation.cleanup = "zap";
+  homebrew.onActivation.cleanup = "none";
   homebrew.global.brewfile = true;
 
   # GUI apps that run better through Homebrew than nixpkgs on macOS
