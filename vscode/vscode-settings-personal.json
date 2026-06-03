@@ -91,5 +91,9 @@
   "window.openFoldersInNewWindow": "on",
   "window.zoomLevel": 4,
   "workbench.colorTheme": "Solarized Light",
-  "workbench.startupEditor": "none"
+  "workbench.startupEditor": "none",
+  "accessibility.signals.sounds.volume": 0,
+  "accessibility.signals.chatResponseReceived": { "sound": "off" },
+  "accessibility.signals.chatRequestSent": { "sound": "off" },
+  "accessibility.signals.progress": { "sound": "off" }
 }
