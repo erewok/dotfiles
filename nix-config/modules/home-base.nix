@@ -113,7 +113,14 @@
       nix-rebuild = "sudo darwin-rebuild switch --flake ~/open_source/dotfiles";
       nix-rollback = "sudo darwin-rebuild switch --rollback";
       nix-gc = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
+      gpuu = "git push -u origin HEAD";
     };
+    initContent = ''
+      # lean-ctx shell hook (agents-only mode — activates compression inside AI agent sessions)
+      if [ -f "$HOME/.config/lean-ctx/shell-hook.zsh" ]; then
+        . "$HOME/.config/lean-ctx/shell-hook.zsh"
+      fi
+    '';
   };
 
 }
