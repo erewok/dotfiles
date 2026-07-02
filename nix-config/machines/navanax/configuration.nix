@@ -96,7 +96,7 @@ in
       [[ -f "$HOME/.iterm2_shell_integration.zsh" ]] && source "$HOME/.iterm2_shell_integration.zsh"
 
       # --- FZF ---
-      [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+      eval "$(fzf --zsh)"
 
       # --- Word jump (Option+Left/Right) ---
       # iTerm2: Profiles → Keys → Left/Right Option = "Esc+"; add: Option+Left → "b", Option+Right → "f"
