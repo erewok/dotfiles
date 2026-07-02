@@ -46,6 +46,7 @@ in
     kubectx
     kubectl-images
     kubectl-tree
+    kubelogin # Azure AD credential plugin (was brew azure/kubelogin, moved to nixpkgs)
     kubernetes-helm
     krew
     popeye
