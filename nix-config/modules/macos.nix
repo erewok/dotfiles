@@ -109,8 +109,17 @@
     ShowSeconds = false;
   };
 
-  # Disable window tiling (drag-to-corner fullscreen/tile, macOS Sequoia+)
+  # Disable Stage Manager (macOS Ventura+)
   system.defaults.WindowManager.GloballyEnabled = false;
+
+  # Disable window tiling by dragging (macOS Sequoia+).
+  # Not exposed as typed nix-darwin options, so set via the per-user domain.
+  system.defaults.CustomUserPreferences."com.apple.WindowManager" = {
+    EnableTilingByEdgeDrag = false;        # "Drag windows to screen edges to tile"
+    EnableTopTilingByEdgeDrag = false;     # "Drag windows to menu bar to fill screen"
+    EnableTilingOptionAccelerator = false; # "Hold [key] while dragging windows to tile"
+    EnableTiledWindowMargins = false;      # "Tiled windows have margins"
+  };
 
   system.defaults.trackpad = {
     TrackpadRightClick = true;
