@@ -20,6 +20,27 @@ Your Nix configuration automatically loads the appropriate settings file:
 
 Settings are synced automatically when you rebuild your Nix configuration.
 
+#### Why settings.json is copied, not symlinked
+
+Home Manager's `programs.vscode.*.userSettings` writes `settings.json` as a
+read-only symlink into the Nix store, owned by `root`. VSCode and many extensions
+persist state by writing to `settings.json`; against a read-only file those writes
+fail and VSCode parks the file as a **dirty editor you cannot save** — once per
+folder you open.
+
+So `userSettings` is left unset, and `home.activation.vscodeUserSettings` in
+`nix-config/modules/home-base.nix` instead copies the JSON in as a normal
+user-writable file (mode 644). The rules:
+
+- The dotfiles JSON is still the source of truth and is re-copied on **every rebuild**.
+- A stamp file, `.settings.json.nix-deployed`, records what was last deployed.
+- If the live `settings.json` has diverged from the stamp (i.e. VSCode wrote to it),
+  it is copied to `settings.json.bak` before being replaced. Nothing is silently lost.
+
+Practical upshot: tweak settings freely in the VSCode UI between rebuilds. To make a
+tweak permanent, copy it back into the JSON file in this directory. Otherwise the next
+rebuild resets it — and leaves your version in `settings.json.bak`.
+
 ### Extensions (Hybrid Approach)
 
 We use a **hybrid approach** for extensions:
@@ -35,11 +56,14 @@ This hybrid approach is recommended because:
 
 ### Currently Nix-Managed Extensions
 
-**Work Machine (worktop):**
+Shared by both machines, declared in `nix-config/modules/home-base.nix`:
+
 ```nix
+- bierner.markdown-mermaid
 - charliermarsh.ruff
 - dbaeumer.vscode-eslint
 - esbenp.prettier-vscode
+- fill-labs.dependi
 - golang.go
 - jnoortheen.nix-ide
 - mkhl.direnv
@@ -47,11 +71,15 @@ This hybrid approach is recommended because:
 - ms-python.debugpy
 - redhat.vscode-yaml
 - rust-lang.rust-analyzer
+- shd101wyy.markdown-preview-enhanced
+- skellock.just
 - tamasfe.even-better-toml
 ```
 
-**Personal Machine (navanax):**
-Same as work machine (lighter set).
+Installed manually because it is not packaged in nixpkgs (works fine alongside the
+above thanks to `mutableExtensionsDir = true`):
+
+- `tlaplus.vscode-ide`
 
 ## Managing Extensions
 
@@ -149,7 +177,14 @@ Settings will be applied to `~/Library/Application Support/Code/User/settings.js
 **Settings not applying?**
 - Check that your Nix rebuild completed successfully
 - VSCode settings file is at: `~/Library/Application Support/Code/User/settings.json`
-- Nix creates the file; manual edits will be overwritten on next rebuild
+- Nix copies the file in; manual edits are overwritten on next rebuild, but the
+  overwritten version is kept at `settings.json.bak`
+
+**VSCode opens settings.json as an unsaveable dirty editor?**
+- That is the old symlink-into-the-store behavior. Confirm with
+  `ls -l ~/Library/Application\ Support/Code/User/settings.json` — it should be a
+  regular `-rw-r--r--` file owned by you, not a symlink into `/nix/store`.
+- If it is still a symlink, rebuild; the activation script replaces it.
 
 **Extensions disappeared?**
 - If `mutableExtensionsDir = false`, only Nix-managed extensions are allowed

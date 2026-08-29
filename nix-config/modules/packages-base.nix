@@ -49,6 +49,7 @@
     scc
     shellcheck
     terminal-notifier
+    tlaplus # tlc/tlasany/tlatex/pcal + share/java/tla2tools.jar
     uv
     wget
     yamllint

@@ -54,7 +54,10 @@ in
   # Home Manager
   home-manager.useGlobalPkgs = true;
   home-manager.backupFileExtension = "bak";
-  home-manager.extraSpecialArgs = { inherit dotfilesPath; };
+  home-manager.extraSpecialArgs = {
+    inherit dotfilesPath;
+    vscodeSettingsFile = "${dotfilesPath}/vscode/vscode-settings-personal.json";
+  };
   home-manager.users.erewok = { pkgs, lib, ... }: {
     imports = [ ../../modules/home-base.nix ];
 
@@ -67,9 +70,6 @@ in
     home.file."Library/Application Support/com.mitchellh.ghostty/config".source = "${dotfilesPath}/ghostty/config";
     home.file."Library/Application Support/com.mitchellh.ghostty/config.ghostty".source = "${dotfilesPath}/ghostty/config";
     home.file."Library/Application Support/iTerm2/DynamicProfiles/Nix.json".source = "${dotfilesPath}/iterm2/Nix.json";
-
-    programs.vscode.profiles.default.userSettings =
-      builtins.fromJSON (builtins.readFile "${dotfilesPath}/vscode/vscode-settings-personal.json");
 
     programs.zsh.initContent = ''
       # --- Homebrew ---

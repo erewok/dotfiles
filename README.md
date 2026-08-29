@@ -142,6 +142,38 @@ nix-rollback
 
 The configuration also sets up macOS defaults, security settings (firewall, Touch ID sudo), and a Linux builder for cross-compilation.
 
+### Dropping Your Own Binaries on PATH
+
+Home Manager creates `~/bin` and `~/.local/bin` at activation and puts both on
+`PATH` via `home.sessionPath`. Neither directory is Nix-managed, so anything you
+drop in is picked up by the next shell — no rebuild, no store symlinks, nothing
+read-only.
+
+```bash
+cp some-tool ~/bin/ && chmod +x ~/bin/some-tool
+```
+
+`~/workspace/scripts/*`, if that directory exists, is additionally symlinked into
+`~/bin` on every rebuild.
+
+### Java and TLA+
+
+`programs.java` installs JDK 21 (`pkgs.jdk21`) on both machines, so downloaded jars
+run directly:
+
+```bash
+java -jar some-tool.jar
+```
+
+The `tlaplus` package is also installed, which is usually easier than juggling the
+jar yourself. It provides `tlc`, `tlasany`, `tlatex`, and `pcal` on `PATH`, and ships
+`tla2tools.jar` if you want to invoke it directly:
+
+```bash
+tlc MySpec.tla                                       # wrapper
+java -jar "$(nix eval --raw nixpkgs#tlaplus)"/share/java/tla2tools.jar   # the jar itself
+```
+
 ## Emacs
 
 I use [emacs prelude](https://github.com/bbatsov/prelude) for my Emacs configuration. On nix-darwin machines (navanax), this is automatically configured by symlinking the `emacs/` directory to `~/.emacs.d` during system rebuild.

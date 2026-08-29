@@ -1,12 +1,19 @@
-{ pkgs, lib, dotfilesPath, ... }:
+{ pkgs, lib, dotfilesPath, vscodeSettingsFile, ... }:
 {
   home.stateVersion = "24.11";
-  home.sessionPath = [ "$HOME/.cargo/bin" "$HOME/bin" ];
+
+  # Drop binaries into ~/bin (or ~/.local/bin) and they are on PATH with no rebuild.
+  home.sessionPath = [ "$HOME/.cargo/bin" "$HOME/bin" "$HOME/.local/bin" ];
+
+  # Create the personal bin dirs so the sessionPath entries above are usable
+  # immediately after a fresh install.
+  home.activation.createUserBinDirs = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    mkdir -p "$HOME/bin" "$HOME/.local/bin"
+  '';
 
   # Symlink ~/workspace/scripts/* into ~/bin when the directory exists
-  home.activation.linkWorkspaceScripts = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  home.activation.linkWorkspaceScripts = lib.hm.dag.entryAfter [ "createUserBinDirs" ] ''
     if [ -d "$HOME/workspace/scripts" ]; then
-      mkdir -p "$HOME/bin"
       for script in "$HOME/workspace/scripts"/*; do
         [ -e "$script" ] || continue
         ln -sf "$script" "$HOME/bin/$(basename "$script")"
@@ -61,19 +68,37 @@
       };
     };
   };
+
+  # Global gitignore -> ~/.config/git/ignore
+  programs.git.ignores = [
+    "**/.claude/settings.local.json"
+  ];
+
+  # Java runtime, so `java -jar tla2tools.jar` and friends just work.
+  # The `tlaplus` package (packages-base.nix) ships tla2tools.jar plus tlc/tlasany wrappers.
   programs.java = {
     enable = true;
     package = pkgs.jdk21;
   };
 
-  # VSCode — shared extensions; userSettings and any extra extensions set per machine
+  # VSCode — shared extensions; any extra extensions set per machine.
+  #
+  # userSettings is deliberately NOT set here: Home Manager would write
+  # settings.json as a root-owned, read-only symlink into the Nix store, and every
+  # extension that tries to persist a setting would fail and leave the file parked
+  # as an unsaveable dirty editor. See home.activation.vscodeUserSettings below.
+  #
+  # mutableExtensionsDir lets extensions that aren't packaged in nixpkgs
+  # (e.g. tlaplus.vscode-ide) be installed from the marketplace alongside these.
   programs.vscode = {
     enable = true;
     mutableExtensionsDir = true;
     profiles.default.extensions = with pkgs.vscode-extensions; [
+      bierner.markdown-mermaid
       charliermarsh.ruff
       dbaeumer.vscode-eslint
       esbenp.prettier-vscode
+      fill-labs.dependi
       golang.go
       jnoortheen.nix-ide
       mkhl.direnv
@@ -81,9 +106,43 @@
       ms-python.debugpy
       redhat.vscode-yaml
       rust-lang.rust-analyzer
+      shd101wyy.markdown-preview-enhanced
+      skellock.just
       tamasfe.even-better-toml
     ];
   };
+
+  # Deploy VSCode user settings as a real writable file rather than a store symlink,
+  # so VSCode and its extensions can save without prompting.
+  #
+  # The dotfiles JSON stays the source of truth and is re-copied on every rebuild.
+  # A stamp file records what was last deployed; if the live settings.json has since
+  # diverged (VSCode wrote to it), it is copied to settings.json.bak before being
+  # replaced, so nothing is silently discarded.
+  home.activation.vscodeUserSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    vscodeUserDir="$HOME/Library/Application Support/Code/User"
+    live="$vscodeUserDir/settings.json"
+    stamp="$vscodeUserDir/.settings.json.nix-deployed"
+
+    mkdir -p "$vscodeUserDir"
+
+    # Home Manager owned this path in earlier generations; clear the stale symlink.
+    # ('if' rather than '&&': activation runs under 'set -e'.)
+    if [ -L "$live" ]; then
+      rm -f "$live"
+    fi
+
+    # cmp fails when the stamp is absent, which also covers the first deploy over
+    # a pre-existing hand-written settings.json.
+    if [ -f "$live" ] && ! cmp -s "$live" "$stamp"; then
+      cp -f "$live" "$live.bak"
+    fi
+
+    cp -f ${vscodeSettingsFile} "$live"
+    chmod 644 "$live"
+    cp -f ${vscodeSettingsFile} "$stamp"
+    chmod 644 "$stamp"
+  '';
 
   # ZSH — history, oh-my-zsh, and shared aliases
   # initContent and machine-specific aliases are set per machine

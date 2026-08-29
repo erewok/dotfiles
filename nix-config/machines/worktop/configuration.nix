@@ -76,7 +76,10 @@ in
   # Home Manager
   home-manager.useGlobalPkgs = true;
   home-manager.backupFileExtension = "bak";
-  home-manager.extraSpecialArgs = { inherit dotfilesPath; };
+  home-manager.extraSpecialArgs = {
+    inherit dotfilesPath;
+    vscodeSettingsFile = "${dotfilesPath}/vscode/vscode-settings-work.json";
+  };
   home-manager.users.eaker = { pkgs, lib, ... }: {
     imports = [ ../../modules/home-base.nix ];
 
@@ -93,9 +96,6 @@ in
     # Starship prompt
     programs.starship.enable = true;
     home.file.".config/starship.toml".source = "${dotfilesPath}/starship/starship.toml";
-
-    programs.vscode.profiles.default.userSettings =
-      builtins.fromJSON (builtins.readFile "${dotfilesPath}/vscode/vscode-settings-work.json");
 
     programs.zsh.shellAliases = {
       nix-rebuild = lib.mkForce "sudo darwin-rebuild switch --flake ~/open_source/dotfiles#worktop";
