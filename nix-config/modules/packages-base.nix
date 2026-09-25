@@ -16,6 +16,7 @@
     gh
     git
     git-lfs
+    gnumake
     gnuplot
     go
     go-outline

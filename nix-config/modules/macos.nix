@@ -1,4 +1,8 @@
 { config, pkgs, lib, ... }:
+let
+  # Version-agnostic symlink maintained by the Command Line Tools installer
+  sdkRoot = "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk";
+in
 {
   # --- Shared user/group IDs ---
   ids.gids.nixbld = 350;
@@ -167,11 +171,11 @@
     LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
     LIBRARY_PATH = lib.concatStringsSep ":" [
       "${pkgs.libiconv}/lib"
-      "/Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/lib"
+      "${sdkRoot}/usr/lib"
     ];
     MACOSX_DEPLOYMENT_TARGET = "15.4";
-    SDKROOT = "/Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk";
-    CPATH = "/Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include";
+    SDKROOT = sdkRoot;
+    CPATH = "${sdkRoot}/usr/include";
     # Force cc/c++ to Apple's toolchain, not Nix GCC
     CC = "/usr/bin/clang";
     CXX = "/usr/bin/clang++";
