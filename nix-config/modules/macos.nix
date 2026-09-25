@@ -169,17 +169,14 @@ in
     SHELL = "${pkgs.zsh}/bin/zsh";
     XDG_CONFIG_HOME="$HOME/.config";
     LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
-    LIBRARY_PATH = lib.concatStringsSep ":" [
-      "${pkgs.libiconv}/lib"
-      "${sdkRoot}/usr/lib"
-    ];
+    LIBRARY_PATH = "${pkgs.libiconv}/lib";
     MACOSX_DEPLOYMENT_TARGET = "15.4";
     SDKROOT = sdkRoot;
-    CPATH = "${sdkRoot}/usr/include";
     # Force cc/c++ to Apple's toolchain, not Nix GCC
     CC = "/usr/bin/clang";
     CXX = "/usr/bin/clang++";
     AR = "/usr/bin/ar";
+    CARGO_TARGET_AARCH64_APPLE_DARWIN_LINKER = "/usr/bin/cc";
   };
 
   # --- Activation scripts ---
