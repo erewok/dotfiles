@@ -177,6 +177,11 @@ in
     CXX = "/usr/bin/clang++";
     AR = "/usr/bin/ar";
     CARGO_TARGET_AARCH64_APPLE_DARWIN_LINKER = "/usr/bin/cc";
+    # Don't strip proc-macros/build scripts in release: with Apple's ld plus
+    # MACOSX_DEPLOYMENT_TARGET, rustc's /usr/bin/strip leaves the dylib with a
+    # "mis-aligned LINKEDIT string pool" that dyld refuses to load, which
+    # surfaces as E0463 "can't find crate for `clap_derive`".
+    CARGO_PROFILE_RELEASE_BUILD_OVERRIDE_STRIP = "false";
   };
 
   # --- Activation scripts ---
