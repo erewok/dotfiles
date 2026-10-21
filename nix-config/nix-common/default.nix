@@ -44,6 +44,11 @@ in
       };
     };
     nixpkgs.config.allowUnfree = true;
+    # Distrusted CAs: names must match entries in /etc/ssl/certs/ca-certificates.crt
+    security.pki.caCertificateBlacklist = [
+      "Comodo AAA Services root"
+      "emSign ECC Root CA - G3"
+    ];
     system.stateVersion = lib.mkDefault (if cfg.isDarwin then 5 else config.system.nixos.release);
   };
 }

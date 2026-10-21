@@ -61,6 +61,11 @@
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  # Distrusted CAs: names must match entries in /etc/ssl/certs/ca-certificates.crt
+  security.pki.caCertificateBlacklist = [
+    "Comodo AAA Services root"
+    "emSign ECC Root CA - G3"
+  ];
   services.pipewire = {
     enable = true;
     alsa.enable = true;
